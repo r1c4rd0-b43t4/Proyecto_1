@@ -16,7 +16,7 @@ class Grafo {
     // Agregar Arista
     public void agregarConexion(String estacion1, String estacion2) {
         listaAd.get(estacion1).add(estacion2);
-        listaAd.get(estacion2).add(estacion1); // Si el grafo es dirigido, elimina esta línea
+        listaAd.get(estacion2).add(estacion1); 
     }
 
     // Método para mostrar el grafo usando JOptionPane
