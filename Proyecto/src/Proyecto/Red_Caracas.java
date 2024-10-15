@@ -4,35 +4,99 @@
  */
 package Proyecto;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 /**
  *
  * @author rdbae
  */
 public class Red_Caracas{
-    private Linea Linea;
+    private JsonArray context;
+    private String type;
+    private JsonObject geometry;
+    private JsonObject properties;
 
-    public Red_Caracas(Linea Linea) {
-        this.Linea = Linea;
+    public Red_Caracas(JsonArray context, String type, JsonObject geometry, JsonObject properties) {
+        this.context = context;
+        this.type = type;
+        this.geometry = geometry;
+        this.properties = properties;
+    }
+    public Red_Caracas() {
+        setContext(new JsonArray());
+        setType("");
+        setGeometry(new JsonObject());
+        setProperties(new JsonObject());  
     }
 
     /**
-     * @return the Linea
+     * @return the context
      */
-    public Linea getLinea() {
-        return Linea;
+    public JsonArray getContext() {
+        return context;
     }
 
     /**
-     * @param Linea the Linea to set
+     * @param context the context to set
      */
-    public void setLinea(Linea Linea) {
-        this.Linea = Linea;
+    public void setContext(JsonArray context) {
+        this.context = context;
+    }
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * @return the geometry
+     */
+    public JsonObject getGeometry() {
+        return geometry;
+    }
+
+    /**
+     * @param geometry the geometry to set
+     */
+    public void setGeometry(JsonObject geometry) {
+        this.geometry = geometry;
+    }
+
+    /**
+     * @return the properties
+     */
+    public JsonObject getProperties() {
+        return properties;
+    }
+
+    /**
+     * @param properties the properties to set
+     */
+    public void setProperties(JsonObject properties) {
+        this.properties = properties;
     }
 
     @Override
     public String toString() {
-        return "Red_Caracas{" + "Linea=" + Linea + '}';
+        return "Red_Caracas{" + "context=" + context + ", type=" + type + ", geometry=" + geometry + ", properties=" + properties + '}';
     }
     
     
-}
+    
+
+
+    
+    
+    
+}    
+    
