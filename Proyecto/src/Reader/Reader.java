@@ -48,7 +48,7 @@ public class Reader {
                     BufferedReader br = new BufferedReader(fr);
                     while((line = br.readLine()) != null){
                         if (!line.isEmpty()){
-                            Caracas += line;
+                            Caracas += line + "\n";
                         }
                     
                     }                  
