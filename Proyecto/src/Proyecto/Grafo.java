@@ -1,3 +1,5 @@
+package Proyecto;
+
 import java.util.*;
 import javax.swing.*;
 
