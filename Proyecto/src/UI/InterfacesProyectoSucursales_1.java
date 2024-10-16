@@ -8,13 +8,13 @@ package UI;
  *
  * @author HP
  */
-public class InterfacesProyectoSucursales {
+public class InterfacesProyectoSucursales_1 {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        PantallaPrincipal pantalla = new PantallaPrincipal();
+        PPrincipal pantalla = new PPrincipal();
         pantalla.setVisible(true);
     }
     
