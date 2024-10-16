@@ -34,20 +34,6 @@ public class ListaSimple {
     public int getSize() {
         return size;
     }
-
-    public void setpFirst(Nodo pFirst) {
-        this.pFirst = pFirst;
-    }
-
-    public void setpLast(Nodo pLast) {
-        this.pLast = pLast;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-    
-    
     
     public <T> Nodo getValue( T value){
         Nodo aux = this.pFirst;
@@ -112,30 +98,5 @@ public class ListaSimple {
             System.out.println(aux.getValor().toString());
             aux = aux.getSiguiente();
         }
-    }
-    
-    public Nodo searchNodoIndex(int index){
-        Nodo temp = getpFirst();
-        int cont = 2;
-        
-        if(!EsVacio()){
-            if(index == 1){
-                return temp;
-            }else{
-                temp = temp.getSiguiente();
-                while(temp != null){
-                    if(index == cont){
-                        return temp;
-                    }
-                    temp = temp.getSiguiente();
-                }return null;
-            }
-        }return null;
-    }
-
-    public void empty(){
-        setpFirst(null);
-        setpLast(null);
-        setSize(0);
-    }    
+    }   
 }

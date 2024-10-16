@@ -8,21 +8,19 @@ package Proyecto;
  *
  * @author rdbae
  */
-public class Linea_Caracas{
+public class Linea {
     private String nombre_linea;
     private ListaSimple lista_paradas;
-    private String red;
 
-    public Linea_Caracas(String nombre_linea, ListaSimple lista_paradas, String red) {
+    public Linea(String nombre_linea, ListaSimple lista_paradas) {
         this.nombre_linea = nombre_linea;
         this.lista_paradas = lista_paradas;
-        this.red = red;
     }
     
-    public Linea_Caracas() {
+    public Linea() {
         this.nombre_linea = nombre_linea;
-        this.lista_paradas = new ListaSimple();
-        this.red = "Metro de Caracas";
+        ListaSimple lista = new ListaSimple();
+        this.lista_paradas = lista;
     }
 
     /**
@@ -53,30 +51,10 @@ public class Linea_Caracas{
         this.lista_paradas = lista_paradas;
     }
 
-    /**
-     * @return the red
-     */
-    public String getRed() {
-        return red;
-    }
-
-    /**
-     * @param red the red to set
-     */
-    public void setRed(String red) {
-        this.red = red;
-    }
-
     @Override
     public String toString() {
-        return "Linea_Caracas{" + "nombre_linea=" + nombre_linea + ", lista_paradas=" + lista_paradas + ", red=" + red + '}';
+        return "Linea{" + "nombre_linea=" + nombre_linea + ", lista_paradas=" + lista_paradas + '}';
     }
-    
-    
-
-    
-    
-
     
     
     
