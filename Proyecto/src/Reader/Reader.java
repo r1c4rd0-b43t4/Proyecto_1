@@ -12,6 +12,12 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonToken;
+
 
 
 
@@ -43,39 +49,32 @@ public class Reader {
                 }
                 else{
                     FileReader fr = new FileReader(doc_data);
-                    BufferedReader br = new BufferedReader(fr);
+                    BufferedReader br = new BufferedReader(fr); 
                     while((line = br.readLine()) != null){
                         if (!line.isEmpty()){
                             Caracas += line + "\n";
                             
                         }         
-                    }   
+                    } 
+                    System.out.println(Caracas);
+   
                     if(!"".equals(Caracas)){
-                        Red Metro_Caracas = new Red();
-                        int startInd = Caracas.indexOf("[") + 1;
-                        int endInd = Caracas.lastIndexOf("]");
-                        String array_lineas = Caracas.substring(startInd,endInd).trim();
+                        JsonParser  parser = new JsonParser();
+                        JsonObject gsonObjt = parser.parse(Caracas).getAsJsonObject();
                         
-                        String [] lineas = array_lineas.split("},\\{");
-                        for (String linea : lineas){
-                            if(linea.startsWith("[")) linea = linea.substring(1);
-                            if(linea.endsWith("]")) linea = linea.substring(0,linea.length());
+//                        
+//                        
+//                        String nombre_red = gsonOb
+//                                
+//                        
+//                        for(JsonElement jsonArray : gsonObjt){
                             
-                            String[] partes = linea.split(":\\[");
-                            String nombre_Linea = partes[0].replaceAll("[\"{}]", "").trim();
-                            String array_paradas = partes[1].replaceAll("]", "");
                             
-                            String[] paradas = array_paradas.split(",");
-                            Linea linea_obj = new Linea();
-                            linea_obj.setNombre_linea(nombre_Linea);
-                            for (String parada : paradas){
-                                parada = parada.replaceAll("[\"{}]", "").trim();
-                                linea_obj.getLista_paradas().insertarAlFinal(parada);   
-                            }
-                            Metro_Caracas.setNombre_red("Metro de Caracas");
-                            Metro_Caracas.setLinea(linea_obj);
-                            Metro_Caracas.getLinea().getLista_paradas().showList();
-                        }
+                        
+                                
+                        
+                        
+
                     }
                         fr.close();
                         br.close();
