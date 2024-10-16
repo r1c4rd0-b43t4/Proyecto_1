@@ -11,9 +11,10 @@ import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import com.google.gson.Gson;
-
-
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  *
@@ -24,6 +25,7 @@ public class Reader {
     public void Read(){
         
         String Caracas = "";
+        ListaSimple lineas_caracas = new ListaSimple();
         String Bogota = "";
         String line;
         
@@ -46,37 +48,58 @@ public class Reader {
                     BufferedReader br = new BufferedReader(fr);
                     while((line = br.readLine()) != null){
                         if (!line.isEmpty()){
-                            Caracas += line + "\n";
-                            
+                            Caracas += line + "\n";    
                         }         
-                    }   
-                    if(!"".equals(Caracas)){
-                        Red Metro_Caracas = new Red();
-                        int startInd = Caracas.indexOf("[") + 1;
-                        int endInd = Caracas.lastIndexOf("]");
-                        String array_lineas = Caracas.substring(startInd,endInd).trim();
-                        
-                        String [] lineas = array_lineas.split("},\\{");
-                        for (String linea : lineas){
-                            if(linea.startsWith("[")) linea = linea.substring(1);
-                            if(linea.endsWith("]")) linea = linea.substring(0,linea.length());
-                            
-                            String[] partes = linea.split(":\\[");
-                            String nombre_Linea = partes[0].replaceAll("[\"{}]", "").trim();
-                            String array_paradas = partes[1].replaceAll("]", "");
-                            
-                            String[] paradas = array_paradas.split(",");
-                            Linea linea_obj = new Linea();
-                            linea_obj.setNombre_linea(nombre_Linea);
-                            for (String parada : paradas){
-                                parada = parada.replaceAll("[\"{}]", "").trim();
-                                linea_obj.getLista_paradas().insertarAlFinal(parada);   
-                            }
-                            Metro_Caracas.setNombre_red("Metro de Caracas");
-                            Metro_Caracas.setLinea(linea_obj);
-                            Metro_Caracas.getLinea().getLista_paradas().showList();
-                        }
+                    } 
+                    
+                if(!"".equals(Caracas)){
+                    
+                    Caracas = Caracas.replace("{", "");
+                    Caracas = Caracas.replace("}", "");
+                    Caracas = Caracas.replace("[", "");
+                    Caracas = Caracas.replace("]", "");
+                    Caracas = Caracas.replace(",", "");
+                    Caracas = Caracas.replace(" ", "");
+                    
+                    Caracas = Caracas.replace("\n\n", "\n");
+                    String[] array = Caracas.split("\n");
+                    array[1] = "";
+                    for(int  i = 2; i<array.length; i++){
+                        array[i] = array[i].trim();
+                        System.out.println(array[i]);
                     }
+                    
+                    Linea_Caracas linea = new Linea_Caracas();
+                    
+                    for(int  i = 1; i<array.length; i++){
+                        if(array[i].equals("")){
+                           if(!linea.getLista_paradas().EsVacio()){ //si la lista de paradas de la linea no esta vacia
+                               lineas_caracas.insertarAlFinal(linea); //colocoa la linea en la lista de lineas
+                               linea.getLista_paradas().empty();//vacia la lista de paradas
+                               linea.setNombre_linea(array[i+1].replace(":", " "));//coloca el nombre de la linea
+                           }
+                           else{// en caso de que la lista de paradas de linea este vacia                           
+                                linea.setNombre_linea(array[i+1].replace(":", " "));//coloca el nombre de la linea
+                                
+                           }   
+                          i += 2; 
+                        }
+                        
+                    linea.getLista_paradas().insertarAlFinal(array[i]);    
+                    }
+                    
+                    lineas_caracas.showList();
+
+                        
+                        
+
+                    
+
+
+ 
+
+
+                }
                         fr.close();
                         br.close();
                 }   
