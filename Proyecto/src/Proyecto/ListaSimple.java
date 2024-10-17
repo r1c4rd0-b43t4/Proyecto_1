@@ -98,5 +98,17 @@ public class ListaSimple {
             System.out.println(aux.getValor().toString());
             aux = aux.getSiguiente();
         }
-    }   
+    }
+    
+    public <T> boolean contiene(T value){
+        Nodo temp=pFirst;
+        while(temp!=null){
+            if(temp.getValor().equals(value)){
+                return true;
+            }
+            temp=temp.getSiguiente();
+        }
+        return false;
+    }
+    
 }
