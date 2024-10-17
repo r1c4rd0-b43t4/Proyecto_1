@@ -1,33 +1,135 @@
 package Proyecto;
 
-import java.util.*;
-import javax.swing.*;
 
 class Grafo {
-    private Map<String, List<String>> listaAd; // Adyacencia
+    
+    private int nVert;
+    private Vertice[] tablAd;
+    private int maxVert;
 
-    public Grafo() {
-        listaAd = new HashMap<>();
+    public Grafo(int maxVert) {
+        this.maxVert = maxVert;
+        this.tablAd=new Vertice[maxVert];
+        this.nVert=0;
     }
-
-    // Agregar Nodo
-    public void agregarEstacion(String estacion) {
-        listaAd.putIfAbsent(estacion, new ArrayList<>());
-    }
-
-    // Agregar Arista
-    public void agregarConexion(String estacion1, String estacion2) {
-        listaAd.get(estacion1).add(estacion2);
-        listaAd.get(estacion2).add(estacion1); 
-    }
-
-    // Método para mostrar el grafo usando JOptionPane
-    public void mostrarGrafo() {
-        StringBuilder sb = new StringBuilder();
-        for (String estacion : listaAd.keySet()) {
-            sb.append("Estación ").append(estacion).append(" conectada con: ").append(listaAd.get(estacion)).append("\n");
+    
+    public int getNumVertice(String nombre){
+        Vertice v=new Vertice(nombre);
+        boolean encontrado = false;
+        int i=0;
+        for(;(i<this.nVert)&& !encontrado;){
+            encontrado=this.tablAd[i].equals(v);
+            if(!encontrado){
+                i++;
+            }
         }
-        // Mostrar el resultado en un cuadro de diálogo
-        JOptionPane.showMessageDialog(null, sb.toString(), "Conexiones del Grafo", JOptionPane.INFORMATION_MESSAGE);   
+        return (i<this.nVert)? i:-1;
+        
     }
+    
+    public void nuevoVertice(String nombre){
+        boolean existe= this.getNumVertice(nombre)>=0;
+        if(!existe){
+            Vertice v = new Vertice(nombre);
+            v.setIndice(nVert);
+            this.tablAd[nVert]=v;
+            nVert++;
+            
+        }
+    }
+    
+    public ListaSimple getListaAdy(int v)throws Exception{
+        if (v<0||v>this.nVert){
+            throw new Exception("vertice fuera de rango");
+        }
+        return this.tablAd[v].lad;
+    }
+    
+    //Comprueba si dos vertices son adyacentes.
+    public boolean isAdyc(String a, String b)throws Exception{
+        int v1,v2;
+        v1 = this.getNumVertice(a);
+        v2 = this.getNumVertice(b);
+        if(v1<0||v2<0){
+            throw new Exception("El vertice no existe");
+        }
+        if(this.tablAd[v1].lad.contiene(new Arco(b))){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    public void nuevoArco(String a, String b)throws Exception{
+        if(!isAdyc(a,b)){
+            int v1=this.getNumVertice(a);
+            int v2=this.getNumVertice(b);
+            if(v1<0||v2<0){
+                throw new Exception ("El vertie no existe");
+            }
+            
+            Arco ab= new Arco(b);
+            this.tablAd[v1].lad.insertarAlPrincipio(ab);
+        }
+    }
+    
+    public void borrarArco(String a, String b)throws Exception{
+        int v1=this.getNumVertice(a);
+        int v2=this.getNumVertice(b);
+        if(v1<0||v2<0){
+            throw new Exception ("El vertie no existe");
+        }
+        Arco ab=new Arco(b);
+        this.tablAd[v1].lad.eliminar(ab);
+    }
+    
+    public class Vertice{
+        String nombre;
+        int indice;
+        ListaSimple lad;
+
+        public Vertice(String nombre) {
+            this.nombre = nombre;
+            this.indice = -1;
+            this.lad= new ListaSimple();
+        }
+
+        public String getNombre(){
+            return nombre;
+        }
+        
+        public void setIndice(int i){
+            this.indice= i;
+        }
+        
+        public boolean nIgual(String d){
+            Vertice temp= new Vertice(d);
+            return this.nombre.equals(temp.nombre);
+        }
+        
+        public String aStr(){
+            return this.nombre + "("+this.indice+")";
+        }
+        
+    }
+    
+    public class Arco{
+        String destino;
+
+        public Arco(String destino) {
+            this.destino = destino;
+        }
+
+        public String getDestino() {
+            return destino;
+        }          
+        
+        
+        public boolean equals(Object n){
+            Arco a = (Arco)n;
+            return destino.equals(a.destino);
+        }
+    }
+       
 }
