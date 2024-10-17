@@ -11,7 +11,7 @@ import Reader.Reader;
  *
  * @author rdbae
  */
-public class main {
+public class Main {
 
     /**
      * @param args the command line arguments
