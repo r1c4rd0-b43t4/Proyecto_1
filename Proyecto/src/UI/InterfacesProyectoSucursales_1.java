@@ -2,19 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package interfacesproyecto.sucursales;
+package UI;
 
 /**
  *
  * @author HP
  */
-public class InterfacesProyectoSucursales {
+public class InterfacesProyectoSucursales_1 {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        PantallaPrincipal pantalla = new PantallaPrincipal();
+        PPrincipal pantalla = new PPrincipal();
         pantalla.setVisible(true);
     }
     

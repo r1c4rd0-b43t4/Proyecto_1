@@ -7,31 +7,20 @@ package Proyecto;
 /**
  *
  * @author HP
- * @param <T>
  */
-public class NodoDoble <T> {
+public class Nodo <T> {
     private T valor;
-    private NodoDoble <T> siguiente;
-    private NodoDoble <T> anterior;
+    private Nodo <T> siguiente;
 
-    public NodoDoble(T valor, NodoDoble<T> siguiente, NodoDoble<T> anterior) {
+    public Nodo(T valor, Nodo<T> siguiente) {
         this.valor = valor;
         this.siguiente = siguiente;
-        this.anterior = anterior;
     }
-    
-    public NodoDoble() {
+
+    public Nodo() {
         this.valor = null;
         this.siguiente = null;
-        this.anterior = null;   
-    }
-    
-    public void setAnterior(NodoDoble<T> anterior) {
-        this.anterior = anterior;
-    }
-    
-    public NodoDoble<T> getAnterior() {
-        return anterior;
+        
     }
 
     public T getValor() {
@@ -42,12 +31,13 @@ public class NodoDoble <T> {
         this.valor = valor;
     }
 
-    public NodoDoble<T> getSiguiente() {
+    public Nodo<T> getSiguiente() {
         return siguiente;
     }
 
-    public void setSiguiente(NodoDoble <T> siguiente) {
+    public void setSiguiente(Nodo<T> siguiente) {
         this.siguiente = siguiente;
     }
+
     
 }
