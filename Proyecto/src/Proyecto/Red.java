@@ -10,16 +10,16 @@ package Proyecto;
  */
 public class Red {
     private String nombre_red;
-    private Linea linea;
+    private  ListaSimple lista_lineas;
 
-    public Red(String nombre_red, Linea linea) {
+    public Red(String nombre_red, ListaSimple lista_lineas) {
         this.nombre_red = nombre_red;
-        this.linea = linea;
+        this.lista_lineas = lista_lineas;
     }
     
     public Red() {
         this.nombre_red = nombre_red;
-        this.linea = linea;
+        this.lista_lineas = new ListaSimple();
     }
 
     /**
@@ -37,27 +37,28 @@ public class Red {
     }
 
     /**
-     * @return the linea
+     * @return the lista_lineas
      */
-    public Linea getLinea() {
-        return linea;
+    public ListaSimple getLista_lineas() {
+        return lista_lineas;
     }
 
     /**
-     * @param linea the linea to set
+     * @param lista_lineas the lista_lineas to set
      */
-    public void setLinea(Linea linea) {
-        this.linea = linea;
+    public void setLista_lineas(ListaSimple lista_lineas) {
+        this.lista_lineas = lista_lineas;
     }
 
     @Override
     public String toString() {
-        return "Red{" + "nombre_red=" + nombre_red + ", linea=" + linea + '}';
+        return "Red{" + "nombre_red=" + nombre_red + ", lista_lineas=" + lista_lineas + '}';
     }
     
     
 
-            
+    
+ 
     
     
     
