@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -98,6 +99,7 @@ public class ListaSimple {
             System.out.println(aux.getValor().toString());
             aux = aux.getSiguiente();
         }
+
     }
     
     public <T> boolean contiene(T value){
@@ -111,4 +113,27 @@ public class ListaSimple {
         return false;
     }
     
+       
+    
+public void showParadas(ListaSimple lista_lineas) {
+    Nodo aux_1 = lista_lineas.pFirst;
+
+    while (aux_1 != null) {
+        if (aux_1.getValor() instanceof Linea) {
+            Linea linea = (Linea) aux_1.getValor();
+            ListaSimple lista_p = linea.getLista_paradas();  // Supongamos que tienes un método para obtener las paradas
+            Nodo aux_2 = lista_p.pFirst;
+            System.out.println(linea.getNombre_linea());
+
+            while (aux_2 != null) {
+                System.out.println(aux_2.getValor());
+                aux_2 = aux_2.getSiguiente();
+            }
+        }
+
+        aux_1 = aux_1.getSiguiente();
+    }
+}
+
+
 }
