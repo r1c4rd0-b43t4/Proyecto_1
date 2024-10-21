@@ -13,6 +13,8 @@ class Grafo {
         this.nVert=0;
     }
     
+    
+    
     public int getNumVertice(String nombre){
         Vertice v=new Vertice(nombre);
         boolean encontrado = false;
@@ -27,17 +29,40 @@ class Grafo {
         
     }
     
-    public void nuevoVertice(String nombre){
-        boolean existe= this.getNumVertice(nombre)>=0;
-        if(!existe){
-            Vertice v = new Vertice(nombre);
-            v.setIndice(nVert);
-            this.tablAd[nVert]=v;
-            nVert++;
-            
+    public Vertice getVertice(int i)throws Exception{
+        if (i>this.nVert){
+            throw new Exception("Vertice fuera de rango");
+        }
+        else{
+            for(int index=0;index<i;index++){
+                
+            }
+            return this.tablAd[i];
         }
     }
     
+    public void nuevoVertice(String nombre){
+        boolean existe= this.getNumVertice(nombre)>=0;
+        if(!existe){
+            if(nombre.contains(":")){
+                nombre=nombre.replaceAll("[{}\"]", "");
+                String[] partes = nombre.split(":");
+                String key = partes[0];
+                String value = partes[1];
+              
+                Vertice v = new Vertice(key);
+                v.setIndice(nVert);
+                this.tablAd[nVert]=v;
+            }
+            else{
+                Vertice v = new Vertice(nombre);
+                v.setIndice(nVert);
+                this.tablAd[nVert]=v;
+            }
+            nVert++;
+        }
+    }
+
     public ListaSimple getListaAdy(int v)throws Exception{
         if (v<0||v>this.nVert){
             throw new Exception("vertice fuera de rango");

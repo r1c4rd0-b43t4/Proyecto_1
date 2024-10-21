@@ -5,6 +5,8 @@
  */
 package Proyecto;
  
+import Proyecto.Grafo.Vertice;
+
 /**
  *
  * @author HP
@@ -134,6 +136,59 @@ public void showParadas(ListaSimple lista_lineas) {
         aux_1 = aux_1.getSiguiente();
     }
 }
+
+    public Grafo CrearGrafo(ListaSimple lista_lineas) {
+    Nodo aux_1 = lista_lineas.pFirst;
+    Grafo red = new Grafo(this.MaxParadas(lista_lineas));
+    while (aux_1 != null) {
+        if (aux_1.getValor() instanceof Linea) {
+            Linea linea = (Linea) aux_1.getValor();
+            ListaSimple lista_p = linea.getLista_paradas();  // Supongamos que tienes un método para obtener las paradas
+            Nodo aux_2 = lista_p.pFirst;
+            int contador = 0;
+            System.out.println(linea.getNombre_linea());
+
+            while (aux_2 != null) {
+                System.out.println(aux_2.getValor());
+                red.nuevoVertice(aux_2.getValor().toString());
+                if(0<contador){
+                    try{
+                    red.nuevoArco(red.getVertice(contador-1).getNombre(), red.getVertice(contador).nombre);
+                    }
+                    catch(Exception e){
+                        System.out.println("error");
+                    }
+                }
+                red.nuevoVertice(aux_2.getValor().toString());
+                aux_2 = aux_2.getSiguiente();
+            }
+        }
+
+        aux_1 = aux_1.getSiguiente();
+    }
+    return red;
+}
+    
+    public int MaxParadas(ListaSimple ln){
+        Nodo aux_1 = ln.pFirst;
+        int contador = 0;
+
+    while (aux_1 != null) {
+        if (aux_1.getValor() instanceof Linea) {
+            Linea linea = (Linea) aux_1.getValor();
+            ListaSimple lista_p = linea.getLista_paradas();  
+            Nodo aux_2 = lista_p.pFirst;
+
+            while (aux_2 != null) {
+                contador++;
+                aux_2 = aux_2.getSiguiente();
+            }
+        }
+
+        aux_1 = aux_1.getSiguiente();
+    }
+        return contador;
+    }
 
 
 }
