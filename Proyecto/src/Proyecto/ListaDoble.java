@@ -4,6 +4,8 @@
  */
 package Listas;
 
+import Proyecto.NodoDoble;
+
 /**
  *
  * @author HP
