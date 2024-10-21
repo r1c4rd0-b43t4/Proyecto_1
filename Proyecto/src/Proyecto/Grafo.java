@@ -96,6 +96,7 @@ class Grafo {
             
             Arco ab= new Arco(b);
             this.tablAd[v1].lad.insertarAlPrincipio(ab);
+            this.tablAd[v2].lad.insertarAlPrincipio(ab);
         }
     }
     
