@@ -14,6 +14,7 @@ public class CargaRed_1 extends javax.swing.JFrame {
      * Creates new form CargaRed
      */
     public CargaRed_1() {
+        //crear objetos
         initComponents();
     }
 
@@ -26,40 +27,31 @@ public class CargaRed_1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jButton2 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        Cargar_Redes = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(0, 0));
+        setMaximumSize(new java.awt.Dimension(800, 500));
+        setMinimumSize(new java.awt.Dimension(800, 500));
+        setPreferredSize(new java.awt.Dimension(800, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Atrás");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, -1, -1));
+        Cargar_Redes.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
+        Cargar_Redes.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Cargar_Redes.setForeground(new java.awt.Color(255, 255, 255));
+        Cargar_Redes.setText("Cargar Redes");
+        Cargar_Redes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(Cargar_Redes, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, 170, 40));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, -1, -1));
 
-        jLabel1.setText("Cargar Nueva Red de Transporte");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));
-
-        jScrollPane1.setViewportView(jTextPane1);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 350, -1));
-
-        jButton2.setText("Abrir archivo");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, -1, -1));
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
-
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 430, 210));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/portada.png"))); // NOI18N
+        jLabel3.setText(" ");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -105,12 +97,9 @@ public class CargaRed_1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton Cargar_Redes;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
