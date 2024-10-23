@@ -28,13 +28,9 @@ public class Reader {
     
     public void Read(){
         
-        String Caracas = "";
-        String Bogota = "";
+        String Texto = "";
+
         Red Red_Caracas = new Red();
-        Red Red_Bogota = new Red();
-        
-        
-        
 
         String line;
         
@@ -44,7 +40,7 @@ public class Reader {
         FileNameExtensionFilter filtro_json = new FileNameExtensionFilter(".json", "json");
         fc.setFileFilter(filtro_json);
         fc.setCurrentDirectory(new File("Packages"));
-        fc.setDialogTitle("Seleccione el archivo respectivo a las lineas de Caracas");
+        fc.setDialogTitle("Seleccione el archivo para cargar la red de transporte");
         
         if(fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
             doc_data = fc.getSelectedFile();
@@ -58,12 +54,12 @@ public class Reader {
                         br = new BufferedReader(fr);
                         while((line = br.readLine()) != null){
                             if (!line.isEmpty()){
-                                Caracas += line + "\n";
+                                Texto += line + "\n";
                             }
-                        }   if(!"".equals(Caracas)){
+                        }   if(!"".equals(Texto)){
                             
                             JsonParser  parser = new JsonParser();
-                            JsonObject gsonObjt = parser.parse(Caracas).getAsJsonObject();
+                            JsonObject gsonObjt = parser.parse(Texto).getAsJsonObject();
                             gsonObjt.keySet().forEach(keyStr ->{
                                  Red red_Caracas = proccessObject(keyStr, gsonObjt);
                                  Red_Caracas.setNombre_red(red_Caracas.getNombre_red());
@@ -81,52 +77,8 @@ public class Reader {
         }
         
         System.out.println(Red_Caracas.getNombre_red());//imprime el nombre de la red
-        Red_Caracas.getLista_lineas().showParadas(Red_Caracas.getLista_lineas());//para ver las paradas por linea
+//        Red_Caracas.getLista_lineas().showParadas(Red_Caracas.getLista_lineas());//para ver las paradas por linea
 
-    
-            
-        fc = new JFileChooser();       
-        filtro_json = new FileNameExtensionFilter(".json", "json");
-        fc.setFileFilter(filtro_json);
-        fc.setCurrentDirectory(new File("Packages"));
-        fc.setDialogTitle("Seleccione el archivo respectivo a las lineas de Bogota");
-        
-        if(fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
-            doc_data = fc.getSelectedFile();
-            try{
-                if(!doc_data.exists()){
-                    doc_data.createNewFile();
-                }
-                else{
-                    BufferedReader br;
-                    try (FileReader fr = new FileReader(doc_data)) {
-                        br = new BufferedReader(fr);
-                        while((line = br.readLine()) != null){
-                            if (!line.isEmpty()){
-                                Bogota += line + "\n";
-                            }
-                        }   if(!"".equals(Bogota)){
-                            
-                            JsonParser  parser = new JsonParser();
-                            JsonObject gsonObjt = parser.parse(Bogota).getAsJsonObject();
-                            gsonObjt.keySet().forEach(keyStr ->{
-                                 Red red_Bogota = proccessObject(keyStr, gsonObjt);
-                                 Red_Bogota.setNombre_red(red_Bogota.getNombre_red());
-                                 Red_Bogota.setLista_lineas(red_Bogota.getLista_lineas());
-                            });
-                        }
-                    }
-                        br.close();
-                    }
-            } catch (IOException e){
-                JOptionPane.showMessageDialog(null, "Error durante la seleccion");
-            }
-        }else{
-            System.out.println("No se ha seleccionado ningun archivo");
-        }
-        
-        System.out.println(Red_Bogota.getNombre_red());//imprime el nombre de la red
-        Red_Bogota.getLista_lineas().showParadas(Red_Bogota.getLista_lineas());//para ver las paradas por linea
 
     }
     
