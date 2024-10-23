@@ -3,11 +3,13 @@ package Proyecto;
 
 class Grafo {
     
+    private String nombre;
     private int nVert;
     private Vertice[] tablAd;
     private int maxVert;
 
-    public Grafo(int maxVert) {
+    public Grafo(int maxVert, String nombreRed) {
+        this.nombre= nombreRed;
         this.maxVert = maxVert;
         this.tablAd=new Vertice[maxVert];
         this.nVert=0;
@@ -15,6 +17,10 @@ class Grafo {
 
     public int getnVert() {
         return nVert;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
     
     
@@ -191,6 +197,16 @@ class Grafo {
         public String getNombre(){
             return nombre;
         }
+
+        public void setLinea(String linea) {
+            this.linea = linea;
+        }
+
+        public String getLinea() {
+            return linea;
+        }
+        
+        
         
         public void setIndice(int i){
             this.indice= i;

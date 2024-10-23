@@ -138,10 +138,19 @@ public class ListaSimple {
 //        aux_1 = aux_1.getSiguiente();
 //    }
 //}
-
-    public Grafo CrearGrafo(ListaSimple lista_lineas) {
+    //nombreRed llamar red.getNombreRed
+    public Grafo CrearGrafo(ListaSimple lista_lineas,String nombreRed) {
     Nodo aux_1 = lista_lineas.pFirst;
-    Grafo red = new Grafo(this.MaxParadas(lista_lineas));
+    int maxVert=0;
+    while (aux_1 != null) {
+        if (aux_1.getValor() instanceof Linea) {
+            Linea linea = (Linea) aux_1.getValor();
+            ListaSimple lista_p = linea.getLista_paradas();
+            maxVert=+lista_p.getSize();
+        }
+    }
+    
+    Grafo red = new Grafo(maxVert,nombreRed);
     while (aux_1 != null) {
         if (aux_1.getValor() instanceof Linea) {
             Linea linea = (Linea) aux_1.getValor();
@@ -155,6 +164,12 @@ public class ListaSimple {
             while (aux_2 != null) {
                 System.out.println(aux_2.getValor());
                 red.nuevoVertice(aux_2.getValor().toString());
+                try{
+                    red.getVertice(indice).setLinea(linea.getNombre_linea());
+                }
+                catch(Exception e){
+                    System.out.println("Error");
+                }
                 
                 
                 if(0<contador && conector>0){
@@ -197,26 +212,26 @@ public class ListaSimple {
     return red;
 }
     
-    public int MaxParadas(ListaSimple ln){
-        Nodo aux_1 = ln.pFirst;
-        int contador = 0;
-
-    while (aux_1 != null) {
-        if (aux_1.getValor() instanceof Linea) {
-            Linea linea = (Linea) aux_1.getValor();
-            ListaSimple lista_p = linea.getLista_paradas();  
-            Nodo aux_2 = lista_p.pFirst;
-
-            while (aux_2 != null) {
-                contador++;
-                aux_2 = aux_2.getSiguiente();
-            }
-        }
-
-        aux_1 = aux_1.getSiguiente();
-    }
-        return contador;
-    }
+//    public int MaxParadas(ListaSimple ln){
+//        Nodo aux_1 = ln.pFirst;
+//        int contador = 0;
+//
+//    while (aux_1 != null) {
+//        if (aux_1.getValor() instanceof Linea) {
+//            Linea linea = (Linea) aux_1.getValor();
+//            ListaSimple lista_p = linea.getLista_paradas();  
+//            Nodo aux_2 = lista_p.pFirst;
+//
+//            while (aux_2 != null) {
+//                contador++;
+//                aux_2 = aux_2.getSiguiente();
+//            }
+//        }
+//
+//        aux_1 = aux_1.getSiguiente();
+//    }
+//        return contador;
+//    }
 
 
 }
