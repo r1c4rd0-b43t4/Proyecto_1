@@ -147,6 +147,7 @@ public class ListaSimple {
             Linea linea = (Linea) aux_1.getValor();
             ListaSimple lista_p = linea.getLista_paradas();
             maxVert=+lista_p.getSize();
+            aux_1 = aux_1.getSiguiente();
         }
     }
     Grafo red = new Grafo(maxVert,nombreRed);
