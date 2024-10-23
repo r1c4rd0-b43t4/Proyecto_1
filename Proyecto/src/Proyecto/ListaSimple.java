@@ -146,20 +146,19 @@ public class ListaSimple {
         if (aux_1.getValor() instanceof Linea) {
             Linea linea = (Linea) aux_1.getValor();
             ListaSimple lista_p = linea.getLista_paradas();
-            maxVert=+lista_p.getSize();
-            aux_1 = aux_1.getSiguiente();
+            maxVert+=lista_p.getSize();
         }
+        aux_1 = aux_1.getSiguiente();
     }
     Grafo red = new Grafo(maxVert,nombreRed);
     aux_1 = lista_lineas.pFirst;
+    int indice = 0;
     while (aux_1 != null) {
         if (aux_1.getValor() instanceof Linea) {
             Linea linea = (Linea) aux_1.getValor();
             ListaSimple lista_p = linea.getLista_paradas();  // Supongamos que tienes un método para obtener las paradas
             Nodo aux_2 = lista_p.pFirst;
             int contador = 0;
-            int conector = 0;
-            int indice = 0;
             System.out.println(linea.getNombre_linea());
 
             while (aux_2 != null) {
@@ -169,26 +168,20 @@ public class ListaSimple {
                     red.getVertice(indice).setLinea(linea.getNombre_linea());
                 }
                 catch(Exception e){
-                    System.out.println("Error");
+                    
                 }
                 
                 
-                if(0<contador && conector>0){
+                if(contador>0){
                     try{
                     red.nuevoArco(red.getVertice(indice-1).getNombre(), red.getVertice(indice).nombre);
                     }
                     catch(Exception e){
-                        System.out.println("error");
+                        
                     }
                 }
-                conector++;
                 contador++;
                 indice++;
-                
-                if(aux_2.getSiguiente()==null){
-                    conector=0;
-                    contador=0;
-                }
                 
                 aux_2 = aux_2.getSiguiente();
                 
