@@ -200,14 +200,15 @@ public class ListaSimple {
     for(int i=0;i<red.getnVert();i++){
         if(red.Contiene(red.getVertice(i))){
             red.Conecta(red.getVertice(i));
-            }    
+            }
+        else{}
         }
+    
     }
     catch(Exception e){
         
     }
-    
-    
+        
     return red;
 }
     

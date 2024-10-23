@@ -109,6 +109,7 @@ class Grafo {
             
             Arco ab= new Arco(b);
             Arco ba=new Arco(a);
+            
             this.tablAd[v1].lad.insertarAlPrincipio(ab);
             this.tablAd[v2].lad.insertarAlPrincipio(ba);
             
@@ -144,8 +145,9 @@ class Grafo {
                         contador++;
                     }
                 }
+                return false;
             }
-            return false;
+            
         }
         catch(Exception e){
             System.out.println("Error");
@@ -156,7 +158,7 @@ class Grafo {
     //revisar
     public void Conecta(Vertice parada){
         try{
-            int contador;
+            int contador=0;
             for(contador=0;contador<this.nVert+1;contador++){
                 if(parada.nombre.equals(this.getVertice(contador).compuesto)){
                     Nodo temp= this.getVertice(contador).lad.getpFirst();
