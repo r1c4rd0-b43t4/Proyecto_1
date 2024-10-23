@@ -12,6 +12,10 @@ class Grafo {
         this.tablAd=new Vertice[maxVert];
         this.nVert=0;
     }
+
+    public int getnVert() {
+        return nVert;
+    }
     
     
     
@@ -52,6 +56,8 @@ class Grafo {
               
                 Vertice v = new Vertice(key);
                 v.setIndice(nVert);
+                v.setCompuesto(value);
+                
                 this.tablAd[nVert]=v;
             }
             else{
@@ -59,6 +65,7 @@ class Grafo {
                 v.setIndice(nVert);
                 this.tablAd[nVert]=v;
             }
+            
             nVert++;
         }
     }
@@ -91,12 +98,16 @@ class Grafo {
             int v1=this.getNumVertice(a);
             int v2=this.getNumVertice(b);
             if(v1<0||v2<0){
-                throw new Exception ("El vertie no existe");
+                throw new Exception ("El vertice no existe");
             }
             
             Arco ab= new Arco(b);
+            Arco ba=new Arco(a);
             this.tablAd[v1].lad.insertarAlPrincipio(ab);
-            this.tablAd[v2].lad.insertarAlPrincipio(ab);
+            this.tablAd[v2].lad.insertarAlPrincipio(ba);
+            
+            
+            
         }
     }
     
@@ -110,13 +121,90 @@ class Grafo {
         this.tablAd[v1].lad.eliminar(ab);
     }
     
+    
+    public boolean Contiene(Vertice parada){
+        try{
+            if(parada.nombre.equals(this.getVertice(nVert).compuesto)){
+                return true;
+            }
+            
+            else{
+                int contador =0;
+                while(contador<this.nVert){
+                    if(parada.nombre.equals(this.getVertice(contador).compuesto)){
+                        return true;
+                    }
+                    else{
+                        contador++;
+                    }
+                }
+            }
+            return false;
+        }
+        catch(Exception e){
+            System.out.println("Error");
+            return false; //Lo pongo porque sino sale error
+        }
+    }
+    
+    //revisar
+    public void Conecta(Vertice parada){
+        try{
+            
+            for(int contador=0;contador<this.nVert+1;contador++){
+                if(parada.nombre.equals(this.getVertice(contador).compuesto)){
+                    Nodo temp= this.getVertice(contador).lad.getpFirst();
+                    for(int i=0;i<this.getVertice(contador).lad.getSize();i++){
+                        parada.lad.insertarAlPrincipio(temp);
+                        temp=temp.getSiguiente();
+                    }
+                    this.getVertice(contador).lad=parada.lad;
+                }
+            }
+            
+        }
+        catch(Exception e){
+        
+        }
+        
+    }
+    
+    // borrar
+    public void conecta(Vertice parada){
+        try{
+            if(parada.nombre.equals(this.getVertice(nVert).compuesto)){
+                parada.lad = this.getVertice(nVert).lad;
+            }
+            
+            else{
+                int contador =0;
+                while(contador<this.nVert){
+                    if(parada.nombre.equals(this.getVertice(contador).compuesto)){
+                        parada.lad = this.getVertice(contador).lad;
+                    }
+                    else{
+                        contador++;
+                    }
+                }
+            }           
+        }
+        catch(Exception e){
+            System.out.println("Error");
+        }
+    }
+    
     public class Vertice{
         String nombre;
+        String linea;
+        String compuesto;
         int indice;
         ListaSimple lad;
-
+        
+        //añadir parametro linea y ponerlo en el constructor
         public Vertice(String nombre) {
             this.nombre = nombre;
+            this.linea="";
+            this.compuesto = "";
             this.indice = -1;
             this.lad= new ListaSimple();
         }
@@ -137,6 +225,16 @@ class Grafo {
         public String aStr(){
             return this.nombre + "("+this.indice+")";
         }
+
+        public String getCompuesto() {
+            return compuesto;
+        }
+
+        public void setCompuesto(String compuesto) {
+            this.compuesto = compuesto;
+        }
+        
+        
         
     }
     

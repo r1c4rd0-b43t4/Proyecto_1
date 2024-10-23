@@ -6,7 +6,9 @@
 package Proyecto;
  
 import Proyecto.Grafo.Vertice;
-
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonArray; 
 /**
  *
  * @author HP
@@ -146,26 +148,52 @@ public void showParadas(ListaSimple lista_lineas) {
             ListaSimple lista_p = linea.getLista_paradas();  // Supongamos que tienes un método para obtener las paradas
             Nodo aux_2 = lista_p.pFirst;
             int contador = 0;
+            int conector = 0;
+            int indice = 0;
             System.out.println(linea.getNombre_linea());
 
             while (aux_2 != null) {
                 System.out.println(aux_2.getValor());
                 red.nuevoVertice(aux_2.getValor().toString());
-                if(0<contador){
+                
+                
+                if(0<contador && conector>0){
                     try{
-                    red.nuevoArco(red.getVertice(contador-1).getNombre(), red.getVertice(contador).nombre);
+                    red.nuevoArco(red.getVertice(indice-1).getNombre(), red.getVertice(indice).nombre);
                     }
                     catch(Exception e){
                         System.out.println("error");
                     }
                 }
-                red.nuevoVertice(aux_2.getValor().toString());
+                conector++;
+                contador++;
+                indice++;
+                
+                if(aux_2.getSiguiente()==null){
+                    conector=0;
+                    contador=0;
+                }
+                
                 aux_2 = aux_2.getSiguiente();
+                
             }
         }
 
         aux_1 = aux_1.getSiguiente();
     }
+    
+    try{
+    for(int i=0;i<red.getnVert();i++){
+        if(red.Contiene(red.getVertice(i))){
+            red.conecta(red.getVertice(i));
+            }    
+        }
+    }
+    catch(Exception e){
+        
+    }
+    
+    
     return red;
 }
     
