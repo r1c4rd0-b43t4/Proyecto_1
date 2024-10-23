@@ -3,18 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI;
+import Proyecto.*;
+import Reader.Reader;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author HP
  */
 public class CargaRed_1 extends javax.swing.JFrame {
+    static Grafo grafo;
 
     /**
      * Creates new form CargaRed
      */
     public CargaRed_1() {
-        //crear objetos
+        
+        grafo = new Grafo(0, "");
         initComponents();
     }
 
@@ -28,7 +33,7 @@ public class CargaRed_1 extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        Cargar_Redes = new javax.swing.JButton();
+        Cargar_Red = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -40,12 +45,17 @@ public class CargaRed_1 extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(800, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Cargar_Redes.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
-        Cargar_Redes.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        Cargar_Redes.setForeground(new java.awt.Color(255, 255, 255));
-        Cargar_Redes.setText("Cargar Red");
-        Cargar_Redes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(Cargar_Redes, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, 170, 40));
+        Cargar_Red.setBackground(new java.awt.Color(153, 153, 153));
+        Cargar_Red.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Cargar_Red.setForeground(new java.awt.Color(255, 255, 255));
+        Cargar_Red.setText("Cargar Red");
+        Cargar_Red.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Cargar_Red.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cargar_RedActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Cargar_Red, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, 170, 40));
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/portada.png"))); // NOI18N
@@ -58,6 +68,24 @@ public class CargaRed_1 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void Cargar_RedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cargar_RedActionPerformed
+        try{
+          Reader reader = new Reader();
+          if(reader.Read() ==  null){
+              throw new Exception("Error durante la carga") ;  
+          }
+          grafo = reader.Read();
+          JOptionPane.showMessageDialog(this, "La carga fue un exito");  
+          this.setVisible(false);
+          MenuSucursales ui = new MenuSucursales(grafo);
+          ui.setLocationRelativeTo(null);
+          ui.setVisible(true);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error durante la carga");  
+        }
+    }//GEN-LAST:event_Cargar_RedActionPerformed
 
     /**
      * @param args the command line arguments
@@ -96,7 +124,7 @@ public class CargaRed_1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Cargar_Redes;
+    private javax.swing.JButton Cargar_Red;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

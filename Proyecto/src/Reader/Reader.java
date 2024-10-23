@@ -70,14 +70,19 @@ public class Reader {
                     }
             } catch (IOException e){
                 JOptionPane.showMessageDialog(null, "Error durante la seleccion");
+                return null;
             }
         }else{
-            System.out.println("No se ha seleccionado ningun archivo");
+            JOptionPane.showMessageDialog(null, "No se selecciono ningun archivo");
+            return null;
         }
         
-        
+        System.out.println(red.toString());
         Grafo grafo = new Grafo(0, "");
         grafo = red.getLista_lineas().CrearGrafo(red.getLista_lineas(), red.getNombre_red());
+        
+        System.out.println(grafo.toString());
+        
         
         return grafo;
 

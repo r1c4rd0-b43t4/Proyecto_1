@@ -250,5 +250,12 @@ public class Grafo {
             return destino.equals(a.destino);
         }
     }
+
+    @Override
+    public String toString() {
+        return "Grafo{" + "nombre=" + nombre + ", nVert=" + nVert + ", tablAd=" + tablAd + ", maxVert=" + maxVert + '}';
+    }
+    
+    
        
 }

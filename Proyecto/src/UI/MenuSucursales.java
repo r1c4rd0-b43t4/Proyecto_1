@@ -4,6 +4,12 @@
  */
 package UI;
 
+import Proyecto.Grafo;
+import static UI.CargaRed_1.grafo;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.ui.view.Viewer;
+
 /**
  *
  * @author HP
@@ -13,7 +19,7 @@ public class MenuSucursales extends javax.swing.JFrame {
     /**
      * Creates new form MenuSucursales
      */
-    public MenuSucursales() {
+    public MenuSucursales(Grafo grafo) {
         initComponents();
     }
 
@@ -27,7 +33,7 @@ public class MenuSucursales extends javax.swing.JFrame {
     private void initComponents() {
 
         Cargar_Redes = new javax.swing.JButton();
-        Cargar_Redes9 = new javax.swing.JButton();
+        Mostrar_Grafo = new javax.swing.JButton();
         Cargar_Redes10 = new javax.swing.JButton();
         Cargar_Redes11 = new javax.swing.JButton();
         Cargar_Redes12 = new javax.swing.JButton();
@@ -44,12 +50,17 @@ public class MenuSucursales extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Cargar_Redes9.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
-        Cargar_Redes9.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        Cargar_Redes9.setForeground(new java.awt.Color(255, 255, 255));
-        Cargar_Redes9.setText("Mostrar Grafo");
-        Cargar_Redes9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(Cargar_Redes9, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 170, 40));
+        Mostrar_Grafo.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
+        Mostrar_Grafo.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Mostrar_Grafo.setForeground(new java.awt.Color(255, 255, 255));
+        Mostrar_Grafo.setText("Mostrar Grafo");
+        Mostrar_Grafo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Mostrar_Grafo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Mostrar_GrafoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Mostrar_Grafo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 170, 40));
 
         Cargar_Redes10.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
         Cargar_Redes10.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -93,6 +104,11 @@ public class MenuSucursales extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Mostrar_GrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Mostrar_GrafoActionPerformed
+     
+  
+    }//GEN-LAST:event_Mostrar_GrafoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -124,7 +140,7 @@ public class MenuSucursales extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuSucursales().setVisible(true);
+                new MenuSucursales(grafo).setVisible(true);
             }
         });
     }
@@ -136,7 +152,7 @@ public class MenuSucursales extends javax.swing.JFrame {
     private javax.swing.JButton Cargar_Redes12;
     private javax.swing.JButton Cargar_Redes13;
     private javax.swing.JButton Cargar_Redes14;
-    private javax.swing.JButton Cargar_Redes9;
+    private javax.swing.JButton Mostrar_Grafo;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
