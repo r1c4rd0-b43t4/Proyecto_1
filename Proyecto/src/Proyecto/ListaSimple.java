@@ -147,9 +147,11 @@ public class ListaSimple {
             Linea linea = (Linea) aux_1.getValor();
             ListaSimple lista_p = linea.getLista_paradas();
             maxVert=+lista_p.getSize();
+            aux_1 = aux_1.getSiguiente();
         }
     }
     Grafo red = new Grafo(maxVert,nombreRed);
+    aux_1 = lista_lineas.pFirst;
     while (aux_1 != null) {
         if (aux_1.getValor() instanceof Linea) {
             Linea linea = (Linea) aux_1.getValor();
@@ -200,14 +202,15 @@ public class ListaSimple {
     for(int i=0;i<red.getnVert();i++){
         if(red.Contiene(red.getVertice(i))){
             red.Conecta(red.getVertice(i));
-            }    
+            }
+        else{}
         }
+    
     }
     catch(Exception e){
         
     }
-    
-    
+        
     return red;
 }
     
