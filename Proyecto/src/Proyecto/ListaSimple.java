@@ -149,7 +149,6 @@ public class ListaSimple {
             maxVert=+lista_p.getSize();
         }
     }
-    
     Grafo red = new Grafo(maxVert,nombreRed);
     while (aux_1 != null) {
         if (aux_1.getValor() instanceof Linea) {

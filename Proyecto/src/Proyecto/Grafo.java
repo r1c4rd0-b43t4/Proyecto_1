@@ -185,7 +185,7 @@ public class Grafo {
         int indice;
         ListaSimple lad;
         
-        //añadir parametro linea y ponerlo en el constructor
+        //añadir parametro linea 
         public Vertice(String nombre) {
             this.nombre = nombre;
             this.linea="";
