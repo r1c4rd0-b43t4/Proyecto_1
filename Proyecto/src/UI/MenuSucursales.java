@@ -26,29 +26,72 @@ public class MenuSucursales extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Cargar_Redes = new javax.swing.JButton();
+        Cargar_Redes9 = new javax.swing.JButton();
+        Cargar_Redes10 = new javax.swing.JButton();
+        Cargar_Redes11 = new javax.swing.JButton();
+        Cargar_Redes12 = new javax.swing.JButton();
+        Cargar_Redes13 = new javax.swing.JButton();
+        Cargar_Redes14 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+
+        Cargar_Redes.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
+        Cargar_Redes.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Cargar_Redes.setForeground(new java.awt.Color(255, 255, 255));
+        Cargar_Redes.setText("Cargar Redes");
+        Cargar_Redes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Menú de Sucursales");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));
+        Cargar_Redes9.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
+        Cargar_Redes9.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Cargar_Redes9.setForeground(new java.awt.Color(255, 255, 255));
+        Cargar_Redes9.setText("Mostrar Grafo");
+        Cargar_Redes9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(Cargar_Redes9, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 170, 40));
 
-        jButton1.setText("Atrás");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, 60, -1));
+        Cargar_Redes10.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
+        Cargar_Redes10.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Cargar_Redes10.setForeground(new java.awt.Color(255, 255, 255));
+        Cargar_Redes10.setText("Establecer t");
+        Cargar_Redes10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(Cargar_Redes10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 170, 40));
+
+        Cargar_Redes11.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
+        Cargar_Redes11.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Cargar_Redes11.setForeground(new java.awt.Color(255, 255, 255));
+        Cargar_Redes11.setText("Colocar Sucursal");
+        Cargar_Redes11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(Cargar_Redes11, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 170, 40));
+
+        Cargar_Redes12.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
+        Cargar_Redes12.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Cargar_Redes12.setForeground(new java.awt.Color(255, 255, 255));
+        Cargar_Redes12.setText("Ver  Cobertura");
+        Cargar_Redes12.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(Cargar_Redes12, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 170, 40));
+
+        Cargar_Redes13.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
+        Cargar_Redes13.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Cargar_Redes13.setForeground(new java.awt.Color(255, 255, 255));
+        Cargar_Redes13.setText("Agregar Línea");
+        Cargar_Redes13.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(Cargar_Redes13, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, 170, 40));
+
+        Cargar_Redes14.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
+        Cargar_Redes14.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Cargar_Redes14.setForeground(new java.awt.Color(255, 255, 255));
+        Cargar_Redes14.setText("Cargar nueva Red");
+        Cargar_Redes14.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(Cargar_Redes14, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 170, 40));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fondo-logo.png"))); // NOI18N
+        jLabel3.setText(" ");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -87,7 +130,13 @@ public class MenuSucursales extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton Cargar_Redes;
+    private javax.swing.JButton Cargar_Redes10;
+    private javax.swing.JButton Cargar_Redes11;
+    private javax.swing.JButton Cargar_Redes12;
+    private javax.swing.JButton Cargar_Redes13;
+    private javax.swing.JButton Cargar_Redes14;
+    private javax.swing.JButton Cargar_Redes9;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
