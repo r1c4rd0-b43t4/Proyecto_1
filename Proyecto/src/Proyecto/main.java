@@ -19,6 +19,8 @@ public class Main{
         CargaRed_1 ui  = new CargaRed_1();
         ui.setLocationRelativeTo(null);
         ui.setVisible(true);
+        Reader reader = new Reader();
+        reader.Read();
 
     }
     

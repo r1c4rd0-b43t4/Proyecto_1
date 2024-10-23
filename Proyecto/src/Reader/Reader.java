@@ -77,7 +77,7 @@ public class Reader {
         }
         
         System.out.println(Red_Caracas.getNombre_red());//imprime el nombre de la red
-//        Red_Caracas.getLista_lineas().showParadas(Red_Caracas.getLista_lineas());//para ver las paradas por linea
+        Red_Caracas.getLista_lineas().showParadas(Red_Caracas.getLista_lineas());//para ver las paradas por linea
 
 
     }
