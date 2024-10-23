@@ -14,7 +14,7 @@ import UI.CargaRed_1;
  */
 public class Main{
 
-    public static void main(String[] args) {
+    public static void Main(String[] args) {
         
         CargaRed_1 ui  = new CargaRed_1();
         ui.setLocationRelativeTo(null);
