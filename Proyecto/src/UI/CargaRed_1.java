@@ -38,13 +38,12 @@ public class CargaRed_1 extends javax.swing.JFrame {
         setLocation(new java.awt.Point(0, 0));
         setMaximumSize(new java.awt.Dimension(800, 500));
         setMinimumSize(new java.awt.Dimension(800, 500));
-        setPreferredSize(new java.awt.Dimension(800, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Cargar_Redes.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
         Cargar_Redes.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         Cargar_Redes.setForeground(new java.awt.Color(255, 255, 255));
-        Cargar_Redes.setText("Cargar Redes");
+        Cargar_Redes.setText("Cargar Red");
         Cargar_Redes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(Cargar_Redes, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, 170, 40));
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, -1, -1));
