@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Reader;
+import Proyecto.Grafo;
 import Proyecto.Linea;
 import Proyecto.ListaSimple;
 import Proyecto.Red;
@@ -22,15 +23,13 @@ import com.google.gson.JsonArray;
  *
  * @author rdbae
  */
-public class Reader {
-      
-        
+public class Reader {  
     
-    public void Read(){
+    public Grafo Read(){
         
         String Texto = "";
 
-        Red Red_Caracas = new Red();
+        Red red = new Red();
 
         String line;
         
@@ -61,9 +60,9 @@ public class Reader {
                             JsonParser  parser = new JsonParser();
                             JsonObject gsonObjt = parser.parse(Texto).getAsJsonObject();
                             gsonObjt.keySet().forEach(keyStr ->{
-                                 Red red_Caracas = proccessObject(keyStr, gsonObjt);
-                                 Red_Caracas.setNombre_red(red_Caracas.getNombre_red());
-                                 Red_Caracas.setLista_lineas(red_Caracas.getLista_lineas());
+                                 Red red_ = proccessObject(keyStr, gsonObjt);
+                                 red.setNombre_red(red_.getNombre_red());
+                                 red.setLista_lineas(red_.getLista_lineas());
                             });
                         }
                     }
@@ -76,9 +75,11 @@ public class Reader {
             System.out.println("No se ha seleccionado ningun archivo");
         }
         
-        System.out.println(Red_Caracas.getNombre_red());//imprime el nombre de la red
-//        Red_Caracas.getLista_lineas().showParadas(Red_Caracas.getLista_lineas());//para ver las paradas por linea
-
+        
+        Grafo grafo = new Grafo(0, "");
+        grafo = red.getLista_lineas().CrearGrafo(red.getLista_lineas(), red.getNombre_red());
+        
+        return grafo;
 
     }
     
