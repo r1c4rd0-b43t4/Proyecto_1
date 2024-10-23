@@ -150,6 +150,7 @@ public class ListaSimple {
         }
     }
     Grafo red = new Grafo(maxVert,nombreRed);
+    aux_1 = lista_lineas.pFirst;
     while (aux_1 != null) {
         if (aux_1.getValor() instanceof Linea) {
             Linea linea = (Linea) aux_1.getValor();
