@@ -1,7 +1,7 @@
 package Proyecto;
 
 
-class Grafo {
+public class Grafo {
     
     private String nombre;
     private int nVert;
