@@ -150,48 +150,27 @@ class Grafo {
     //revisar
     public void Conecta(Vertice parada){
         try{
-            
-            for(int contador=0;contador<this.nVert+1;contador++){
+            int contador;
+            for(contador=0;contador<this.nVert+1;contador++){
                 if(parada.nombre.equals(this.getVertice(contador).compuesto)){
                     Nodo temp= this.getVertice(contador).lad.getpFirst();
                     for(int i=0;i<this.getVertice(contador).lad.getSize();i++){
                         parada.lad.insertarAlPrincipio(temp);
                         temp=temp.getSiguiente();
                     }
-                    this.getVertice(contador).lad=parada.lad;
+                    
                 }
             }
+            this.getVertice(contador).lad=parada.lad;
             
-        }
-        catch(Exception e){
-        
-        }
-        
-    }
-    
-    // borrar
-    public void conecta(Vertice parada){
-        try{
-            if(parada.nombre.equals(this.getVertice(nVert).compuesto)){
-                parada.lad = this.getVertice(nVert).lad;
-            }
-            
-            else{
-                int contador =0;
-                while(contador<this.nVert){
-                    if(parada.nombre.equals(this.getVertice(contador).compuesto)){
-                        parada.lad = this.getVertice(contador).lad;
-                    }
-                    else{
-                        contador++;
-                    }
-                }
-            }           
         }
         catch(Exception e){
             System.out.println("Error");
         }
+        
     }
+    
+    
     
     public class Vertice{
         String nombre;
