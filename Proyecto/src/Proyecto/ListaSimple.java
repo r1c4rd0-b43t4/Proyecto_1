@@ -156,7 +156,7 @@ public class ListaSimple {
     while (aux_1 != null) {
         if (aux_1.getValor() instanceof Linea) {
             Linea linea = (Linea) aux_1.getValor();
-            ListaSimple lista_p = linea.getLista_paradas();  // Supongamos que tienes un método para obtener las paradas
+            ListaSimple lista_p = linea.getLista_paradas();  
             Nodo aux_2 = lista_p.pFirst;
             int contador = 0;
             System.out.println(linea.getNombre_linea());
