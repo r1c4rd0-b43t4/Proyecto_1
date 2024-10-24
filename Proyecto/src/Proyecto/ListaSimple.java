@@ -171,7 +171,7 @@ public class ListaSimple {
                     
                     if(contador>0){
                         try{
-                            if(red.getVerticeI(indice-1).indice2<0){
+                            if(red.getVerticeJ(indice-1).indice2>0){
                         red.nuevoArco(red.getVerticeI(indice-1).getNombre(), red.getVerticeI(indice).nombre);
                             }
                             else{
@@ -187,6 +187,13 @@ public class ListaSimple {
                 else{
                     Vertice vertice=red.gerVerticeN(aux_2.getValor().toString());
                     vertice.setIndiceComplementario(indice);
+                    try{
+                        //poner un if que revise si el que está en ambas tiene la conexion con el anterior de la linea
+                        //si lo tiene no se hace nada y sino se le agrega la conexion
+                    }
+                    catch(Exception e){
+                    
+                    }
                     //esto en teoria no se usa porque ya estan conectados
 //                    if(contador>0){
 //                        try{
