@@ -17,9 +17,15 @@ public class Grafo {
         this.nVert=0;
     }
 
+    public int getMaxVert() {
+        return maxVert;
+    }
+    
+    
+
     public int getnVert() {
         //return nVert;
-        return this.tablAd.length;
+        return this.nVert;
     }
 
     public String getNombre() {
@@ -57,35 +63,27 @@ public class Grafo {
         }
     }
     //buscar con el indice2
-    public Vertice getVerticeJ(int i)throws Exception{
-        if (i>this.nVert){
-            throw new Exception("Vertice fuera de rango");
-        }
-        else{
-            for(int index=0;index<i;index++){
-                if(this.getVerticeI(index).indice2==i){
-                   break;
-                }
-            }
-            return this.tablAd[i];
-        }
+    public Vertice getVerticeJ(int i) throws Exception {
+    if (i >= this.nVert) {
+        throw new Exception("Vertice fuera de rango");
     }
-    //poner que regresa un vertice
-    public Vertice gerVerticeN(String parada){
-        int indice=0;
-        try{
-            while(indice<nVert){
-                if(parada.equals(this.getVerticeI(indice).nombre)){
-                    return this.getVerticeI(indice);
-                }
-                indice++;
+    return this.tablAd[i];
+}
+
+    public Vertice getVerticeN(String parada) {
+    try {
+        for (int indice = 0; indice < nVert; indice++) {
+            Vertice vertice = this.getVerticeI(indice);
+            if (parada.equals(vertice.nombre)) {
+                return vertice;
             }
-            return null;
         }
-        catch(Exception e){
-            return null;
-        }
+    } catch (Exception e) {
+        System.out.println("Error obteniendo el vértice: " + e.getMessage());
     }
+    return null; // Devuelve null si no se encuentra el vértice
+}
+
     
     public void nuevoVertice(String nombre){
             if(nombre.contains(":")){
@@ -195,7 +193,7 @@ public class Grafo {
                     Vertice vertCompuesto = this.getVerticeI(contador);
                     if (vertCompuesto != null)
                     {
-                        if(parada.nombre.equals(vertCompuesto.compuesto) && vertCompuesto.compuesto != ""){
+                        if(parada.nombre.equals(vertCompuesto.compuesto) && !"".equals(vertCompuesto.compuesto)){
 
                             ListaSimple ListaSimpleparada = parada.lad;
                             ListaSimple ListaSimplecompuesto = vertCompuesto.lad;
@@ -306,6 +304,10 @@ public class Grafo {
 
         public void setIndiceComplementario(int indice2) {
             this.indice2 = indice2;
+        }
+
+        public int getIndiceComplementario() {
+            return indice2;
         }
         
         
