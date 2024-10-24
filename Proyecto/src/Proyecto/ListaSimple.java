@@ -125,10 +125,10 @@ public class ListaSimple {
 //
 //    while (aux_1 != null) {
 //        if (aux_1.getValor() instanceof Linea) {
-//            Linea linea = (Linea) aux_1.getValor();
-//            ListaSimple lista_p = linea.getLista_paradas();  // Supongamos que tienes un método para obtener las paradas
+//            Linea linea1 = (Linea) aux_1.getValor();
+//            ListaSimple lista_p = linea1.getLista_paradas();  // Supongamos que tienes un método para obtener las paradas
 //            Nodo aux_2 = lista_p.pFirst;
-//            System.out.println(linea.getNombre_linea());
+//            System.out.println(linea1.getNombre_linea());
 //
 //            while (aux_2 != null) {
 //                System.out.println(aux_2.getValor());
@@ -143,14 +143,7 @@ public class ListaSimple {
     public Grafo CrearGrafo(ListaSimple lista_lineas,String nombreRed) {
     Nodo aux_1 = lista_lineas.pFirst;
     int maxVert=0;
-    while (aux_1 != null) {
-        if (aux_1.getValor() instanceof Linea) {
-            Linea linea = (Linea) aux_1.getValor();
-            ListaSimple lista_p = linea.getLista_paradas();
-            maxVert+=lista_p.getSize();
-        }
-        aux_1 = aux_1.getSiguiente();
-    }
+    maxVert=this.MaxParadas(lista_lineas);
     Grafo red = new Grafo(maxVert,nombreRed);
     aux_1 = lista_lineas.pFirst;
     int indice = 0;
@@ -164,23 +157,44 @@ public class ListaSimple {
 
             while (aux_2 != null) {
                 System.out.println(aux_2.getValor());
-                red.nuevoVertice(aux_2.getValor().toString());
-                try{
-                    red.getVertice(indice).setLinea(linea.getNombre_linea());
-                }
-                catch(Exception e){
-                    
-                }
-                
-                
-                if(contador>0){
+                //si No existe el vertice hace esto.
+                boolean existe= red.getNumVertice(aux_2.getValor().toString())>=0;
+                if(!existe){
+                    red.nuevoVertice(aux_2.getValor().toString());
                     try{
-                    red.nuevoArco(red.getVertice(indice-1).getNombre(), red.getVertice(indice).nombre);
+                        red.getVerticeI(indice).setLinea1(linea.getNombre_linea());
                     }
                     catch(Exception e){
                         
                     }
+                    
+                    
+                    if(contador>0){
+                        try{
+                        red.nuevoArco(red.getVerticeI(indice-1).getNombre(), red.getVerticeI(indice).nombre);
+                        }
+                        catch(Exception e){
+                            
+                        }
+                    }
                 }
+                //si existe combina las lineas y adyacencias
+                else{
+                    Vertice vertice=red.gerVerticeN(aux_2.getValor().toString());
+                    vertice.setIndiceComplementario(indice);
+                    if(contador>0){
+                        try{
+                            //esto no lo se hacer qye lo haga el papa de luis
+                        red.nuevoArco(red.getVerticeI(indice-1).getNombre(), red.getVerticeI(indice).nombre);
+                        }
+                        catch(Exception e){
+                            
+                        }
+                    }
+                }
+                
+                
+                
                 contador++;
                 indice++;
                 
@@ -200,7 +214,7 @@ public class ListaSimple {
                 }
             else{}
             }*/
-            red.ContieneConecta(red.getVertice(i));
+            red.ContieneConecta(red.getVerticeI(i));
         }
     }
     catch(Exception e){
@@ -210,26 +224,32 @@ public class ListaSimple {
     return red;
 }
     
-//    public int MaxParadas(ListaSimple ln){
-//        Nodo aux_1 = ln.pFirst;
-//        int contador = 0;
-//
-//    while (aux_1 != null) {
-//        if (aux_1.getValor() instanceof Linea) {
-//            Linea linea = (Linea) aux_1.getValor();
-//            ListaSimple lista_p = linea.getLista_paradas();  
-//            Nodo aux_2 = lista_p.pFirst;
-//
-//            while (aux_2 != null) {
-//                contador++;
-//                aux_2 = aux_2.getSiguiente();
-//            }
-//        }
-//
-//        aux_1 = aux_1.getSiguiente();
-//    }
-//        return contador;
-//    }
+    public int MaxParadas(ListaSimple ln){
+        Nodo aux_1 = ln.pFirst;
+        int contador = 0;
+        ListaSimple listaparadasSinR= new ListaSimple();
+    while (aux_1 != null) {
+        if (aux_1.getValor() instanceof Linea) {
+            Linea linea1 = (Linea) aux_1.getValor();
+            ListaSimple lista_p = linea1.getLista_paradas();  
+            Nodo aux_2 = lista_p.pFirst;
+
+            while (aux_2 != null) {
+                if(listaparadasSinR.contiene(aux_2.getValor().toString())){
+                    aux_2 = aux_2.getSiguiente();
+                }
+                else{
+                aux_2 = aux_2.getSiguiente();
+                contador++;
+                }
+                
+            }
+        }
+
+        aux_1 = aux_1.getSiguiente();
+    }
+        return contador;
+    }
 
 
 }
