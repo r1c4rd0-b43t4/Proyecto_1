@@ -16,7 +16,8 @@ public class Grafo {
     }
 
     public int getnVert() {
-        return nVert;
+        //return nVert;
+        return this.tablAd.length;
     }
 
     public String getNombre() {
@@ -26,16 +27,19 @@ public class Grafo {
     
     
     public int getNumVertice(String nombre){
-        Vertice v=new Vertice(nombre);
+
         boolean encontrado = false;
-        int i=0;
-        for(;(i<this.nVert)&& !encontrado;){
-            encontrado=this.tablAd[i].equals(v);
-            if(!encontrado){
-                i++;
+        
+        for(int i=0;(i<this.tablAd.length-1)&& !encontrado;i++){
+            if (this.tablAd[i] != null)
+            {
+                encontrado=this.tablAd[i].getNombre().equals(nombre);
+                if(encontrado){
+                    return i;
+                }
             }
         }
-        return (i<this.nVert)? i:-1;
+        return -1;
         
     }
     
@@ -131,14 +135,13 @@ public class Grafo {
     
     public boolean Contiene(Vertice parada){
         try{
-            if(parada.nombre.equals(this.getVertice(nVert).compuesto)){
-                return true;
-            }
             
-            else{
+
+
                 int contador =0;
-                while(contador<this.nVert){
-                    if(parada.nombre.equals(this.getVertice(contador).compuesto)){
+                while(contador<this.tablAd.length -1){
+                    Vertice vertCompuesto = this.getVertice(contador);
+                    if(parada.nombre.equals(vertCompuesto.compuesto) && vertCompuesto.compuesto != ""){
                         return true;
                     }
                     else{
@@ -146,8 +149,53 @@ public class Grafo {
                     }
                 }
                 return false;
-            }
             
+            
+        }
+        catch(Exception e){
+            System.out.println("Error");
+            return false; //Lo pongo porque sino sale error
+        }
+    }
+    
+    public boolean ContieneConecta(Vertice parada){
+        try{
+            int contador =0;
+                while(contador<this.tablAd.length -1){
+                    Vertice vertCompuesto = this.getVertice(contador);
+                    if (vertCompuesto != null)
+                    {
+                        if(parada.nombre.equals(vertCompuesto.compuesto) && vertCompuesto.compuesto != ""){
+
+                            ListaSimple ListaSimpleparada = parada.lad;
+                            ListaSimple ListaSimplecompuesto = vertCompuesto.lad;
+
+                            Nodo nodoArco = ListaSimpleparada.getpFirst();
+                            while (nodoArco != null)
+                            {
+                                ListaSimplecompuesto.insertarAlFinal(nodoArco.getValor());
+                                nodoArco=nodoArco.getSiguiente();
+                            }
+
+                            //ListaSimpleparada = ListaSimplecompuesto;
+
+                            nodoArco = ListaSimplecompuesto.getpFirst();
+                            while (nodoArco != null)
+                            {
+                                if (!ListaSimpleparada.contiene(nodoArco.getValor()))
+                                    ListaSimpleparada.insertarAlFinal(nodoArco.getValor());
+
+                                nodoArco=nodoArco.getSiguiente();
+                            }
+
+                            return true;
+                        }
+                        else{
+                            contador++;
+                        }
+                    }
+                }
+                return false;
         }
         catch(Exception e){
             System.out.println("Error");
@@ -159,10 +207,10 @@ public class Grafo {
     public void Conecta(Vertice parada){
         try{
             int contador=0;
-            for(contador=0;contador<this.nVert+1;contador++){
+            for(contador=0;contador<this.nVert-1;contador++){
                 if(parada.nombre.equals(this.getVertice(contador).compuesto)){
                     Nodo temp= this.getVertice(contador).lad.getpFirst();
-                    for(int i=0;i<this.getVertice(contador).lad.getSize();i++){
+                    for(int i=0;i<this.getVertice(contador).lad.getSize()-1;i++){
                         parada.lad.insertarAlPrincipio(temp);
                         temp=temp.getSiguiente();
                     }
