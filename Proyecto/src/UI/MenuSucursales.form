@@ -73,7 +73,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="Cargar_Redes10">
+    <Component class="javax.swing.JButton" name="Establecer_t">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="91" green="8b" id="Actions.GreyInline" palette="3" red="7f" type="palette"/>
@@ -97,7 +97,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="Cargar_Redes11">
+    <Component class="javax.swing.JButton" name="Colocar_Sucursal">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="91" green="8b" id="Actions.GreyInline" palette="3" red="7f" type="palette"/>
@@ -121,7 +121,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="Cargar_Redes12">
+    <Component class="javax.swing.JButton" name="Ver_Cobertura">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="91" green="8b" id="Actions.GreyInline" palette="3" red="7f" type="palette"/>
@@ -145,7 +145,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="Cargar_Redes13">
+    <Component class="javax.swing.JButton" name="Agregar_Linea">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="91" green="8b" id="Actions.GreyInline" palette="3" red="7f" type="palette"/>
@@ -169,7 +169,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="Cargar_Redes14">
+    <Component class="javax.swing.JButton" name="Cargar_Red">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="91" green="8b" id="Actions.GreyInline" palette="3" red="7f" type="palette"/>

@@ -35,6 +35,7 @@ public class CargaRed_1 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Cargar_Red = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
@@ -55,12 +56,15 @@ public class CargaRed_1 extends javax.swing.JFrame {
                 Cargar_RedActionPerformed(evt);
             }
         });
-        getContentPane().add(Cargar_Red, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, 170, 40));
+        getContentPane().add(Cargar_Red, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, 170, 40));
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, -1, -1));
 
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/portada.png"))); // NOI18N
-        jLabel3.setText(" ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -130,5 +134,6 @@ public class CargaRed_1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
