@@ -182,15 +182,16 @@ public class ListaSimple {
                 else{
                     Vertice vertice=red.gerVerticeN(aux_2.getValor().toString());
                     vertice.setIndiceComplementario(indice);
-                    if(contador>0){
-                        try{
-                            //esto no lo se hacer que lo haga luis
-                        red.nuevoArco(red.getVerticeI(indice-1).getNombre(), red.getVerticeI(indice).nombre);
-                        }
-                        catch(Exception e){
-                            
-                        }
-                    }
+                    //esto en teoria no se usa porque ya estan conectados
+//                    if(contador>0){
+//                        try{
+//                            
+//                        red.nuevoArco(red.getVerticeI(indice-1).getNombre(), red.getVerticeI(indice).nombre);
+//                        }
+//                        catch(Exception e){
+//                            
+//                        }
+//                    }
                 }
                 
                 
