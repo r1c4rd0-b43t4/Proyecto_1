@@ -45,7 +45,7 @@ public class Grafo {
         
     }
     
-    public Vertice getVertice(int i)throws Exception{
+    public Vertice getVerticeI(int i)throws Exception{
         if (i>this.nVert){
             throw new Exception("Vertice fuera de rango");
         }
@@ -57,9 +57,24 @@ public class Grafo {
         }
     }
     
+    //poner que regresa un vertice
+    public Vertice gerVerticeN(String parada){
+        int indice=0;
+        try{
+            while(indice<nVert){
+                if(parada.equals(this.getVerticeI(indice).nombre)){
+                    return this.getVerticeI(indice);
+                }
+                indice++;
+            }
+            return null;
+        }
+        catch(Exception e){
+            return null;
+        }
+    }
+    
     public void nuevoVertice(String nombre){
-        boolean existe= this.getNumVertice(nombre)>=0;
-        if(!existe){
             if(nombre.contains(":")){
                 nombre=nombre.replaceAll("[{}\"]", "");
                 String[] partes = nombre.split(":");
@@ -79,7 +94,7 @@ public class Grafo {
             }
             
             nVert++;
-        }
+        
     }
 
     public ListaSimple getListaAdy(int v)throws Exception{
@@ -142,7 +157,7 @@ public class Grafo {
 
                 int contador =0;
                 while(contador<this.tablAd.length -1){
-                    Vertice vertCompuesto = this.getVertice(contador);
+                    Vertice vertCompuesto = this.getVerticeI(contador);
                     if(parada.nombre.equals(vertCompuesto.compuesto) && vertCompuesto.compuesto != ""){
                         return true;
                     }
@@ -164,7 +179,7 @@ public class Grafo {
         try{
             int contador =0;
                 while(contador<this.tablAd.length -1){
-                    Vertice vertCompuesto = this.getVertice(contador);
+                    Vertice vertCompuesto = this.getVerticeI(contador);
                     if (vertCompuesto != null)
                     {
                         if(parada.nombre.equals(vertCompuesto.compuesto) && vertCompuesto.compuesto != ""){
@@ -210,16 +225,16 @@ public class Grafo {
         try{
             int contador=0;
             for(contador=0;contador<this.nVert-1;contador++){
-                if(parada.nombre.equals(this.getVertice(contador).compuesto)){
-                    Nodo temp= this.getVertice(contador).lad.getpFirst();
-                    for(int i=0;i<this.getVertice(contador).lad.getSize()-1;i++){
+                if(parada.nombre.equals(this.getVerticeI(contador).compuesto)){
+                    Nodo temp= this.getVerticeI(contador).lad.getpFirst();
+                    for(int i=0;i<this.getVerticeI(contador).lad.getSize()-1;i++){
                         parada.lad.insertarAlPrincipio(temp);
                         temp=temp.getSiguiente();
                     }
                     
                 }
             }
-            this.getVertice(contador).lad=parada.lad;
+            this.getVerticeI(contador).lad=parada.lad;
             
         }
         catch(Exception e){
@@ -232,17 +247,21 @@ public class Grafo {
     
     public class Vertice{
         String nombre;
-        String linea;
+        String linea1;
+        String linea2;
         String compuesto;
-        int indice;
+        int indice1;
+        int indice2;
         ListaSimple lad;
         
-        //añadir parametro linea 
+        //añadir parametro linea1 
         public Vertice(String nombre) {
             this.nombre = nombre;
-            this.linea="";
+            this.linea1="";
+            this.linea2="";
             this.compuesto = "";
-            this.indice = -1;
+            this.indice1 = -1;
+            this.indice2=-1;
             this.lad= new ListaSimple();
         }
 
@@ -250,19 +269,33 @@ public class Grafo {
             return nombre;
         }
 
-        public void setLinea(String linea) {
-            this.linea = linea;
+        public void setLinea1(String linea) {
+            this.linea1 = linea;
         }
 
-        public String getLinea() {
-            return linea;
+        public String getLinea1() {
+            return linea1;
+        }
+
+        public void setLinea2(String linea2) {
+            this.linea2 = linea2;
+        }
+
+        public String getLinea2() {
+            return linea2;
         }
         
         
         
         public void setIndice(int i){
-            this.indice= i;
+            this.indice1= i;
         }
+
+        public void setIndiceComplementario(int indice2) {
+            this.indice2 = indice2;
+        }
+        
+        
         
         public boolean nIgual(String d){
             Vertice temp= new Vertice(d);
@@ -270,7 +303,7 @@ public class Grafo {
         }
         
         public String aStr(){
-            return this.nombre + "("+this.indice+")";
+            return this.nombre + "("+this.indice1+")";
         }
 
         public String getCompuesto() {
