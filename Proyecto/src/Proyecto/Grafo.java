@@ -32,8 +32,6 @@ public class Grafo {
         return nombre;
     }
     
-    
-    
     public int getNumVertice(String nombre){
 
         boolean encontrado = false;
@@ -354,6 +352,12 @@ public class Grafo {
     @Override
     public String toString() {
         return "Grafo{" + "nombre=" + nombre + ", nVert=" + nVert + ", tablAd=" + tablAd + ", maxVert=" + maxVert + '}';
+    }
+    
+    public boolean existeArco(int v, int j){
+        
+        return false;
+    
     }
     
     

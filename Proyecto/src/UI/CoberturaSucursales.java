@@ -3,17 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI;
+import Proyecto.Cola;
+import Proyecto.Grafo;
 
 /**
  *
  * @author HP
  */
-public class CoberturaAmplitud extends javax.swing.JFrame {
+public class CoberturaSucursales extends javax.swing.JFrame {
 
     /**
      * Creates new form VisualizarCobertura
      */
-    public CoberturaAmplitud() {
+    
+    static Grafo grafo;
+    
+    public CoberturaSucursales(Grafo grafo) {
+        this.grafo = grafo;
         initComponents();
     }
 
@@ -28,6 +34,7 @@ public class CoberturaAmplitud extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -43,12 +50,54 @@ public class CoberturaAmplitud extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, -1, -1));
 
+        jButton2.setText("Realizar recorrido");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+    
+    public void amplitud (Grafo g) {
+	Cola cola = new Cola ();
+	boolean visitados [ ] = new boolean [g.getnVert()];
+	int v = 0; //vértice actual
+	//Se inicializa el vector visitados [] a false
+	for (int i = 0; i < g.getnVert(); i++){
+		visitados [i] = false;
+		//El recorrido en amplitud se inicia en cada vértice no visitado
+		for (int n = 0; n < g.getnVert(); n++) {
+			//se pone en la cola el vértide de partida y se marca como visitado
+			if (!visitados [n]){
+				cola.encolar (n);
+				visitados [n] = true;
+				while (!cola.EsVacio()) {
+					cola.desencolar(); //desencolar y tratar el vértice
+					System.out.println (v);
+					//y encolo los nodos adyacentes a v.
+					for (int j = 0; j < g.getnVert(); j++){
+						if ((v !=j) && (g.existeArco(v, j) && (!visitados [j]))) {
+							cola.encolar ( j );
+							visitados [j] = true;
+						}
+					}
+				}
+			}
+		}
+	}
+    }
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.amplitud(this.grafo);
+    
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -67,27 +116,30 @@ public class CoberturaAmplitud extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CoberturaAmplitud.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CoberturaSucursales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CoberturaAmplitud.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CoberturaSucursales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CoberturaAmplitud.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CoberturaSucursales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CoberturaAmplitud.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CoberturaSucursales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CoberturaAmplitud().setVisible(true);
+                new CoberturaSucursales(grafo).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
