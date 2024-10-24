@@ -72,10 +72,12 @@ public class CargaRed_1 extends javax.swing.JFrame {
     private void Cargar_RedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cargar_RedActionPerformed
         try{
           Reader reader = new Reader();
-          if(reader.Read() ==  null){
+          grafo = reader.Read();
+          
+          if(grafo ==  null){
               throw new Exception("Error durante la carga") ;  
           }
-          grafo = reader.Read();
+          
           JOptionPane.showMessageDialog(this, "La carga fue un exito");  
           this.setVisible(false);
           MenuSucursales ui = new MenuSucursales(grafo);

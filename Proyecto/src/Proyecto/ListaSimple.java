@@ -4,8 +4,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Proyecto;
- 
+
 import Proyecto.Grafo.Vertice;
+import Proyecto.Grafo.Arco;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonArray; 
@@ -191,14 +192,16 @@ public class ListaSimple {
         aux_1 = aux_1.getSiguiente();
     }
     
-    try{
-    for(int i=0;i<red.getnVert();i++){
-        if(red.Contiene(red.getVertice(i))){
-            red.Conecta(red.getVertice(i));
-            }
-        else{}
+    try
+    {
+        for(int i=0;i<red.getnVert();i++){
+            /*if(red.Contiene(red.getVertice(i))){
+                red.Conecta(red.getVertice(i));
+                }
+            else{}
+            }*/
+            red.ContieneConecta(red.getVertice(i));
         }
-    
     }
     catch(Exception e){
         
