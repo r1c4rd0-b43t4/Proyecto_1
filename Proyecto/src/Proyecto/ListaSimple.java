@@ -184,7 +184,7 @@ public class ListaSimple {
                     vertice.setIndiceComplementario(indice);
                     if(contador>0){
                         try{
-                            //esto no lo se hacer qye lo haga el papa de luis
+                            //esto no lo se hacer que lo haga luis
                         red.nuevoArco(red.getVerticeI(indice-1).getNombre(), red.getVerticeI(indice).nombre);
                         }
                         catch(Exception e){
