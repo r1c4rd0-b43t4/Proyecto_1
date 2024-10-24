@@ -21,7 +21,7 @@ public class MostrarGrafo {
 
         for (int i = 0; i < grafo.getnVert(); i++) {
             try {
-                String nombreNodo = grafo.getVertice(i).getNombre();
+                String nombreNodo = grafo.getVerticeI(i).getNombre();
                 graphStream.addNode(nombreNodo).setAttribute("ui.label", nombreNodo);
             } catch (Exception e) {
                 System.out.println("Error al agregar nodo: " + e.getMessage());
@@ -30,7 +30,7 @@ public class MostrarGrafo {
 
         for (int i = 0; i < grafo.getnVert(); i++) {
             try {
-                String origen = grafo.getVertice(i).getNombre();
+                String origen = grafo.getVerticeI(i).getNombre();
                 ListaSimple adyacentes = grafo.getListaAdy(i);
 
                 Nodo current = adyacentes.getpFirst();
