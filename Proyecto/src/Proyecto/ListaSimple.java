@@ -171,7 +171,12 @@ public class ListaSimple {
                     
                     if(contador>0){
                         try{
+                            if(red.getVerticeI(indice-1).indice2<0){
                         red.nuevoArco(red.getVerticeI(indice-1).getNombre(), red.getVerticeI(indice).nombre);
+                            }
+                            else{
+                                red.nuevoArco(red.getVerticeJ(indice-1).getNombre(), red.getVerticeI(indice).nombre);
+                            }
                         }
                         catch(Exception e){
                             

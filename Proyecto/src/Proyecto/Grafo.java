@@ -44,7 +44,7 @@ public class Grafo {
         return -1;
         
     }
-    
+    //buscar con el indice1
     public Vertice getVerticeI(int i)throws Exception{
         if (i>this.nVert){
             throw new Exception("Vertice fuera de rango");
@@ -56,7 +56,20 @@ public class Grafo {
             return this.tablAd[i];
         }
     }
-    
+    //buscar con el indice2
+    public Vertice getVerticeJ(int i)throws Exception{
+        if (i>this.nVert){
+            throw new Exception("Vertice fuera de rango");
+        }
+        else{
+            for(int index=0;index<i;index++){
+                if(this.getVerticeI(index).indice2==i){
+                   break;
+                }
+            }
+            return this.tablAd[i];
+        }
+    }
     //poner que regresa un vertice
     public Vertice gerVerticeN(String parada){
         int indice=0;
