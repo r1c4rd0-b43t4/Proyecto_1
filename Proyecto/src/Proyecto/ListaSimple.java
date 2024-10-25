@@ -156,18 +156,15 @@ public class ListaSimple {
             System.out.println(linea.getNombre_linea());
             System.out.println(red.getMaxVert());
             while (aux_2 != null) {
+                String nombre=aux_2.getValor().toString();
                 System.out.println(aux_2.getValor());
                 System.out.println(red.getnVert());
                 //si No existe el vertice hace esto.
                 boolean existe= red.getNumVertice(aux_2.getValor().toString())>=0;
                 if(!existe){
-                    red.nuevoVertice(aux_2.getValor().toString());
-                    try{
-                        red.getVerticeI(indice).setLinea1(linea.getNombre_linea());
-                    }
-                    catch(Exception e){
-                        
-                    }
+                    
+                    red.nuevoVertice(aux_2.getValor().toString(),linea.getNombre_linea());
+                    
                     
                     
                     if(contador>0){
@@ -213,8 +210,7 @@ public class ListaSimple {
 //                    }
                 }
                 
-                
-                
+                 
                 contador++;
                 indice++;
                 
