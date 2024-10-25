@@ -259,6 +259,7 @@ public class Grafo {
         String linea1;
         String linea2;
         String compuesto;
+        String sucursal;
         int indice1;
         int indice2;
         ListaSimple lad;
@@ -268,6 +269,7 @@ public class Grafo {
             this.nombre = nombre;
             this.linea1="";
             this.linea2="";
+            this.sucursal = "";
             this.compuesto = "";
             this.indice1 = -1;
             this.indice2=-1;
@@ -276,6 +278,10 @@ public class Grafo {
 
         public String getNombre(){
             return nombre;
+        }
+
+        public String getSucursal() {
+            return sucursal;
         }
 
         public void setLinea1(String linea) {

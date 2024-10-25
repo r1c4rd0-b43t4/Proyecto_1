@@ -35,6 +35,9 @@ public class CoberturaSucursales extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -50,13 +53,32 @@ public class CoberturaSucursales extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, -1, -1));
 
-        jButton2.setText("Realizar recorrido");
+        jButton2.setText("Amplitud");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 100, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 190, 30));
+
+        jLabel2.setText("Selecciona una sucursal:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 160, -1));
+
+        jButton3.setText("Profundidad");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 100, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -94,10 +116,46 @@ public class CoberturaSucursales extends javax.swing.JFrame {
 	}
     }
     
+    // Recorrido por profundidad 
+
+    //Parte 1 procedimiento recursivo
+
+    public void recorrerProfundidad (Grafo g, int v, boolean [ ] visitados) {
+	//se marca el vértice v como visitado
+	visitados [v] = true;
+	//el tratamiento del vértice consiste únicamente en imprimirlo en pantalla
+	System.out.println (v);
+	//se examinan los vértices adyacentes a v para continuar el recorrido
+	for (int i = 0; i < g.getnVert(); i++) {
+		if ((v != i) && (!visitados [i]) && (g.existeArco(v, i)) )
+			recorrerProfundidad (g, i, visitados);
+	}
+    }
+
+    // Parte 2 no recursivo
+    public void profundidad (Grafo g) {
+	boolean visitados [ ] = new boolean [g.getnVert()];
+	for (int i = 0; i < g.getnVert(); i++){ //inicializar vector con campos false
+		visitados [i] = false;
+		for (int n = 0; n < g.getnVert(); n++){ //Relanza el recorrido en cada
+			if (!visitados [i]) //vértice visitado
+                            recorrerProfundidad (g, n, visitados);
+		}
+        }
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.amplitud(this.grafo);
     
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.profundidad(this.grafo);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,6 +198,9 @@ public class CoberturaSucursales extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
