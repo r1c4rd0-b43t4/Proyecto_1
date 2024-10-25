@@ -193,8 +193,7 @@ public class ListaSimple {
                     vertice.setIndiceComplementario(indice);
                     vertice.setLinea2(linea.getNombre_linea());
                     try{
-                        //poner un if que revise si el que está en ambas tiene la conexion con el anterior de la linea
-                        //si lo tiene no se hace nada y sino se le agrega la conexion
+
                         if(!vertice.getLinea2().equals(red.getVerticeI(indice-1).getLinea2())){
                             red.nuevoArco(vertice.nombre, red.getVerticeI(indice-1).nombre);
                         }
@@ -266,7 +265,7 @@ public class ListaSimple {
 
         aux_1 = aux_1.getSiguiente();
     }
-        return listaparadasSinR.getSize()+1;
+        return listaparadasSinR.getSize();
     }
 
 
