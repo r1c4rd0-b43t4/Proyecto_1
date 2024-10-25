@@ -154,9 +154,10 @@ public class ListaSimple {
             Nodo aux_2 = lista_p.pFirst;
             int contador = 0;
             System.out.println(linea.getNombre_linea());
-
+            System.out.println(red.getMaxVert());
             while (aux_2 != null) {
                 System.out.println(aux_2.getValor());
+                System.out.println(red.getnVert());
                 //si No existe el vertice hace esto.
                 boolean existe= red.getNumVertice(aux_2.getValor().toString())>=0;
                 if(!existe){
@@ -171,8 +172,11 @@ public class ListaSimple {
                     
                     if(contador>0){
                         try{
-                            if(red.getVerticeI(indice-1).indice2<0){
+                            if(red.getVerticeJ(indice-1).indice2>0){
                         red.nuevoArco(red.getVerticeI(indice-1).getNombre(), red.getVerticeI(indice).nombre);
+                            }
+                            else if(red.getVerticeI(indice).getLinea1().equals(red.getVerticeJ(indice-1).linea2)){
+                                red.nuevoArco(red.getVerticeI(indice).getNombre(), red.getVerticeJ(indice-1).nombre);
                             }
                             else{
                                 red.nuevoArco(red.getVerticeJ(indice-1).getNombre(), red.getVerticeI(indice).nombre);
@@ -185,8 +189,19 @@ public class ListaSimple {
                 }
                 //si existe combina las lineas y adyacencias
                 else{
-                    Vertice vertice=red.gerVerticeN(aux_2.getValor().toString());
+                    Vertice vertice=red.getVerticeN(aux_2.getValor().toString());
                     vertice.setIndiceComplementario(indice);
+                    vertice.setLinea2(linea.getNombre_linea());
+                    try{
+                        //poner un if que revise si el que está en ambas tiene la conexion con el anterior de la linea
+                        //si lo tiene no se hace nada y sino se le agrega la conexion
+                        if(!vertice.getLinea2().equals(red.getVerticeI(indice-1).getLinea2())){
+                            red.nuevoArco(vertice.nombre, red.getVerticeI(indice-1).nombre);
+                        }
+                    }
+                    catch(Exception e){
+                    
+                    }
                     //esto en teoria no se usa porque ya estan conectados
 //                    if(contador>0){
 //                        try{
@@ -224,9 +239,9 @@ public class ListaSimple {
         }
     }
     catch(Exception e){
-        
+        System.out.println("Error");
     }
-        
+    System.out.println("llega");   
     return red;
 }
     
@@ -241,20 +256,17 @@ public class ListaSimple {
             Nodo aux_2 = lista_p.pFirst;
 
             while (aux_2 != null) {
-                if(listaparadasSinR.contiene(aux_2.getValor().toString())){
-                    aux_2 = aux_2.getSiguiente();
+                if(!listaparadasSinR.contiene(aux_2.getValor().toString())){
+                    listaparadasSinR.insertarAlPrincipio(aux_2.getValor().toString());
                 }
-                else{
-                aux_2 = aux_2.getSiguiente();
-                contador++;
-                }
+                aux_2=aux_2.getSiguiente();
                 
             }
         }
 
         aux_1 = aux_1.getSiguiente();
     }
-        return contador;
+        return listaparadasSinR.getSize()+1;
     }
 
 
