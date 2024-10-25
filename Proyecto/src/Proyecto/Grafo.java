@@ -116,7 +116,10 @@ public class Grafo {
                 
                     this.tablAd[nVert]=v;
                 }
-                //si ya existe no tiene que crear nada
+                else{
+                nVert--;
+                //si ya existe no tiene que crear nada, pero igual al final de este metodo siempre se suma 1 al nVert
+                }
             }
             // no compuestos
             else{
