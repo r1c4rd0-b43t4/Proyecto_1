@@ -293,8 +293,11 @@ public class Grafo {
         public String getLinea2() {
             return linea2;
         }
-        
-        
+
+        public ListaSimple getLad() {
+            return lad;
+        }
+              
         
         public void setIndice(int i){
             this.indice1= i;
@@ -355,6 +358,23 @@ public class Grafo {
     }
     
     public boolean existeArco(int v, int j){
+        try{
+            Vertice verticeBase = this.getVerticeI(v);
+            Vertice verticeDestino = this.getVerticeI(j);
+            Nodo nodoBaseAux = verticeBase.getLad().getpFirst();
+            while (nodoBaseAux != null){
+                if (nodoBaseAux.getValor() == verticeDestino.getNombre())
+                    return true;
+                else
+                    if(nodoBaseAux.getSiguiente() != null)
+                        nodoBaseAux = nodoBaseAux.getSiguiente();
+                    else
+                        break;
+            }
+        }
+        catch(Exception e){
+        
+        }
         
         return false;
     
