@@ -6,6 +6,7 @@ package Reader;
 import Proyecto.Grafo;
 import Proyecto.Linea;
 import Proyecto.ListaSimple;
+import Proyecto.MostrarGrafo;
 import Proyecto.Red;
 import java.io.BufferedReader;
 import java.io.File;
@@ -82,8 +83,9 @@ public class Reader {
         grafo = red.getLista_lineas().CrearGrafo(red.getLista_lineas(), red.getNombre_red());
         
         System.out.println(grafo.toString());
-        
-        
+        MostrarGrafo  mg = new MostrarGrafo();
+        mg.mostrar(grafo);
+
         return grafo;
 
     }
