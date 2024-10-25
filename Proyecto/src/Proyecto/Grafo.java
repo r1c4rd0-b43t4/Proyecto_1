@@ -31,6 +31,12 @@ public class Grafo {
     public String getNombre() {
         return nombre;
     }
+
+    public Vertice[] getTablAd() {
+        return tablAd;
+    }
+    
+    
     
     
     public int getNumverticeCompuesto(String key,String value){
@@ -102,9 +108,9 @@ public class Grafo {
 }
 
     
-    public void nuevoVertice(String nombre){
+    public void nuevoVertice(String nombre, String linea){
             if(nombre.contains(":")){
-                nombre=nombre.replaceAll("[{}\"]", "");
+                nombre = nombre.replaceAll("[{}\"/\\\\]", "");
                 String[] partes = nombre.split(":");
                 String key = partes[0];
                 String value = partes[1];
@@ -113,11 +119,18 @@ public class Grafo {
                     Vertice v = new Vertice(key);
                     v.setIndice(nVert);
                     v.setCompuesto(value);
-                
                     this.tablAd[nVert]=v;
+                    this.tablAd[nVert].setLinea1(linea);
                 }
                 else{
+                this.tablAd[this.getNumVertice(key)].setIndiceComplementario(nVert);   
+                try{
+                this.tablAd[this.getNumVertice(key)].setLinea2(linea);
                 nVert--;
+                }
+                catch(Exception e){
+                    
+                }
                 //si ya existe no tiene que crear nada, pero igual al final de este metodo siempre se suma 1 al nVert
                 }
             }
@@ -126,6 +139,7 @@ public class Grafo {
                 Vertice v = new Vertice(nombre);
                 v.setIndice(nVert);
                 this.tablAd[nVert]=v;
+                v.setLinea1(linea);
             }
             
             nVert++;
