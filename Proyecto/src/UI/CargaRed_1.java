@@ -79,7 +79,7 @@ public class CargaRed_1 extends javax.swing.JFrame {
           grafo = reader.Read();
           
           if(grafo ==  null){
-              throw new Exception("Error durante la carga") ;  
+              throw new Exception("Error durante la carga");  
           }
           
           JOptionPane.showMessageDialog(this, "La carga fue un exito");  

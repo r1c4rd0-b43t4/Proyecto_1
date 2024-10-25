@@ -4,8 +4,9 @@
  */
 package UI;
 
-import Proyecto.Grafo;
+import Proyecto.*;
 import static UI.CargaRed_1.grafo;
+import java.math.MathContext;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.view.Viewer;
@@ -114,8 +115,10 @@ public class MenuSucursales extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Mostrar_GrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Mostrar_GrafoActionPerformed
-     
-  
+    MostrarGrafo mg = new MostrarGrafo();
+    System.out.println(grafo.toString());
+    mg.mostrar(grafo);
+            
     }//GEN-LAST:event_Mostrar_GrafoActionPerformed
 
     private void Ver_CoberturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ver_CoberturaActionPerformed
