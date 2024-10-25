@@ -13,7 +13,7 @@ import UI.CargaRed_1;
  *
  * @author rdbae
  */
-public class main{
+public class Main{
 
     public static void main(String[] args) {
         
