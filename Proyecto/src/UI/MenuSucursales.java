@@ -19,7 +19,11 @@ public class MenuSucursales extends javax.swing.JFrame {
     /**
      * Creates new form MenuSucursales
      */
+    
+    static Grafo grafo ;
+    
     public MenuSucursales(Grafo grafo) {
+        this.grafo = grafo;
         initComponents();
     }
 
@@ -81,6 +85,11 @@ public class MenuSucursales extends javax.swing.JFrame {
         Ver_Cobertura.setForeground(new java.awt.Color(255, 255, 255));
         Ver_Cobertura.setText("Ver  Cobertura");
         Ver_Cobertura.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Ver_Cobertura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Ver_CoberturaActionPerformed(evt);
+            }
+        });
         getContentPane().add(Ver_Cobertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 170, 40));
 
         Agregar_Linea.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
@@ -108,6 +117,11 @@ public class MenuSucursales extends javax.swing.JFrame {
      
   
     }//GEN-LAST:event_Mostrar_GrafoActionPerformed
+
+    private void Ver_CoberturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ver_CoberturaActionPerformed
+        MenuCobertura pantalla = new MenuCobertura(this.grafo);
+        pantalla.setVisible(true);
+    }//GEN-LAST:event_Ver_CoberturaActionPerformed
 
     /**
      * @param args the command line arguments
