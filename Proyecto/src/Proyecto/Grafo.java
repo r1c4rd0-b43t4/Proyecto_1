@@ -33,6 +33,23 @@ public class Grafo {
     }
     
     
+    public int getNumverticeCompuesto(String key,String value){
+     boolean encontrado = false;
+        
+        for(int i=0;(i<this.tablAd.length-1)&& !encontrado;i++){
+            if (this.tablAd[i] != null)
+            {
+                encontrado=this.tablAd[i].getNombre().equals(key);
+                if(encontrado){
+                    encontrado=this.tablAd[i].getCompuesto().equals(value);
+                    if(encontrado){
+                        return i;
+                    }
+                }
+            }
+        }
+        return -1;
+    }
     
     public int getNumVertice(String nombre){
 
@@ -91,13 +108,17 @@ public class Grafo {
                 String[] partes = nombre.split(":");
                 String key = partes[0];
                 String value = partes[1];
-              
-                Vertice v = new Vertice(key);
-                v.setIndice(nVert);
-                v.setCompuesto(value);
+                boolean existe= this.getNumverticeCompuesto(key, value)>=0;
+                if(!existe){
+                    Vertice v = new Vertice(key);
+                    v.setIndice(nVert);
+                    v.setCompuesto(value);
                 
-                this.tablAd[nVert]=v;
+                    this.tablAd[nVert]=v;
+                }
+                //si ya existe no tiene que crear nada
             }
+            // no compuestos
             else{
                 Vertice v = new Vertice(nombre);
                 v.setIndice(nVert);
