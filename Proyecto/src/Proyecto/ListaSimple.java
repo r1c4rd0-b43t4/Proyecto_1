@@ -28,6 +28,10 @@ public class ListaSimple {
     public boolean EsVacio(){
         return (pFirst == null);   
     }
+    
+    public void limpiar() {
+        pFirst = null;
+    }
 
     public Nodo getpFirst() {
         return pFirst;
@@ -150,12 +154,16 @@ public class ListaSimple {
     while (aux_1 != null) {
         if (aux_1.getValor() instanceof Linea) {
             Linea linea = (Linea) aux_1.getValor();
+            if(linea.getNombre_linea().equals("Linea 4")){
+                System.out.println("a");
+            }
             ListaSimple lista_p = linea.getLista_paradas();  
             Nodo aux_2 = lista_p.pFirst;
             int contador = 0;
             System.out.println(linea.getNombre_linea());
             System.out.println(red.getMaxVert());
             while (aux_2 != null) {
+                
                 String nombre=aux_2.getValor().toString();
                 System.out.println(aux_2.getValor());
                 System.out.println(red.getnVert());
@@ -168,15 +176,22 @@ public class ListaSimple {
                     
                     
                     if(contador>0){
+                        
+                        //revisar con debug
                         try{
-                            if(red.getVerticeJ(indice-1).indice2>0){
-                        red.nuevoArco(red.getVerticeI(indice-1).getNombre(), red.getVerticeI(indice).nombre);
-                            }
-                            else if(red.getVerticeI(indice).getLinea1().equals(red.getVerticeJ(indice-1).linea2)){
-                                red.nuevoArco(red.getVerticeI(indice).getNombre(), red.getVerticeJ(indice-1).nombre);
+                            Vertice actual= red.getTablAd()[indice-1];
+                            Vertice revisar=red.getVerticeJ(indice-1);
+                            String anterior=red.getTablAd()[indice-2].getNombre();
+                            if(revisar!=null){
+                                if(red.getVerticeJ(indice-1).getIndiceComplementario()>0){
+                                    red.nuevoArco(revisar.getNombre(), actual.getNombre());
+                                }
+                                else if(red.getVerticeI(indice).getLinea1().equals(red.getVerticeJ(indice-1).getLinea2())){
+                                    red.nuevoArco(actual.getNombre(), revisar.getNombre());
+                                }
                             }
                             else{
-                                red.nuevoArco(red.getVerticeJ(indice-1).getNombre(), red.getVerticeI(indice).nombre);
+                                red.nuevoArco(anterior, actual.getNombre());
                             }
                         }
                         catch(Exception e){
@@ -187,16 +202,21 @@ public class ListaSimple {
                 //si existe combina las lineas y adyacencias
                 else{
                     Vertice vertice=red.getVerticeN(aux_2.getValor().toString());
-                    vertice.setIndiceComplementario(indice);
+                    vertice.setIndiceComplementario(red.getnVert());
                     vertice.setLinea2(linea.getNombre_linea());
-                    try{
-
-                        if(!vertice.getLinea2().equals(red.getVerticeI(indice-1).getLinea2())){
-                            red.nuevoArco(vertice.nombre, red.getVerticeI(indice-1).nombre);
-                        }
-                    }
-                    catch(Exception e){
                     
+                    
+                    if(contador>0){
+                        
+                        try{
+                            
+                            if(red.getVerticeI(indice-1).getIndice1()==vertice.getIndiceComplementario()-1 && !vertice.getLinea2().equals(red.getVerticeI(indice-1).getLinea2())){
+                                red.nuevoArco(vertice.getNombre(), red.getVerticeI(indice-1).getNombre());
+                            }
+                        }
+                        catch(Exception e){
+
+                        }
                     }
                     //esto en teoria no se usa porque ya estan conectados
 //                    if(contador>0){
@@ -220,6 +240,15 @@ public class ListaSimple {
         }
 
         aux_1 = aux_1.getSiguiente();
+    }
+    //metodo para conectar los nodos con 2 lineas a la linea original
+    try{
+        for(int index=0;index<red.getMaxVert();index++){
+            
+        }
+    }
+    catch(Exception e){
+    
     }
     
     try
