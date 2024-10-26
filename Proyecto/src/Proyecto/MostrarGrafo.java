@@ -4,11 +4,13 @@
  */
 package Proyecto;
 
-
+import org.graphstream.graph.*;
+import org.graphstream.graph.implementations.*;
 import Proyecto.Grafo.Vertice;        
 import Proyecto.Grafo.Arco;        
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.ui.layout.springbox.implementations.SpringBox;
 import org.graphstream.ui.view.Viewer;
 
 /**
@@ -18,10 +20,11 @@ import org.graphstream.ui.view.Viewer;
 
 public class MostrarGrafo {
 
-    public void mostrar(Grafo grafo) {
+    public void mostrar(Grafo grafo) throws Exception {
+       System.setProperty("org.graphstream.ui", "swing");
         Graph graphStream = new SingleGraph("MiGrafo");
 
-        
+        // Añadir nodos
         for (int i = 0; i < grafo.getMaxVert(); i++) {
             try {
                 String nombreNodo = grafo.getVerticeI(i).getNombre();
@@ -35,24 +38,26 @@ public class MostrarGrafo {
             }
         }
 
-        
+        // Añadir aristas
         for (int i = 0; i < grafo.getMaxVert(); i++) {
             try {
                 String origen = grafo.getVerticeI(i).getNombre();
-                ListaSimple adyacentes = grafo.getListaAdy(i);// obtiene lista de adyacencia del primer vertice
+                ListaSimple adyacentes = grafo.getListaAdy(i);
                 Nodo current = adyacentes.getpFirst();
                 while (current != null) {
                     String destino = ((Grafo.Arco) current.getValor()).getDestino();
                     String edgeId = origen + "-" + destino;
-                    // Verifica si la arista ya existe y los nodos existen en el grafo
-                    if (graphStream.getEdge(edgeId) == null && graphStream.getNode(destino) != null && graphStream.getNode(origen) != null) {
-                        graphStream.addEdge(edgeId, origen, destino);
-                    } else {
-                        if (graphStream.getEdge(edgeId) != null) {
-                            System.out.println("Arista ya existente: " + edgeId);
+                    String reverseEdgeId = destino + "-" + origen; // Verifica la arista en sentido inverso
+                    if (graphStream.getEdge(edgeId) == null && graphStream.getEdge(reverseEdgeId) == null) {
+                        // Verificar si los nodos de origen y destino existen antes de agregar la arista
+                        if (graphStream.getNode(destino) != null && graphStream.getNode(origen) != null) {
+                            graphStream.addEdge(edgeId, origen, destino);
+                            System.out.println("Arista agregada: " + edgeId);
                         } else {
                             System.out.println("Nodo origen o destino no existente para la arista: " + edgeId);
                         }
+                    } else {
+                        System.out.println("Arista ya existente: " + edgeId);
                     }
                     current = current.getSiguiente();
                 }
@@ -64,8 +69,23 @@ public class MostrarGrafo {
         
         graphStream.setAttribute("ui.stylesheet",
                 "node {fill-color: red; size: 20px; text-size: 20;} edge {fill-color: black;}");
+        
+        for (int i = 0; i < grafo.getMaxVert(); i++) {
+            String nombreNodo = grafo.getVerticeI(i).getNombre();
+            graphStream.getNode(nombreNodo).setAttribute("xy", Math.random() * 100, Math.random() * 100);
+        }
 
         
+
+        
+        
+                // Aplicar el algoritmo de diseño SpringBox para organizar el grafo
+        SpringBox layout = new SpringBox();
+        layout.setStabilizationLimit(0.9);
+        graphStream.addAttributeSink(layout);
+
+        // Mostrar el grafo con el algoritmo de diseño
         Viewer viewer = graphStream.display();
-    }    
+        viewer.disableAutoLayout();
+    }
 }
