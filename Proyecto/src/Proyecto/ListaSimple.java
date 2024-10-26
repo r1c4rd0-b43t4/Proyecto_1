@@ -241,11 +241,38 @@ public class ListaSimple {
 
         aux_1 = aux_1.getSiguiente();
     }
-    //metodo para conectar los nodos con 2 lineas a la linea original
+    //revisar si todos los nodos están conectados entre si
     try{
-        for(int index=0;index<red.getMaxVert();index++){
-            
+        Nodo nodolinea = lista_lineas.pFirst;
+        String paradaActual= "";
+        String paradaAnterior= "";
+        while (nodolinea != null) {
+            if (nodolinea.getValor() instanceof Linea) {
+                Linea linea1 = (Linea) nodolinea.getValor();
+                ListaSimple lista_p = linea1.getLista_paradas(); 
+                Nodo nodoParada = lista_p.pFirst;
+
+
+                while (nodoParada != null) {
+                    paradaActual=nodoParada.getValor().toString();
+                    
+                    if(paradaActual.contains(":")){
+                        paradaActual = paradaActual.replaceAll("[{}\"/\\\\]", "");
+                        String[] partes = paradaActual.split(":");
+                        paradaActual = partes[0];
+                    }
+                    
+                    if(!"".equals(paradaAnterior)){
+                        red.nuevoArco(paradaActual, paradaAnterior);
+                    }
+                    
+                    paradaAnterior=paradaActual;
+                    nodoParada = nodoParada.getSiguiente();
+                }
+            }
+            nodolinea = nodolinea.getSiguiente();
         }
+        
     }
     catch(Exception e){
     
