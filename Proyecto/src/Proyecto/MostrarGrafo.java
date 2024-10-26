@@ -68,24 +68,24 @@ public class MostrarGrafo {
 
         
         graphStream.setAttribute("ui.stylesheet",
-                "node {fill-color: red; size: 20px; text-size: 20;} edge {fill-color: black;}");
+                "node {fill-color: red; size: 20px; text-size: 10;} edge {fill-color: black;}");
         
-        for (int i = 0; i < grafo.getMaxVert(); i++) {
-            String nombreNodo = grafo.getVerticeI(i).getNombre();
-            graphStream.getNode(nombreNodo).setAttribute("xy", Math.random() * 100, Math.random() * 100);
-        }
+//        for (int i = 0; i < grafo.getMaxVert(); i++) {
+//            String nombreNodo = grafo.getVerticeI(i).getNombre();
+//            graphStream.getNode(nombreNodo).setAttribute("xy", Math.random() * 100, Math.random() * 100);
+//        }
 
         
 
         
-        
-                // Aplicar el algoritmo de diseño SpringBox para organizar el grafo
-        SpringBox layout = new SpringBox();
-        layout.setStabilizationLimit(0.9);
-        graphStream.addAttributeSink(layout);
+//        
+//        // Aplicar el algoritmo de diseño SpringBox para organizar el grafo
+//        SpringBox layout = new SpringBox();
+//        layout.setStabilizationLimit(0.9);
+//        graphStream.addAttributeSink(layout);
 
         // Mostrar el grafo con el algoritmo de diseño
         Viewer viewer = graphStream.display();
-        viewer.disableAutoLayout();
+
     }
 }
