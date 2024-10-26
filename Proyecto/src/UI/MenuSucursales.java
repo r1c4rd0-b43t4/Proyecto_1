@@ -7,6 +7,8 @@ package UI;
 import Proyecto.*;
 import static UI.CargaRed_1.grafo;
 import java.math.MathContext;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.view.Viewer;
@@ -117,7 +119,11 @@ public class MenuSucursales extends javax.swing.JFrame {
     private void Mostrar_GrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Mostrar_GrafoActionPerformed
     MostrarGrafo mg = new MostrarGrafo();
     System.out.println(grafo.toString());
-    mg.mostrar(grafo);
+        try {
+            mg.mostrar(grafo);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuSucursales.class.getName()).log(Level.SEVERE, null, ex);
+        }
             
     }//GEN-LAST:event_Mostrar_GrafoActionPerformed
 
