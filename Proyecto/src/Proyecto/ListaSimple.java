@@ -154,9 +154,6 @@ public class ListaSimple {
     while (aux_1 != null) {
         if (aux_1.getValor() instanceof Linea) {
             Linea linea = (Linea) aux_1.getValor();
-            if(linea.getNombre_linea().equals("Linea 4")){
-                System.out.println("a");
-            }
             ListaSimple lista_p = linea.getLista_paradas();  
             Nodo aux_2 = lista_p.pFirst;
             int contador = 0;
@@ -173,7 +170,7 @@ public class ListaSimple {
                     
                     red.nuevoVertice(aux_2.getValor().toString(),linea.getNombre_linea());
                     
-                    
+
                     
                     if(contador>0){
                         
@@ -240,22 +237,20 @@ public class ListaSimple {
         }
 
         aux_1 = aux_1.getSiguiente();
+        
     }
     //revisar si todos los nodos están conectados entre si
     try{
         Nodo nodolinea = lista_lineas.pFirst;
-        String paradaActual= "";
         String paradaAnterior= "";
         while (nodolinea != null) {
             if (nodolinea.getValor() instanceof Linea) {
                 Linea linea1 = (Linea) nodolinea.getValor();
                 ListaSimple lista_p = linea1.getLista_paradas(); 
                 Nodo nodoParada = lista_p.pFirst;
-
-
                 while (nodoParada != null) {
-                    paradaActual=nodoParada.getValor().toString();
-                    
+                    String paradaActual=nodoParada.getValor().toString();
+
                     if(paradaActual.contains(":")){
                         paradaActual = paradaActual.replaceAll("[{}\"/\\\\]", "");
                         String[] partes = paradaActual.split(":");

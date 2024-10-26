@@ -60,7 +60,7 @@ public class Grafo {
 
         boolean encontrado = false;
         
-        for(int i=0;(i<this.tablAd.length-1)&& !encontrado;i++){
+        for(int i=0;(i<this.tablAd.length)&& !encontrado;i++){
             if (this.tablAd[i] != null)
             {
                 encontrado=this.tablAd[i].getNombre().equals(nombre);
