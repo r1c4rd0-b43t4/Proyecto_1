@@ -270,6 +270,7 @@ public class ListaSimple {
                     nodoParada = nodoParada.getSiguiente();
                 }
             }
+            paradaAnterior="";
             nodolinea = nodolinea.getSiguiente();
         }
         
