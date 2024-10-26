@@ -31,6 +31,31 @@ public class Grafo {
     public String getNombre() {
         return nombre;
     }
+
+    public Vertice[] getTablAd() {
+        return tablAd;
+    }
+    
+    
+    
+    
+    public int getNumverticeCompuesto(String key,String value){
+     boolean encontrado = false;
+        
+        for(int i=0;(i<this.tablAd.length-1)&& !encontrado;i++){
+            if (this.tablAd[i] != null)
+            {
+                encontrado=this.tablAd[i].getNombre().equals(key);
+                if(encontrado){
+                    encontrado=this.tablAd[i].getCompuesto().equals(value);
+                    if(encontrado){
+                        return i;
+                    }
+                }
+            }
+        }
+        return -1;
+    }
     
     public int getNumVertice(String nombre){
 
@@ -83,23 +108,38 @@ public class Grafo {
 }
 
     
-    public void nuevoVertice(String nombre){
+    public void nuevoVertice(String nombre, String linea){
             if(nombre.contains(":")){
-                nombre=nombre.replaceAll("[{}\"]", "");
+                nombre = nombre.replaceAll("[{}\"/\\\\]", "");
                 String[] partes = nombre.split(":");
                 String key = partes[0];
                 String value = partes[1];
-              
-                Vertice v = new Vertice(key);
-                v.setIndice(nVert);
-                v.setCompuesto(value);
-                
-                this.tablAd[nVert]=v;
+                boolean existe= this.getNumverticeCompuesto(key, value)>=0;
+                if(!existe){
+                    Vertice v = new Vertice(key);
+                    v.setIndice(nVert);
+                    v.setCompuesto(value);
+                    this.tablAd[nVert]=v;
+                    this.tablAd[nVert].setLinea1(linea);
+                }
+                else{
+                this.tablAd[this.getNumVertice(key)].setIndiceComplementario(nVert);   
+                try{
+                this.tablAd[this.getNumVertice(key)].setLinea2(linea);
+                nVert--;
+                }
+                catch(Exception e){
+                    
+                }
+                //si ya existe no tiene que crear nada, pero igual al final de este metodo siempre se suma 1 al nVert
+                }
             }
+            // no compuestos
             else{
                 Vertice v = new Vertice(nombre);
                 v.setIndice(nVert);
                 this.tablAd[nVert]=v;
+                v.setLinea1(linea);
             }
             
             nVert++;
@@ -259,7 +299,6 @@ public class Grafo {
         String linea1;
         String linea2;
         String compuesto;
-        String sucursal;
         int indice1;
         int indice2;
         ListaSimple lad;
@@ -269,7 +308,6 @@ public class Grafo {
             this.nombre = nombre;
             this.linea1="";
             this.linea2="";
-            this.sucursal = "";
             this.compuesto = "";
             this.indice1 = -1;
             this.indice2=-1;
@@ -278,10 +316,6 @@ public class Grafo {
 
         public String getNombre(){
             return nombre;
-        }
-
-        public String getSucursal() {
-            return sucursal;
         }
 
         public void setLinea1(String linea) {
@@ -299,11 +333,8 @@ public class Grafo {
         public String getLinea2() {
             return linea2;
         }
-
-        public ListaSimple getLad() {
-            return lad;
-        }
-              
+        
+        
         
         public void setIndice(int i){
             this.indice1= i;
@@ -361,29 +392,6 @@ public class Grafo {
     @Override
     public String toString() {
         return "Grafo{" + "nombre=" + nombre + ", nVert=" + nVert + ", tablAd=" + tablAd + ", maxVert=" + maxVert + '}';
-    }
-    
-    public boolean existeArco(int v, int j){
-        try{
-            Vertice verticeBase = this.getVerticeI(v);
-            Vertice verticeDestino = this.getVerticeI(j);
-            Nodo nodoBaseAux = verticeBase.getLad().getpFirst();
-            while (nodoBaseAux != null){
-                if (nodoBaseAux.getValor() == verticeDestino.getNombre())
-                    return true;
-                else
-                    if(nodoBaseAux.getSiguiente() != null)
-                        nodoBaseAux = nodoBaseAux.getSiguiente();
-                    else
-                        break;
-            }
-        }
-        catch(Exception e){
-        
-        }
-        
-        return false;
-    
     }
     
     
