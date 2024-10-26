@@ -107,7 +107,7 @@ public class Grafo {
             }
         }
     } catch (Exception e) {
-        System.out.println("Error obteniendo el vértice: " + e.getMessage());
+        System.out.println("Error obteniendo el vértice:");
     }
     return null; // Devuelve null si no se encuentra el vértice
 }
