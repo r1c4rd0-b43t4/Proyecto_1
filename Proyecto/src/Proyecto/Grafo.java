@@ -87,10 +87,15 @@ public class Grafo {
     }
     //buscar con el indice2
     public Vertice getVerticeJ(int i) throws Exception {
+        
     if (i >= this.nVert) {
         throw new Exception("Vertice fuera de rango");
     }
-    return this.tablAd[i];
+    for(int index=0;index<this.nVert;index++){
+        if(this.tablAd[index].indice2==i)
+            return this.tablAd[index];
+    }
+    return null;
 }
 
     public Vertice getVerticeN(String parada) {
@@ -317,6 +322,12 @@ public class Grafo {
         public String getNombre(){
             return nombre;
         }
+
+        public int getIndice1() {
+            return indice1;
+        }
+        
+        
 
         public void setLinea1(String linea) {
             this.linea1 = linea;
