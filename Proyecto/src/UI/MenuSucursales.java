@@ -9,6 +9,7 @@ import static UI.CargaRed_1.grafo;
 import java.math.MathContext;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.view.Viewer;
@@ -46,6 +47,9 @@ public class MenuSucursales extends javax.swing.JFrame {
         Ver_Cobertura = new javax.swing.JButton();
         Agregar_Linea = new javax.swing.JButton();
         Cargar_Red = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        establecerTxt = new javax.swing.JTextField();
+        establecerBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         Cargar_Redes.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
@@ -109,8 +113,21 @@ public class MenuSucursales extends javax.swing.JFrame {
         Cargar_Red.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(Cargar_Red, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 170, 40));
 
+        jLabel1.setText("Establezca la frecuencia de sus sucursales ");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, -1));
+        getContentPane().add(establecerTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 130, -1));
+
+        establecerBtn.setText("Establecer");
+        establecerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                establecerBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(establecerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, -1, -1));
+
+        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fondo-logo.png"))); // NOI18N
-        jLabel3.setText(" ");
+        jLabel3.setText("Establezca la frecuencia de sus sucursales:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
@@ -131,6 +148,17 @@ public class MenuSucursales extends javax.swing.JFrame {
         MenuCobertura pantalla = new MenuCobertura(this.grafo);
         pantalla.setVisible(true);
     }//GEN-LAST:event_Ver_CoberturaActionPerformed
+
+    private void establecerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_establecerBtnActionPerformed
+        int frecuencia = 1;
+        try{
+            frecuencia = Integer.parseInt(this.establecerTxt.getText());
+            this.grafo.setT(frecuencia);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error, Dato inválido" + e.getMessage());
+        }
+    }//GEN-LAST:event_establecerBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,6 +204,9 @@ public class MenuSucursales extends javax.swing.JFrame {
     private javax.swing.JButton Establecer_t;
     private javax.swing.JButton Mostrar_Grafo;
     private javax.swing.JButton Ver_Cobertura;
+    private javax.swing.JButton establecerBtn;
+    private javax.swing.JTextField establecerTxt;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

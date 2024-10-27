@@ -6,25 +6,47 @@ public class Grafo {
     
     private String nombre;
     private int nVert;
+    private int t;
     private Vertice[] tablAd;
     private int maxVert;
 
     public Grafo(int maxVert, String nombreRed) {
         this.nombre= nombreRed;
         this.maxVert = maxVert;
+        this.t = 1;
         this.tablAd=new Vertice[maxVert];
         this.nVert=0;
+        
+        try{
+            if(this.nombre.equals("Transmilenio"))
+                this.t = 10;
+            else if(this.nombre.equals("Metro de Caracas"))
+                this.t = 3;
+        }
+        catch(Exception e){}
+    }
+    
+    
+
+    public int getT() {
+        return t;
+    }
+
+    public void setT(int t) {
+        this.t = t;
     }
 
     public int getMaxVert() {
         return maxVert;
     }
-    
-    
 
     public int getnVert() {
         //return nVert;
         return this.nVert;
+    }
+
+    public void setnVert(int nVert) {
+        this.nVert = nVert;
     }
 
     public String getNombre() {
@@ -35,18 +57,15 @@ public class Grafo {
         return tablAd;
     }
     
-    
-    
-    
     public int getNumverticeCompuesto(String key,String value){
      boolean encontrado = false;
         
-        for(int i=0;(i<this.tablAd.length-1)&& !encontrado;i++){
-            if (this.tablAd[i] != null)
+        for(int i=0;(i<this.getTablAd().length-1)&& !encontrado;i++){
+            if (this.getTablAd()[i] != null)
             {
-                encontrado=this.tablAd[i].getNombre().equals(key);
+                encontrado=this.getTablAd()[i].getNombre().equals(key);
                 if(encontrado){
-                    encontrado=this.tablAd[i].getCompuesto().equals(value);
+                    encontrado=this.getTablAd()[i].getCompuesto().equals(value);
                     if(encontrado){
                         return i;
                     }
@@ -60,10 +79,10 @@ public class Grafo {
 
         boolean encontrado = false;
         
-        for(int i=0;(i<this.tablAd.length)&& !encontrado;i++){
-            if (this.tablAd[i] != null)
+        for(int i=0;(i<this.getTablAd().length)&& !encontrado;i++){
+            if (this.getTablAd()[i] != null)
             {
-                encontrado=this.tablAd[i].getNombre().equals(nombre);
+                encontrado=this.getTablAd()[i].getNombre().equals(nombre);
                 if(encontrado){
                     return i;
                 }
@@ -74,32 +93,32 @@ public class Grafo {
     }
     //buscar con el indice1
     public Vertice getVerticeI(int i)throws Exception{
-        if (i>this.nVert){
+        if (i>this.getnVert()){
             throw new Exception("Vertice fuera de rango");
         }
         else{
             for(int index=0;index<i;index++){
                 
             }
-            return this.tablAd[i];
+            return this.getTablAd()[i];
         }
     }
     //buscar con el indice2
     public Vertice getVerticeJ(int i) throws Exception {
         
-    if (i >= this.nVert) {
+    if (i >= this.getnVert()) {
         throw new Exception("Vertice fuera de rango");
     }
-    for(int index=0;index<this.nVert;index++){
-        if(this.tablAd[index].getIndice2()==i)
-            return this.tablAd[index];
+    for(int index=0;index<this.getnVert();index++){
+        if( this.getTablAd()[index].getIndice2()==i)
+            return this.getTablAd()[index];
     }
     return null;
 }
 
     public Vertice getVerticeN(String parada) {
     try {
-        for (int indice = 0; indice < nVert; indice++) {
+        for (int indice = 0; indice < getnVert(); indice++) {
             Vertice vertice = this.getVerticeI(indice);
             if (parada.equals(vertice.getNombre())) {
                 return vertice;
@@ -121,16 +140,16 @@ public class Grafo {
                 boolean existe= this.getNumverticeCompuesto(key, value)>=0;
                 if(!existe){
                     Vertice v = new Vertice(key);
-                    v.setIndice(nVert);
+                    v.setIndice(getnVert());
                     v.setCompuesto(value);
-                    this.tablAd[nVert]=v;
-                    this.tablAd[nVert].setLinea1(linea);
+                    this.getTablAd()[getnVert()]=v;
+                    this.getTablAd()[getnVert()].setLinea1(linea);
                 }
                 else{
-                this.tablAd[this.getNumVertice(key)].setIndiceComplementario(nVert);   
+                    this.getTablAd()[this.getNumVertice(key)].setIndiceComplementario(getnVert());   
                 try{
-                this.tablAd[this.getNumVertice(key)].setLinea2(linea);
-                nVert--;
+                    this.getTablAd()[this.getNumVertice(key)].setLinea2(linea);
+                    setnVert(getnVert() - 1);
                 }
                 catch(Exception e){
                     
@@ -141,20 +160,20 @@ public class Grafo {
             // no compuestos
             else{
                 Vertice v = new Vertice(nombre);
-                v.setIndice(nVert);
-                this.tablAd[nVert]=v;
+                v.setIndice(getnVert());
+                this.getTablAd()[getnVert()]=v;
                 v.setLinea1(linea);
             }
             
-            nVert++;
+            setnVert(getnVert() + 1);
         
     }
 
     public ListaSimple getListaAdy(int v)throws Exception{
-        if (v<0||v>this.nVert){
+        if (v<0||v>this.getnVert()){
             throw new Exception("vertice fuera de rango");
         }
-        return this.tablAd[v].getLad();
+        return this.getTablAd()[v].getLad();
     }
     
     //Comprueba si dos vertices son adyacentes.
@@ -165,7 +184,7 @@ public class Grafo {
         if(v1<0||v2<0){
             throw new Exception("El vertice no existe");
         }
-        if(this.tablAd[v1].getLad().contiene(new Arco(b))){
+        if(this.getTablAd()[v1].getLad().contiene(new Arco(b))){
             return true;
         }
         else{
@@ -184,8 +203,8 @@ public class Grafo {
             Arco ab= new Arco(b);
             Arco ba=new Arco(a);
             
-            this.tablAd[v1].getLad().insertarSinDuplicado(ab);
-            this.tablAd[v2].getLad().insertarSinDuplicado(ba);
+            this.getTablAd()[v1].getLad().insertarSinDuplicado(ab);
+            this.getTablAd()[v2].getLad().insertarSinDuplicado(ba);
             
             
             
@@ -199,7 +218,7 @@ public class Grafo {
             throw new Exception ("El vertie no existe");
         }
         Arco ab=new Arco(b);
-        this.tablAd[v1].getLad().eliminar(ab);
+        this.getTablAd()[v1].getLad().eliminar(ab);
     }
     
     
@@ -209,7 +228,7 @@ public class Grafo {
 
 
                 int contador =0;
-                while(contador<this.tablAd.length -1){
+                while(contador<this.getTablAd().length -1){
                     Vertice vertCompuesto = this.getVerticeI(contador);
                     if(parada.getNombre().equals(vertCompuesto.getCompuesto()) && vertCompuesto.getCompuesto() != ""){
                         return true;
@@ -233,7 +252,7 @@ public class Grafo {
     public boolean ContieneConecta(Vertice parada){
         try{
             int contador =0;
-                while(contador<this.tablAd.length -1){
+                while(contador<this.getTablAd().length -1){
                     Vertice vertCompuesto = this.getVerticeI(contador);
                     if (vertCompuesto != null)
                     {
@@ -279,7 +298,7 @@ public class Grafo {
     public void Conecta(Vertice parada){
         try{
             int contador=0;
-            for(contador=0;contador<this.nVert-1;contador++){
+            for(contador=0;contador<this.getnVert()-1;contador++){
                 if(parada.getNombre().equals(this.getVerticeI(contador).getCompuesto())){
                     Nodo temp= this.getVerticeI(contador).getLad().getpFirst();
                     for(int i=0;i<this.getVerticeI(contador).getLad().getSize()-1;i++){
@@ -297,6 +316,7 @@ public class Grafo {
         }
         
     }
+
     
     
     
@@ -458,7 +478,7 @@ public class Grafo {
 
     @Override
     public String toString() {
-        return "Grafo{" + "nombre=" + nombre + ", nVert=" + nVert + ", tablAd=" + tablAd + ", maxVert=" + maxVert + '}';
+        return "Grafo{" + "nombre=" + getNombre() + ", nVert=" + getnVert() + ", tablAd=" + getTablAd() + ", maxVert=" + getMaxVert() + '}';
     }
     
     public boolean existeArco(int v, int j){
@@ -482,8 +502,5 @@ public class Grafo {
         }
         return false;
         
-    }
-    
-    
-       
+    }      
 }

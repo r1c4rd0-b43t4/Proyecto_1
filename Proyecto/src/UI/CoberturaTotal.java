@@ -88,7 +88,6 @@ public class CoberturaTotal extends javax.swing.JFrame {
                     cubiertos [v] = true;
                 
                 //el tratamiento del vértice consiste únicamente en imprimirlo en pantalla
-                
                 //se examinan los vértices adyacentes a v para continuar el recorrido
                 for (int i = 0; i < g.getnVert(); i++) {
                         if ((v != i) && (!cubiertos [i]) && (g.existeArco(v, i)) )

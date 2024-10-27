@@ -106,10 +106,10 @@ public class CoberturaSucursales extends javax.swing.JFrame {
     public void recorrerSucursales(){
         this.ComboBox.removeAllItems();
         for(int i = 0; i<this.grafo.getTablAd().length;i++){
-            //if (CoberturaSucursales.grafo.getTablAd()[i].isExisteSucursal()){
+            if (CoberturaSucursales.grafo.getTablAd()[i].isSucursal()){
                 String nombrevertice = CoberturaSucursales.grafo.getTablAd()[i].getNombre();
                 this.ComboBox.addItem(nombrevertice);
-            //}
+            }
         }
     }
     
