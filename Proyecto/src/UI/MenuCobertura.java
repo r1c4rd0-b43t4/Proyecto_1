@@ -49,7 +49,7 @@ public class MenuCobertura extends javax.swing.JFrame {
         jLabel1.setText("Menú Sucursales");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
 
-        amplitudBtn.setText("Amplitud");
+        amplitudBtn.setText("Cobertura Sucursales");
         amplitudBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 amplitudBtnActionPerformed(evt);
@@ -57,13 +57,13 @@ public class MenuCobertura extends javax.swing.JFrame {
         });
         getContentPane().add(amplitudBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
-        profundidadBtn.setText("Profundidad");
+        profundidadBtn.setText("Cobertura Total");
         profundidadBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 profundidadBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(profundidadBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, -1));
+        getContentPane().add(profundidadBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -73,12 +73,12 @@ public class MenuCobertura extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void amplitudBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amplitudBtnActionPerformed
-        CoberturaAmplitud pantalla = new CoberturaAmplitud(this.grafo);
+        CoberturaSucursales pantalla = new CoberturaSucursales(this.grafo);
         pantalla.setVisible(true);
     }//GEN-LAST:event_amplitudBtnActionPerformed
 
     private void profundidadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profundidadBtnActionPerformed
-        CoberturaProfundidad pantalla = new CoberturaProfundidad(this.grafo);
+        CoberturaTotal pantalla = new CoberturaTotal(this.grafo);
         pantalla.setVisible(true);
         
     }//GEN-LAST:event_profundidadBtnActionPerformed

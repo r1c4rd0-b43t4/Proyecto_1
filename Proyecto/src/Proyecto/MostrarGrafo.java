@@ -1,44 +1,37 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Proyecto;
 
-import org.graphstream.graph.*;
-import org.graphstream.graph.implementations.*;
-import Proyecto.Grafo.Vertice;        
-import Proyecto.Grafo.Arco;        
+import javax.swing.JOptionPane;
 import org.graphstream.graph.Graph;
+import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.SingleGraph;
-import org.graphstream.ui.layout.springbox.implementations.SpringBox;
-import org.graphstream.ui.view.Viewer;
+
 
 /**
- *
- * @author rdbae
+ *Clase MostrarGrafo donde se muestra el Grafo en pantalla utilizando la librería Graphstream.
  */
-
 public class MostrarGrafo {
-
+    
+    /**
+     * El método consiste en recibir un objeto de tipo Grafo el cuál sera iterado para que sus parámetros sean llevados a un objeto tipo grafo de Graphstream, con el fín de cumplir el funcionamiento correcto de la librería.
+     * @param grafo Recibe un objeto Grafo.
+     * @throws Exception Al fallar la creación de un nodo o arista del grafo Graphstream.
+     */
     public void mostrar(Grafo grafo) throws Exception {
        System.setProperty("org.graphstream.ui", "swing");
         Graph graphStream = new SingleGraph("MiGrafo");
 
-        // Añadir nodos
+
         for (int i = 0; i < grafo.getMaxVert(); i++) {
             try {
                 String nombreNodo = grafo.getVerticeI(i).getNombre();
                 if (graphStream.getNode(nombreNodo) == null) {
                     graphStream.addNode(nombreNodo).setAttribute("ui.label", nombreNodo);
-                } else {
-                    System.out.println("Nodo ya existente: " + nombreNodo);
-                }
+                } 
             } catch (Exception e) {
-                System.out.println("Error al agregar nodo: " + e.getMessage());
+                JOptionPane.showMessageDialog(null, "Error al agregar nodo");
             }
         }
 
-        // Añadir aristas
         for (int i = 0; i < grafo.getMaxVert(); i++) {
             try {
                 String origen = grafo.getVerticeI(i).getNombre();
@@ -47,45 +40,23 @@ public class MostrarGrafo {
                 while (current != null) {
                     String destino = ((Grafo.Arco) current.getValor()).getDestino();
                     String edgeId = origen + "-" + destino;
-                    String reverseEdgeId = destino + "-" + origen; // Verifica la arista en sentido inverso
+                    String reverseEdgeId = destino + "-" + origen; 
                     if (graphStream.getEdge(edgeId) == null && graphStream.getEdge(reverseEdgeId) == null) {
-                        // Verificar si los nodos de origen y destino existen antes de agregar la arista
                         if (graphStream.getNode(destino) != null && graphStream.getNode(origen) != null) {
                             graphStream.addEdge(edgeId, origen, destino);
-                            System.out.println("Arista agregada: " + edgeId);
-                        } else {
-                            System.out.println("Nodo origen o destino no existente para la arista: " + edgeId);
-                        }
-                    } else {
-                        System.out.println("Arista ya existente: " + edgeId);
-                    }
+                        } 
+                    } 
                     current = current.getSiguiente();
                 }
             } catch (Exception e) {
-                System.out.println("Error al agregar arista: " + e.getMessage());
+                JOptionPane.showMessageDialog(null, "Error al agregar arista"); 
             }
         }
 
-        
         graphStream.setAttribute("ui.stylesheet",
-                "node {fill-color: red; size: 20px; text-size: 10;} edge {fill-color: black;}");
+                "node {fill-color: Green; size: 20px; text-size: 10;} edge {fill-color: black;}");
         
-//        for (int i = 0; i < grafo.getMaxVert(); i++) {
-//            String nombreNodo = grafo.getVerticeI(i).getNombre();
-//            graphStream.getNode(nombreNodo).setAttribute("xy", Math.random() * 100, Math.random() * 100);
-//        }
-
-        
-
-        
-//        
-//        // Aplicar el algoritmo de diseño SpringBox para organizar el grafo
-//        SpringBox layout = new SpringBox();
-//        layout.setStabilizationLimit(0.9);
-//        graphStream.addAttributeSink(layout);
-
-        // Mostrar el grafo con el algoritmo de diseño
-        Viewer viewer = graphStream.display();
+        graphStream.display();
 
     }
  
