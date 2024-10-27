@@ -8,7 +8,7 @@ package Proyecto;
  *
  * @author HP
  */
-public class Cola {
+public class Cola <T> {
 
     Nodo pFirst;
     Nodo pLast;
@@ -73,7 +73,7 @@ public class Cola {
         return aux;        
     }
     
-    public void desencolar(){
+    public Nodo desencolar(){
         Nodo aux = this.pFirst;
         if (!this.EsVacio()){
             this.pFirst = this.pFirst.getSiguiente();
@@ -82,5 +82,6 @@ public class Cola {
             if (this.pFirst == null)
                 this.pLast = null;  
         }
+        return aux;
     }  
 }

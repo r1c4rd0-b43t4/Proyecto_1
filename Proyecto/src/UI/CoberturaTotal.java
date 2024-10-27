@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI;
+import Proyecto.Grafo;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,8 +15,12 @@ public class CoberturaTotal extends javax.swing.JFrame {
     /**
      * Creates new form VisualizarCobertura
      */
-    public CoberturaTotal() {
+    static Grafo grafo;
+    
+    public CoberturaTotal(Grafo grafo) {
         initComponents();
+        this.grafo = grafo;
+        
     }
 
     /**
@@ -30,6 +36,9 @@ public class CoberturaTotal extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        ConsultarBTN = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -45,6 +54,21 @@ public class CoberturaTotal extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, -1, -1));
 
+        ConsultarBTN.setText("Consultar");
+        ConsultarBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultarBTNActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ConsultarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 270, 130));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -52,6 +76,78 @@ public class CoberturaTotal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void ConsultarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarBTNActionPerformed
+        this.profundidadCoberturaTotal(grafo);
+    }//GEN-LAST:event_ConsultarBTNActionPerformed
+    
+    public void recorrerProfundidadCoberturaTotal (Grafo g, int v, boolean [ ] cubiertos, int t) {
+        try{
+            if (t>0){
+                //se marca el vértice v como visitado
+                if (g.getVerticeI(v).isExisteSucursal())
+                    cubiertos [v] = true;
+                
+                //el tratamiento del vértice consiste únicamente en imprimirlo en pantalla
+                
+                //se examinan los vértices adyacentes a v para continuar el recorrido
+                for (int i = 0; i < g.getnVert(); i++) {
+                        if ((v != i) && (!cubiertos [i]) && (g.existeArco(v, i)) )
+                                recorrerProfundidadCoberturaTotal (g, i, cubiertos, t-1);
+                }
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error, recorrido por profundidad fallido" + e.getMessage()); 
+        }
+        
+    }
+
+    // Parte 2 no recursivo
+    public void profundidadCoberturaTotal (Grafo g) {
+        int t = 4;
+        boolean existeSucursal = false;
+	boolean cubiertos [ ] = new boolean [g.getnVert()];
+        
+	for (int i = 0; i < g.getnVert(); i++) //inicializar vector con campos false
+            cubiertos [i] = false;
+        
+        for (int n = 0; n < g.getnVert(); n++){ //Relanza el recorrido en cada
+            if (!cubiertos [n]) //vértice visitado
+                recorrerProfundidadCoberturaTotal (g, n, cubiertos, t+1);
+        }
+        
+        for(int i= 0;i<cubiertos.length;i++){
+            if(cubiertos[i]){
+                existeSucursal = true;
+                System.out.println(cubiertos[i]);
+                this.imprimirParadas(grafo, i); 
+            }
+        }
+        if (!existeSucursal)
+            JOptionPane.showMessageDialog(this, "No hay sucursales creadas en ninguna parada");             
+        
+    }
+    
+    public void imprimirParadas(Grafo g, int v){
+        try{
+            String nombreVertice = "";
+            if (g.getVerticeI(v).getCompuesto().equals(""))
+                nombreVertice = g.getVerticeI(v).getNombre();
+            else
+                nombreVertice = g.getVerticeI(v).getNombre() + "/" + g.getVerticeI(v).getCompuesto() ;
+            //System.out.println ("Paradas: " + v + ": " + nombreVertice);
+            this.jTextArea1.setText(this.jTextArea1.getText() + "Parada: " + nombreVertice + "\n");
+            
+            System.out.println ("Parada: " + v + ": " + nombreVertice);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error, impresión fallida" + e.getMessage()); 
+        }
+    }
+    
+    public void sugerirSucursales(){
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -89,15 +185,18 @@ public class CoberturaTotal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CoberturaTotal().setVisible(true);
+                new CoberturaTotal(grafo).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ConsultarBTN;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
