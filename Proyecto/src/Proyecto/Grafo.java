@@ -91,7 +91,7 @@ public class Grafo {
         throw new Exception("Vertice fuera de rango");
     }
     for(int index=0;index<this.nVert;index++){
-        if(this.tablAd[index].indice2==i)
+        if(this.tablAd[index].getIndice2()==i)
             return this.tablAd[index];
     }
     return null;
@@ -101,7 +101,7 @@ public class Grafo {
     try {
         for (int indice = 0; indice < nVert; indice++) {
             Vertice vertice = this.getVerticeI(indice);
-            if (parada.equals(vertice.nombre)) {
+            if (parada.equals(vertice.getNombre())) {
                 return vertice;
             }
         }
@@ -154,7 +154,7 @@ public class Grafo {
         if (v<0||v>this.nVert){
             throw new Exception("vertice fuera de rango");
         }
-        return this.tablAd[v].lad;
+        return this.tablAd[v].getLad();
     }
     
     //Comprueba si dos vertices son adyacentes.
@@ -165,7 +165,7 @@ public class Grafo {
         if(v1<0||v2<0){
             throw new Exception("El vertice no existe");
         }
-        if(this.tablAd[v1].lad.contiene(new Arco(b))){
+        if(this.tablAd[v1].getLad().contiene(new Arco(b))){
             return true;
         }
         else{
@@ -184,8 +184,8 @@ public class Grafo {
             Arco ab= new Arco(b);
             Arco ba=new Arco(a);
             
-            this.tablAd[v1].lad.insertarSinDuplicado(ab);
-            this.tablAd[v2].lad.insertarSinDuplicado(ba);
+            this.tablAd[v1].getLad().insertarSinDuplicado(ab);
+            this.tablAd[v2].getLad().insertarSinDuplicado(ba);
             
             
             
@@ -199,7 +199,7 @@ public class Grafo {
             throw new Exception ("El vertie no existe");
         }
         Arco ab=new Arco(b);
-        this.tablAd[v1].lad.eliminar(ab);
+        this.tablAd[v1].getLad().eliminar(ab);
     }
     
     
@@ -211,7 +211,7 @@ public class Grafo {
                 int contador =0;
                 while(contador<this.tablAd.length -1){
                     Vertice vertCompuesto = this.getVerticeI(contador);
-                    if(parada.nombre.equals(vertCompuesto.compuesto) && vertCompuesto.compuesto != ""){
+                    if(parada.getNombre().equals(vertCompuesto.getCompuesto()) && vertCompuesto.getCompuesto() != ""){
                         return true;
                     }
                     else{
@@ -237,10 +237,10 @@ public class Grafo {
                     Vertice vertCompuesto = this.getVerticeI(contador);
                     if (vertCompuesto != null)
                     {
-                        if(parada.nombre.equals(vertCompuesto.compuesto) && !"".equals(vertCompuesto.compuesto)){
+                        if(parada.getNombre().equals(vertCompuesto.getCompuesto()) && !"".equals(vertCompuesto.compuesto)){
 
-                            ListaSimple ListaSimpleparada = parada.lad;
-                            ListaSimple ListaSimplecompuesto = vertCompuesto.lad;
+                            ListaSimple ListaSimpleparada = parada.getLad();
+                            ListaSimple ListaSimplecompuesto = vertCompuesto.getLad();
 
                             Nodo nodoArco = ListaSimpleparada.getpFirst();
                             while (nodoArco != null)
@@ -280,16 +280,16 @@ public class Grafo {
         try{
             int contador=0;
             for(contador=0;contador<this.nVert-1;contador++){
-                if(parada.nombre.equals(this.getVerticeI(contador).compuesto)){
-                    Nodo temp= this.getVerticeI(contador).lad.getpFirst();
-                    for(int i=0;i<this.getVerticeI(contador).lad.getSize()-1;i++){
-                        parada.lad.insertarAlPrincipio(temp);
+                if(parada.getNombre().equals(this.getVerticeI(contador).getCompuesto())){
+                    Nodo temp= this.getVerticeI(contador).getLad().getpFirst();
+                    for(int i=0;i<this.getVerticeI(contador).getLad().getSize()-1;i++){
+                        parada.getLad().insertarAlPrincipio(temp);
                         temp=temp.getSiguiente();
                     }
                     
                 }
             }
-            this.getVerticeI(contador).lad=parada.lad;
+            this.getVerticeI(contador).setLad(parada.getLad());
             
         }
         catch(Exception e){
@@ -301,14 +301,14 @@ public class Grafo {
     
     
     public class Vertice{
-        String nombre;
-        String linea1;
-        String linea2;
-        String compuesto;
-        int indice1;
-        int indice2;
-        ListaSimple lad;
-        boolean sucursal;
+        private String nombre;
+        private String linea1;
+        private String linea2;
+        private String compuesto;
+        private int indice1;
+        private int indice2;
+        private ListaSimple lad;
+        private boolean sucursal;
         
         //añadir parametro linea1 
         public Vertice(String nombre) {
@@ -331,7 +331,8 @@ public class Grafo {
         }
 
         
-        
+
+                
         public String getNombre(){
             return nombre;
         }
@@ -361,26 +362,26 @@ public class Grafo {
         
         
         public void setIndice(int i){
-            this.indice1= i;
+            this.setIndice1(i);
         }
 
         public void setIndiceComplementario(int indice2) {
-            this.indice2 = indice2;
+            this.setIndice2(indice2);
         }
 
         public int getIndiceComplementario() {
-            return indice2;
+            return getIndice2();
         }
         
         
         
         public boolean nIgual(String d){
             Vertice temp= new Vertice(d);
-            return this.nombre.equals(temp.nombre);
+            return this.getNombre().equals(temp.getNombre());
         }
         
         public String aStr(){
-            return this.nombre + "("+this.indice1+")";
+            return this.getNombre() + "("+this.getIndice1()+")";
         }
 
         public String getCompuesto() {
@@ -389,6 +390,48 @@ public class Grafo {
 
         public void setCompuesto(String compuesto) {
             this.compuesto = compuesto;
+        }
+
+        /**
+         * @param nombre the nombre to set
+         */
+        public void setNombre(String nombre) {
+            this.nombre = nombre;
+        }
+
+        /**
+         * @param indice1 the indice1 to set
+         */
+        public void setIndice1(int indice1) {
+            this.indice1 = indice1;
+        }
+
+        /**
+         * @return the indice2
+         */
+        public int getIndice2() {
+            return indice2;
+        }
+
+        /**
+         * @param indice2 the indice2 to set
+         */
+        public void setIndice2(int indice2) {
+            this.indice2 = indice2;
+        }
+
+        /**
+         * @return the lad
+         */
+        public ListaSimple getLad() {
+            return lad;
+        }
+
+        /**
+         * @param lad the lad to set
+         */
+        public void setLad(ListaSimple lad) {
+            this.lad = lad;
         }
         
         
@@ -416,6 +459,29 @@ public class Grafo {
     @Override
     public String toString() {
         return "Grafo{" + "nombre=" + nombre + ", nVert=" + nVert + ", tablAd=" + tablAd + ", maxVert=" + maxVert + '}';
+    }
+    
+    public boolean existeArco(int v, int j){
+        try{
+            Vertice verticeBase = this.getVerticeI(v);
+            Vertice verticeDestino = this.getVerticeI(j);
+            Nodo auxNodoBase = verticeBase.getLad().getpFirst();
+            while(auxNodoBase != null){
+                Arco arco = (Arco)auxNodoBase.getValor();
+                if(verticeDestino.getNombre().equals(arco.getDestino()))
+                    return true;
+                else
+                    if (auxNodoBase.getSiguiente()!=null)
+                        auxNodoBase = auxNodoBase.getSiguiente();
+                    else
+                        return false;
+            }            
+        }
+        catch(Exception e){
+        
+        }
+        return false;
+        
     }
     
     

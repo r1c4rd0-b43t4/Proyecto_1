@@ -84,7 +84,7 @@ public class CoberturaTotal extends javax.swing.JFrame {
         try{
             if (t>0){
                 //se marca el vértice v como visitado
-                if (g.getVerticeI(v).isExisteSucursal())
+                if (g.getVerticeI(v).isSucursal())
                     cubiertos [v] = true;
                 
                 //el tratamiento del vértice consiste únicamente en imprimirlo en pantalla
