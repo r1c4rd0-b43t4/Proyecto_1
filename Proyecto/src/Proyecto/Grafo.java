@@ -17,6 +17,9 @@ public class Grafo {
         this.tablAd=new Vertice[maxVert];
         this.nVert=0;
         
+        /*
+        Establece t según lo indicado en la documentación
+        */
         try{
             if(this.nombre.equals("Transmilenio"))
                 this.t = 10;
@@ -25,13 +28,19 @@ public class Grafo {
         }
         catch(Exception e){}
     }
-    
-    
 
+    /**
+     * Retorna la frecuencia
+     * @return 
+     */
     public int getT() {
         return t;
     }
-
+    
+    /**
+     * Establece la frecuencia
+     * @param t 
+     */
     public void setT(int t) {
         this.t = t;
     }
