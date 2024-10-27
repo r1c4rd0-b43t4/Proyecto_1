@@ -106,9 +106,10 @@ public class CoberturaSucursales extends javax.swing.JFrame {
     public void recorrerSucursales(){
         this.ComboBox.removeAllItems();
         for(int i = 0; i<this.grafo.getTablAd().length;i++){
-            //this.jComboBox1.insertItemAt(this.grafo.getTablAd()[i].getNombre(), i);
-            String nombrevertice = CoberturaSucursales.grafo.getTablAd()[i].getNombre();
-            this.ComboBox.addItem(nombrevertice);
+            //if (CoberturaSucursales.grafo.getTablAd()[i].isExisteSucursal()){
+                String nombrevertice = CoberturaSucursales.grafo.getTablAd()[i].getNombre();
+                this.ComboBox.addItem(nombrevertice);
+            //}
         }
     }
     
@@ -184,7 +185,7 @@ public class CoberturaSucursales extends javax.swing.JFrame {
     public void profundidad (Grafo g) {
         String nombreVertice = this.ComboBox.getSelectedItem().toString();
         int indiceVertice = g.getNumVertice(nombreVertice);
-        int t = 4;
+        int t = 2;
 	boolean visitados [ ] = new boolean [g.getnVert()];
 	for (int i = 0; i < g.getnVert(); i++) //inicializar vector con campos false
             visitados [i] = false;
@@ -205,9 +206,9 @@ public class CoberturaSucursales extends javax.swing.JFrame {
                 nombreVertice = g.getVerticeI(v).getNombre() + "/" + g.getVerticeI(v).getCompuesto() ;
             //el tratamiento del vértice consiste únicamente en imprimirlo en pantalla
             //System.out.println ("Paradas: " + v + ": " + nombreVertice);
-            this.jTextArea1.setText(this.jTextArea1.getText() + "Paradas: " + nombreVertice + "\n");
+            this.jTextArea1.setText(this.jTextArea1.getText() + "Parada: " + nombreVertice + "\n");
             
-            System.out.println ("Paradas: " + v + ": " + nombreVertice);
+            System.out.println ("Parada: " + v + ": " + nombreVertice);
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(this, "Error, impresión fallida" + e.getMessage()); 

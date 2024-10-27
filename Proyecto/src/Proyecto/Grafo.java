@@ -20,8 +20,6 @@ public class Grafo {
         return maxVert;
     }
     
-    
-
     public int getnVert() {
         //return nVert;
         return this.nVert;
@@ -34,9 +32,6 @@ public class Grafo {
     public Vertice[] getTablAd() {
         return tablAd;
     }
-    
-    
-    
     
     public int getNumverticeCompuesto(String key,String value){
      boolean encontrado = false;
@@ -72,6 +67,7 @@ public class Grafo {
         return -1;
         
     }
+    
     //buscar con el indice1
     public Vertice getVerticeI(int i)throws Exception{
         if (i>this.nVert){
@@ -84,32 +80,33 @@ public class Grafo {
             return this.tablAd[i];
         }
     }
+    
     //buscar con el indice2
     public Vertice getVerticeJ(int i) throws Exception {
         
-    if (i >= this.nVert) {
-        throw new Exception("Vertice fuera de rango");
+        if (i >= this.nVert) {
+            throw new Exception("Vertice fuera de rango");
+        }
+        for(int index=0;index<this.nVert;index++){
+            if(this.tablAd[index].indice2==i)
+                return this.tablAd[index];
+        }
+        return null;
     }
-    for(int index=0;index<this.nVert;index++){
-        if(this.tablAd[index].indice2==i)
-            return this.tablAd[index];
-    }
-    return null;
-}
 
     public Vertice getVerticeN(String parada) {
-    try {
-        for (int indice = 0; indice < nVert; indice++) {
-            Vertice vertice = this.getVerticeI(indice);
-            if (parada.equals(vertice.nombre)) {
-                return vertice;
+        try {
+            for (int indice = 0; indice < nVert; indice++) {
+                Vertice vertice = this.getVerticeI(indice);
+                if (parada.equals(vertice.nombre)) {
+                    return vertice;
+                }
             }
+        } catch (Exception e) {
+            System.out.println("Error obteniendo el vértice:");
         }
-    } catch (Exception e) {
-        System.out.println("Error obteniendo el vértice:");
+        return null; // Devuelve null si no se encuentra el vértice
     }
-    return null; // Devuelve null si no se encuentra el vértice
-}
 
     
     public void nuevoVertice(String nombre, String linea){
@@ -185,10 +182,7 @@ public class Grafo {
             Arco ba=new Arco(a);
             
             this.tablAd[v1].lad.insertarSinDuplicado(ab);
-            this.tablAd[v2].lad.insertarSinDuplicado(ba);
-            
-            
-            
+            this.tablAd[v2].lad.insertarSinDuplicado(ba);   
         }
     }
     
@@ -205,22 +199,17 @@ public class Grafo {
     
     public boolean Contiene(Vertice parada){
         try{
-            
-
-
-                int contador =0;
-                while(contador<this.tablAd.length -1){
-                    Vertice vertCompuesto = this.getVerticeI(contador);
-                    if(parada.nombre.equals(vertCompuesto.compuesto) && vertCompuesto.compuesto != ""){
-                        return true;
-                    }
-                    else{
-                        contador++;
-                    }
+            int contador =0;
+            while(contador<this.tablAd.length -1){
+                Vertice vertCompuesto = this.getVerticeI(contador);
+                if(parada.nombre.equals(vertCompuesto.compuesto) && vertCompuesto.compuesto.equals("")){
+                    return true;
                 }
-                return false;
-            
-            
+                else{
+                    contador++;
+                }
+            }
+            return false;   
         }
         catch(Exception e){
             System.out.println("Error");
@@ -292,8 +281,7 @@ public class Grafo {
         }
         catch(Exception e){
             System.out.println("Error");
-        }
-        
+        }   
     }
     
     
@@ -306,12 +294,14 @@ public class Grafo {
         int indice1;
         int indice2;
         ListaSimple lad;
+        boolean existeSucursal;
         
         //añadir parametro linea1 
         public Vertice(String nombre) {
             this.nombre = nombre;
             this.linea1="";
             this.linea2="";
+            this.existeSucursal = false;
             this.compuesto = "";
             this.indice1 = -1;
             this.indice2=-1;
@@ -329,7 +319,14 @@ public class Grafo {
         public ListaSimple getLad() {
             return lad;
         }
-        
+
+        public boolean isExisteSucursal() {
+            return existeSucursal;
+        }
+
+        public void setExisteSucursal(boolean existeSucursal) {
+            this.existeSucursal = existeSucursal;
+        }
         
         public void setLinea1(String linea) {
             this.linea1 = linea;
