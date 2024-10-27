@@ -325,9 +325,12 @@ public class Grafo {
         public int getIndice1() {
             return indice1;
         }
-        
-        
 
+        public ListaSimple getLad() {
+            return lad;
+        }
+        
+        
         public void setLinea1(String linea) {
             this.linea1 = linea;
         }
@@ -402,6 +405,29 @@ public class Grafo {
     @Override
     public String toString() {
         return "Grafo{" + "nombre=" + nombre + ", nVert=" + nVert + ", tablAd=" + tablAd + ", maxVert=" + maxVert + '}';
+    }
+    
+    public boolean existeArco(int v, int j){
+        try{
+            Vertice verticeBase = this.getVerticeI(v);
+            Vertice verticeDestino = this.getVerticeI(j);
+            Nodo auxNodoBase = verticeBase.getLad().getpFirst();
+            while(auxNodoBase != null){
+                Arco arco = (Arco)auxNodoBase.getValor();
+                if(verticeDestino.getNombre().equals(arco.getDestino()))
+                    return true;
+                else
+                    if (auxNodoBase.getSiguiente()!=null)
+                        auxNodoBase = auxNodoBase.getSiguiente();
+                    else
+                        return false;
+            }            
+        }
+        catch(Exception e){
+        
+        }
+        return false;
+        
     }
     
     

@@ -5,6 +5,8 @@
 package UI;
 import Proyecto.Cola;
 import Proyecto.Grafo;
+import Proyecto.Nodo;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,8 +21,10 @@ public class CoberturaSucursales extends javax.swing.JFrame {
     static Grafo grafo;
     
     public CoberturaSucursales(Grafo grafo) {
-        this.grafo = grafo;
         initComponents();
+        //this.ComboBox.removeAllItems();
+        this.grafo = grafo;
+        this.recorrerSucursales();
     }
 
     /**
@@ -35,9 +39,12 @@ public class CoberturaSucursales extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        ComboBox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -61,13 +68,12 @@ public class CoberturaSucursales extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 100, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        ComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                ComboBoxActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 190, 30));
+        getContentPane().add(ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 190, 30));
 
         jLabel2.setText("Selecciona una sucursal:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 160, -1));
@@ -80,6 +86,16 @@ public class CoberturaSucursales extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 100, -1));
 
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, 120));
+
+        jLabel3.setText("Alcance de la sucursal:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -87,73 +103,131 @@ public class CoberturaSucursales extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
     
-    public void amplitud (Grafo g) {
-	Cola cola = new Cola ();
-	boolean visitados [ ] = new boolean [g.getnVert()];
-	int v = 0; //vértice actual
-	//Se inicializa el vector visitados [] a false
-	for (int i = 0; i < g.getnVert(); i++){
-		visitados [i] = false;
-		//El recorrido en amplitud se inicia en cada vértice no visitado
-		for (int n = 0; n < g.getnVert(); n++) {
-			//se pone en la cola el vértide de partida y se marca como visitado
-			if (!visitados [n]){
-				cola.encolar (n);
-				visitados [n] = true;
-				while (!cola.EsVacio()) {
-					cola.desencolar(); //desencolar y tratar el vértice
-					System.out.println (v);
-					//y encolo los nodos adyacentes a v.
-					for (int j = 0; j < g.getnVert(); j++){
-						if ((v !=j) && (g.existeArco(v, j) && (!visitados [j]))) {
-							cola.encolar ( j );
-							visitados [j] = true;
-						}
-					}
-				}
-			}
-		}
-	}
+    public void recorrerSucursales(){
+        this.ComboBox.removeAllItems();
+        for(int i = 0; i<this.grafo.getTablAd().length;i++){
+            //this.jComboBox1.insertItemAt(this.grafo.getTablAd()[i].getNombre(), i);
+            String nombrevertice = CoberturaSucursales.grafo.getTablAd()[i].getNombre();
+            this.ComboBox.addItem(nombrevertice);
+        }
+    }
+    
+    public void amplitud (Grafo g, int numVertice) {
+        try{
+            int t = 1;
+            Cola cola = new Cola ();
+            Nodo aux;
+            boolean visitados [ ] = new boolean [g.getnVert()];
+            int v = 0; //vértice actual
+            //Se inicializa el vector visitados [] a false
+            for (int i = 0; i < g.getnVert(); i++)
+                visitados [i] = false;
+
+            //El recorrido en amplitud se inicia en cada vértice no visitado
+            //for (int n = 0; n < g.getnVert(); n++) {
+                    //se pone en la cola el vértide de partida y se marca como visitado
+                    //if (!visitados [numVertice]){
+                            cola.encolar (numVertice);
+                            visitados [numVertice] = true;
+                            this.imprimirParadas(g, numVertice);
+                            while (!cola.EsVacio() && (t>0)) {
+                                    aux = cola.desencolar();
+                                    v = (int)aux.getValor();//desencolar y tratar el vértice
+                                    //System.out.println (v);
+                                    //y encolo los nodos adyacentes a v.
+                                    for (int j = 0; j < g.getnVert(); j++){
+                                            if ((v !=j) && (g.existeArco(v, j) && (!visitados [j]))) {
+                                                    cola.encolar ( j );
+                                                    visitados [j] = true;
+                                                    this.imprimirParadas(g, j);
+                                            }
+                                    }
+                                    t--;
+                            }
+                    //}
+            //}
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error, recorrido por amplitud fallido" + e.getMessage()); 
+        }
+	
+	
     }
     
     // Recorrido por profundidad 
 
     //Parte 1 procedimiento recursivo
 
-    public void recorrerProfundidad (Grafo g, int v, boolean [ ] visitados) {
-	//se marca el vértice v como visitado
-	visitados [v] = true;
-	//el tratamiento del vértice consiste únicamente en imprimirlo en pantalla
-	System.out.println (v);
-	//se examinan los vértices adyacentes a v para continuar el recorrido
-	for (int i = 0; i < g.getnVert(); i++) {
-		if ((v != i) && (!visitados [i]) && (g.existeArco(v, i)) )
-			recorrerProfundidad (g, i, visitados);
-	}
+    public void recorrerProfundidad (Grafo g, int v, boolean [ ] visitados, int t) {
+        try{
+            if (t>0){
+                //se marca el vértice v como visitado
+                visitados [v] = true;
+                this.imprimirParadas(g, v);
+                //el tratamiento del vértice consiste únicamente en imprimirlo en pantalla
+                
+                //se examinan los vértices adyacentes a v para continuar el recorrido
+                for (int i = 0; i < g.getnVert(); i++) {
+                        if ((v != i) && (!visitados [i]) && (g.existeArco(v, i)) )
+                                recorrerProfundidad (g, i, visitados, t-1);
+                }
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error, recorrido por profundidad fallido" + e.getMessage()); 
+        }
+        
+	
     }
 
     // Parte 2 no recursivo
     public void profundidad (Grafo g) {
+        String nombreVertice = this.ComboBox.getSelectedItem().toString();
+        int indiceVertice = g.getNumVertice(nombreVertice);
+        int t = 4;
 	boolean visitados [ ] = new boolean [g.getnVert()];
-	for (int i = 0; i < g.getnVert(); i++){ //inicializar vector con campos false
-		visitados [i] = false;
-		for (int n = 0; n < g.getnVert(); n++){ //Relanza el recorrido en cada
-			if (!visitados [i]) //vértice visitado
-                            recorrerProfundidad (g, n, visitados);
-		}
+	for (int i = 0; i < g.getnVert(); i++) //inicializar vector con campos false
+            visitados [i] = false;
+        
+        //for (int n = indiceVertice; n < 2; n++){ //Relanza el recorrido en cada
+        //if (!visitados [indiceVertice]) //vértice visitado
+        recorrerProfundidad (g, indiceVertice, visitados, t+1);
+        //}
+        
+    }
+    
+    public void imprimirParadas(Grafo g, int v){
+        try{
+            String nombreVertice = "";
+            if (g.getVerticeI(v).getCompuesto().equals(""))
+                nombreVertice = g.getVerticeI(v).getNombre();
+            else
+                nombreVertice = g.getVerticeI(v).getNombre() + "/" + g.getVerticeI(v).getCompuesto() ;
+            //el tratamiento del vértice consiste únicamente en imprimirlo en pantalla
+            //System.out.println ("Paradas: " + v + ": " + nombreVertice);
+            this.jTextArea1.setText(this.jTextArea1.getText() + "Paradas: " + nombreVertice + "\n");
+            
+            System.out.println ("Paradas: " + v + ": " + nombreVertice);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error, impresión fallida" + e.getMessage()); 
         }
     }
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.amplitud(this.grafo);
+        String nombreVertice = this.ComboBox.getSelectedItem().toString();
+        int indiceVertice = grafo.getNumVertice(nombreVertice);
+        this.jTextArea1.setText("");
+        this.amplitud(this.grafo, indiceVertice);
     
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_ComboBoxActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.jTextArea1.setText("");
         this.profundidad(this.grafo);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -196,11 +270,14 @@ public class CoberturaSucursales extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboBox;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
