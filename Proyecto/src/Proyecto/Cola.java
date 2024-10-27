@@ -2,15 +2,15 @@ package Proyecto;
 
 /**
  *Clase Cola donce se crea la colección de objetos tipo cola.
+ * @param <T>
  */
-<<<<<<< HEAD
+
 public class Cola <T> {
-=======
-public class Cola {
+
     private Nodo pFirst;
     private Nodo pLast;
     private int size;
->>>>>>> Ricardo
+
 
     /**
      * Constructor de una nueva Cola.
@@ -119,16 +119,12 @@ public class Cola {
         return aux;        
     }
     
-<<<<<<< HEAD
-    public Nodo desencolar(){
-        Nodo aux = this.pFirst;
-=======
+
     /**
      * Método que permite desencolar una Cola.
      */
-    public void desencolar(){
-        Nodo aux = this.getpFirst();
->>>>>>> Ricardo
+    public Nodo desencolar(){
+        Nodo aux = this.pFirst;
         if (!this.EsVacio()){
             this.setpFirst(this.getpFirst().getSiguiente());
             aux.setSiguiente(null);

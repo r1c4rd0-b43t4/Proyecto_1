@@ -63,19 +63,16 @@ public class Grafo {
         //return nVert;
         return this.nVert;
     }
-<<<<<<< HEAD
 
     public void setnVert(int nVert) {
         this.nVert = nVert;
     }
 
-=======
-    
+  
     /**
      * Devuelve el nombre del Grafo.
      * @return the nombre
      */
->>>>>>> Ricardo
     public String getNombre() {
         return nombre;
     }
@@ -88,8 +85,7 @@ public class Grafo {
         return tablAd;
     }
     
-<<<<<<< HEAD
-=======
+
     
     
     /**
@@ -98,7 +94,6 @@ public class Grafo {
      * @param value valor de la llave.
      * @return número del vértice donde se encuentra el compuesto.
      */
->>>>>>> Ricardo
     public int getNumverticeCompuesto(String key,String value){
      boolean encontrado = false;
         
@@ -263,16 +258,14 @@ public class Grafo {
         if(v1<0||v2<0){
             throw new Exception("El vertice no existe");
         }
-<<<<<<< HEAD
+
         if(this.getTablAd()[v1].getLad().contiene(new Arco(b))){
             return true;
         }
         else{
             return false;
         }
-=======
-        return this.tablAd[v1].lad.contiene(new Arco(b));
->>>>>>> Ricardo
+
     }
     
     /**
@@ -316,13 +309,10 @@ public class Grafo {
         this.getTablAd()[v1].getLad().eliminar(ab);
     }
     
-<<<<<<< HEAD
+
     
     public boolean Contiene(Vertice parada){
         try{
-            
-
-
                 int contador =0;
                 while(contador<this.getTablAd().length -1){
                     Vertice vertCompuesto = this.getVerticeI(contador);
@@ -345,13 +335,11 @@ public class Grafo {
     
 
     
-=======
     /**
      * Método que recibe una párada y revisa si el nombre de ésta es igual al nombre complementario  de alguna otra en la red, y si es igual, iguala sus listas de adyacencia.
      * @param parada parada
      * @return True si se igualan las listas de adyacencia
      */
->>>>>>> Ricardo
     public boolean ContieneConecta(Vertice parada){
         try{
             int contador =0;
@@ -394,9 +382,9 @@ public class Grafo {
             return false;
         }
     }
-<<<<<<< HEAD
+
     
-    //revisar
+
     public void Conecta(Vertice parada){
         try{
             int contador=0;
@@ -421,10 +409,10 @@ public class Grafo {
 
     
     
-=======
+
        
    
->>>>>>> Ricardo
+
     
     public class Vertice{
         private String nombre;
@@ -451,7 +439,7 @@ public class Grafo {
             this.sucursal=false;
         }
 
-<<<<<<< HEAD
+
         public boolean isSucursal() {
             return sucursal;
         }
@@ -463,12 +451,12 @@ public class Grafo {
         
 
                 
-=======
+
         /**
         * Devuelve el nombre del vértice.
         * @return the nombre
         */
->>>>>>> Ricardo
+
         public String getNombre(){
             return nombre;
         }
@@ -537,7 +525,7 @@ public class Grafo {
         public int getIndiceComplementario() {
             return getIndice2();
         }
-<<<<<<< HEAD
+
         
         
         
@@ -549,9 +537,9 @@ public class Grafo {
         public String aStr(){
             return this.getNombre() + "("+this.getIndice1()+")";
         }
-=======
+
                
->>>>>>> Ricardo
+
 
         /**
         * Devuelve el vértice compuesto.
@@ -643,14 +631,10 @@ public class Grafo {
             Arco a = (Arco)n;
             return destino.equals(a.destino);
         }
-<<<<<<< HEAD
+
     }
 
-    @Override
-    public String toString() {
-        return "Grafo{" + "nombre=" + getNombre() + ", nVert=" + getnVert() + ", tablAd=" + getTablAd() + ", maxVert=" + getMaxVert() + '}';
-    }
-    
+
     public boolean existeArco(int v, int j){
         try{
             Vertice verticeBase = this.getVerticeI(v);
@@ -672,8 +656,7 @@ public class Grafo {
         }
         return false;
         
-    }      
-=======
-    }       
->>>>>>> Ricardo
-}
+    }
+}       
+
+
