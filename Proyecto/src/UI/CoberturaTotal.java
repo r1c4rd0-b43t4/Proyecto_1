@@ -77,21 +77,26 @@ public class CoberturaTotal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ConsultarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarBTNActionPerformed
+        try{
+            this.grafo.getVerticeI(1).setSucursal(true);
+        }
+        catch(Exception e){
+        
+        }
         this.profundidadCoberturaTotal(grafo);
+        
     }//GEN-LAST:event_ConsultarBTNActionPerformed
     
     public void recorrerProfundidadCoberturaTotal (Grafo g, int v, boolean [ ] cubiertos, int t) {
         try{
             if (t>0){
                 //se marca el vértice v como visitado
-                if (g.getVerticeI(v).isSucursal())
-                    cubiertos [v] = true;
                 
-                //el tratamiento del vértice consiste únicamente en imprimirlo en pantalla
+                cubiertos [v] = true    ;
                 //se examinan los vértices adyacentes a v para continuar el recorrido
-                for (int i = 0; i < g.getnVert(); i++) {
-                        if ((v != i) && (!cubiertos [i]) && (g.existeArco(v, i)) )
-                                recorrerProfundidadCoberturaTotal (g, i, cubiertos, t-1);
+                for (int i = 0; i < g.getnVert(); i++) {                    
+                    if ((v != i) && (!cubiertos [i]) && (g.existeArco(v, i)) )
+                        recorrerProfundidadCoberturaTotal (g, i, cubiertos, t-1);
                 }
             }
         }
@@ -103,28 +108,37 @@ public class CoberturaTotal extends javax.swing.JFrame {
 
     // Parte 2 no recursivo
     public void profundidadCoberturaTotal (Grafo g) {
-        int t = 4;
-        boolean existeSucursal = false;
-	boolean cubiertos [ ] = new boolean [g.getnVert()];
+        try
+        {
+            int t = g.getT();
+            boolean existeSucursal = true;
+            boolean cubiertos [ ] = new boolean [g.getnVert()];
+
+            for (int i = 0; i < g.getnVert(); i++) //inicializar vector con campos false
+                cubiertos [i] = false;
         
-	for (int i = 0; i < g.getnVert(); i++) //inicializar vector con campos false
-            cubiertos [i] = false;
-        
-        for (int n = 0; n < g.getnVert(); n++){ //Relanza el recorrido en cada
-            if (!cubiertos [n]) //vértice visitado
-                recorrerProfundidadCoberturaTotal (g, n, cubiertos, t+1);
-        }
-        
-        for(int i= 0;i<cubiertos.length;i++){
-            if(cubiertos[i]){
-                existeSucursal = true;
-                System.out.println(cubiertos[i]);
-                this.imprimirParadas(grafo, i); 
+            for (int n = 0; n < g.getnVert(); n++){ //Relanza el recorrido en cada
+                if (g.getVerticeI(n).isSucursal()){
+                    //if (!cubiertos [n]) //vértice visitado
+                        recorrerProfundidadCoberturaTotal (g, n, cubiertos, t+1);
+                }
             }
+            
+            for(int i= 0;i<cubiertos.length;i++){
+                if(!cubiertos[i])
+                    this.imprimirParadas(g, i);
+                else
+                    existeSucursal = false;
+                
+            }
+            
+            if (existeSucursal)
+                JOptionPane.showMessageDialog(this, "Todas las paradas están cubiertas");
         }
-        if (!existeSucursal)
-            JOptionPane.showMessageDialog(this, "No hay sucursales creadas en ninguna parada");             
-        
+        catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(this, "Error en la consulta" + e.getMessage());
+        }
     }
     
     public void imprimirParadas(Grafo g, int v){
