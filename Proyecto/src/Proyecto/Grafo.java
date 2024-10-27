@@ -1,14 +1,16 @@
 package Proyecto;
 
-
-
 public class Grafo {
-    
     private String nombre;
     private int nVert;
     private Vertice[] tablAd;
     private int maxVert;
 
+    /**
+     * Constructor del Grafo.
+     * @param maxVert Cantidad máxima de vértices que tendrá el grafo.
+     * @param nombreRed Nombre de la Red a la cual pertenece el grafo.
+     */
     public Grafo(int maxVert, String nombreRed) {
         this.nombre= nombreRed;
         this.maxVert = maxVert;
@@ -16,28 +18,47 @@ public class Grafo {
         this.nVert=0;
     }
 
+    /**
+     * Devuelve el máximo de vértices del Grafo.
+     * @return the maxVert
+     */
     public int getMaxVert() {
         return maxVert;
     }
-    
-    
 
+    /**
+     * Devuelve el número de vértices del Grafo.
+     * @return the nVert
+     */
     public int getnVert() {
         //return nVert;
         return this.nVert;
     }
-
+    
+    /**
+     * Devuelve el nombre del Grafo.
+     * @return the nombre
+     */
     public String getNombre() {
         return nombre;
     }
-
+    
+    /**
+     * Devuelve la tabla de adyacencia del Grafo.
+     * @return the tablAd
+     */
     public Vertice[] getTablAd() {
         return tablAd;
     }
     
     
     
-    
+    /**
+     * Método que recibe Key/Value donde indíca el número en que se encuentra un vertice compuesto en el grafo.
+     * @param key llave.
+     * @param value valor de la llave.
+     * @return número del vértice donde se encuentra el compuesto.
+     */
     public int getNumverticeCompuesto(String key,String value){
      boolean encontrado = false;
         
@@ -56,6 +77,11 @@ public class Grafo {
         return -1;
     }
     
+    /**
+     * Método que devuelve el número de la posición donde se encuentra un vértice.
+     * @param nombre Nombre del vértice.
+     * @return Número del vértice donde esta ubicado.
+     */
     public int getNumVertice(String nombre){
 
         boolean encontrado = false;
@@ -72,7 +98,13 @@ public class Grafo {
         return -1;
         
     }
-    //buscar con el indice1
+
+    /**
+     * Método que devuelve el vértice recibiendo el primer índice.
+     * @param i índice.
+     * @return vértice.
+     * @throws Exception 
+     */
     public Vertice getVerticeI(int i)throws Exception{
         if (i>this.nVert){
             throw new Exception("Vertice fuera de rango");
@@ -84,7 +116,12 @@ public class Grafo {
             return this.tablAd[i];
         }
     }
-    //buscar con el indice2
+    /**
+     * Método que devuelve el vértice recibiendo el segundo índice.
+     * @param i índice.
+     * @return vértice.
+     * @throws Exception 
+     */
     public Vertice getVerticeJ(int i) throws Exception {
         
     if (i >= this.nVert) {
@@ -97,6 +134,12 @@ public class Grafo {
     return null;
 }
 
+     /**
+     * Método que devuelve el vértice recibiendo el número del vértice.
+     * @param i índice.
+     * @return vértice.
+     * @throws Exception 
+     */
     public Vertice getVerticeN(String parada) {
     try {
         for (int indice = 0; indice < nVert; indice++) {
@@ -111,7 +154,11 @@ public class Grafo {
     return null; // Devuelve null si no se encuentra el vértice
 }
 
-    
+    /**
+     * Método que añade un nuevo vértice al grafo.
+     * @param nombre Nombre del vértice.
+     * @param linea Línea a la que pertenece.
+     */
     public void nuevoVertice(String nombre, String linea){
             if(nombre.contains(":")){
                 nombre = nombre.replaceAll("[{}\"/\\\\]", "");
@@ -135,10 +182,8 @@ public class Grafo {
                 catch(Exception e){
                     
                 }
-                //si ya existe no tiene que crear nada, pero igual al final de este metodo siempre se suma 1 al nVert
                 }
             }
-            // no compuestos
             else{
                 Vertice v = new Vertice(nombre);
                 v.setIndice(nVert);
@@ -150,6 +195,12 @@ public class Grafo {
         
     }
 
+    /**
+     * Método que recibe el número de vértice y devuelve su lista de adyacencia.
+     * @param v numero de vértoce
+     * @return ListaSimple con la lista de adyacencia
+     * @throws Exception 
+     */
     public ListaSimple getListaAdy(int v)throws Exception{
         if (v<0||v>this.nVert){
             throw new Exception("vertice fuera de rango");
@@ -157,7 +208,14 @@ public class Grafo {
         return this.tablAd[v].lad;
     }
     
-    //Comprueba si dos vertices son adyacentes.
+
+    /**
+     * Método que verifíca si dos vértices son adyacentes o no.
+     * @param a Vértice 1
+     * @param bVértice 2
+     * @return True si son adyacentes.
+     * @throws Exception 
+     */
     public boolean isAdyc(String a, String b)throws Exception{
         int v1,v2;
         v1 = this.getNumVertice(a);
@@ -165,14 +223,15 @@ public class Grafo {
         if(v1<0||v2<0){
             throw new Exception("El vertice no existe");
         }
-        if(this.tablAd[v1].lad.contiene(new Arco(b))){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return this.tablAd[v1].lad.contiene(new Arco(b));
     }
     
+    /**
+     * Método que crea un nuevo arco entre dos vértices.
+     * @param a Vértice 1
+     * @param b Vértice 2
+     * @throws Exception 
+     */
     public void nuevoArco(String a, String b)throws Exception{
         if(!isAdyc(a,b)){
             int v1=this.getNumVertice(a);
@@ -191,7 +250,13 @@ public class Grafo {
             
         }
     }
-    
+
+    /**
+     * Método que borra un arco entre dos vértices.
+     * @param a Vértice 1
+     * @param b Vértice 2
+     * @throws Exception 
+     */
     public void borrarArco(String a, String b)throws Exception{
         int v1=this.getNumVertice(a);
         int v2=this.getNumVertice(b);
@@ -202,32 +267,11 @@ public class Grafo {
         this.tablAd[v1].lad.eliminar(ab);
     }
     
-    
-    public boolean Contiene(Vertice parada){
-        try{
-            
-
-
-                int contador =0;
-                while(contador<this.tablAd.length -1){
-                    Vertice vertCompuesto = this.getVerticeI(contador);
-                    if(parada.nombre.equals(vertCompuesto.compuesto) && vertCompuesto.compuesto != ""){
-                        return true;
-                    }
-                    else{
-                        contador++;
-                    }
-                }
-                return false;
-            
-            
-        }
-        catch(Exception e){
-            System.out.println("Error");
-            return false; //Lo pongo porque sino sale error
-        }
-    }
-    
+    /**
+     * Método que recibe una párada y revisa si el nombre de ésta es igual al nombre complementario  de alguna otra en la red, y si es igual, iguala sus listas de adyacencia.
+     * @param parada parada
+     * @return True si se igualan las listas de adyacencia
+     */
     public boolean ContieneConecta(Vertice parada){
         try{
             int contador =0;
@@ -246,8 +290,6 @@ public class Grafo {
                                 ListaSimplecompuesto.insertarSinDuplicado(nodoArco.getValor());
                                 nodoArco=nodoArco.getSiguiente();
                             }
-
-                            //ListaSimpleparada = ListaSimplecompuesto;
 
                             nodoArco = ListaSimplecompuesto.getpFirst();
                             while (nodoArco != null)
@@ -269,34 +311,11 @@ public class Grafo {
         }
         catch(Exception e){
             System.out.println("Error");
-            return false; //Lo pongo porque sino sale error
+            return false;
         }
     }
-    
-    //revisar
-    public void Conecta(Vertice parada){
-        try{
-            int contador=0;
-            for(contador=0;contador<this.nVert-1;contador++){
-                if(parada.nombre.equals(this.getVerticeI(contador).compuesto)){
-                    Nodo temp= this.getVerticeI(contador).lad.getpFirst();
-                    for(int i=0;i<this.getVerticeI(contador).lad.getSize()-1;i++){
-                        parada.lad.insertarAlPrincipio(temp);
-                        temp=temp.getSiguiente();
-                    }
-                    
-                }
-            }
-            this.getVerticeI(contador).lad=parada.lad;
-            
-        }
-        catch(Exception e){
-            System.out.println("Error");
-        }
-        
-    }
-    
-    
+       
+   
     
     public class Vertice{
         String nombre;
@@ -307,7 +326,10 @@ public class Grafo {
         int indice2;
         ListaSimple lad;
         
-        //añadir parametro linea1 
+        /**
+         * Constructor de la clase Vertice.
+         * @param nombre nombre del vértice.
+         */
         public Vertice(String nombre) {
             this.nombre = nombre;
             this.linea1="";
@@ -318,61 +340,92 @@ public class Grafo {
             this.lad= new ListaSimple();
         }
 
+        /**
+        * Devuelve el nombre del vértice.
+        * @return the nombre
+        */
         public String getNombre(){
             return nombre;
         }
 
+        /**
+        * Devuelve el indice del vértice.
+        * @return the indice1
+        */
         public int getIndice1() {
             return indice1;
         }
         
         
-
+        /**
+        * Establece la primera linea.
+        * @param linea the linea to set
+        */
         public void setLinea1(String linea) {
             this.linea1 = linea;
         }
 
+        /**
+        * Devuelve una línea a la que pertenece el vértice.
+        * @return the linea1
+        */
         public String getLinea1() {
             return linea1;
         }
-
+        
+        /**
+        * Establece la segunda linea.
+        * @param linea2 the linea2 to set
+        */
         public void setLinea2(String linea2) {
             this.linea2 = linea2;
         }
 
+        /**
+        * Devuelve una línea a la que pertenece el vértice.
+        * @return the linea2
+        */
         public String getLinea2() {
             return linea2;
         }
         
         
-        
+        /**
+        * Establece el índice del vértice.
+        * @param i the i to set
+        */
         public void setIndice(int i){
             this.indice1= i;
         }
-
+        /**
+        * Establece el índice de ser complementario.
+        * @param indice2 the indice2 to set
+        */
         public void setIndiceComplementario(int indice2) {
             this.indice2 = indice2;
         }
 
+        /**
+        * Devuelve el índice del vértice complementario.
+        * @return the indice2
+        */
         public int getIndiceComplementario() {
             return indice2;
         }
-        
-        
-        
-        public boolean nIgual(String d){
-            Vertice temp= new Vertice(d);
-            return this.nombre.equals(temp.nombre);
-        }
-        
-        public String aStr(){
-            return this.nombre + "("+this.indice1+")";
-        }
+               
 
+        /**
+        * Devuelve el vértice compuesto.
+        * @return the compuesto.
+        */
         public String getCompuesto() {
             return compuesto;
         }
-
+        
+        /**
+        * Establece el vértice compuesto.
+        * @param compuesto the compuesto to set
+        */
         public void setCompuesto(String compuesto) {
             this.compuesto = compuesto;
         }
@@ -384,26 +437,30 @@ public class Grafo {
     public class Arco{
         String destino;
 
+        /**
+         * Constructor de la clase Arco.
+         * @param destino a donde se dirige.
+         */
         public Arco(String destino) {
             this.destino = destino;
         }
 
+        /**
+        * Devuelve el vértice al que se dirige.
+        * @return the destino.
+        */ 
         public String getDestino() {
             return destino;
         }          
         
-        
+        /**
+        * Método que devuelve True si los destinos son iguales.
+        * @return True si los destinos son iguales.
+        */ 
+        @Override
         public boolean equals(Object n){
             Arco a = (Arco)n;
             return destino.equals(a.destino);
         }
-    }
-
-    @Override
-    public String toString() {
-        return "Grafo{" + "nombre=" + nombre + ", nVert=" + nVert + ", tablAd=" + tablAd + ", maxVert=" + maxVert + '}';
-    }
-    
-    
-       
+    }       
 }

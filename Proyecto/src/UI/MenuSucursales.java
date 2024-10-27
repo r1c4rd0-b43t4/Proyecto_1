@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package UI;
 
 import Proyecto.*;
-import static UI.CargaRed_1.grafo;
-import java.math.MathContext;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.graphstream.graph.Graph;
-import org.graphstream.graph.implementations.SingleGraph;
-import org.graphstream.ui.view.Viewer;
 
 /**
  *
