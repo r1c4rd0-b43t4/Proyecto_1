@@ -184,8 +184,8 @@ public class Grafo {
             Arco ab= new Arco(b);
             Arco ba=new Arco(a);
             
-            this.tablAd[v1].lad.insertarAlPrincipio(ab);
-            this.tablAd[v2].lad.insertarAlPrincipio(ba);
+            this.tablAd[v1].lad.insertarSinDuplicado(ab);
+            this.tablAd[v2].lad.insertarSinDuplicado(ba);
             
             
             
@@ -243,7 +243,7 @@ public class Grafo {
                             Nodo nodoArco = ListaSimpleparada.getpFirst();
                             while (nodoArco != null)
                             {
-                                ListaSimplecompuesto.insertarAlFinal(nodoArco.getValor());
+                                ListaSimplecompuesto.insertarSinDuplicado(nodoArco.getValor());
                                 nodoArco=nodoArco.getSiguiente();
                             }
 
@@ -253,7 +253,7 @@ public class Grafo {
                             while (nodoArco != null)
                             {
                                 if (!ListaSimpleparada.contiene(nodoArco.getValor()))
-                                    ListaSimpleparada.insertarAlFinal(nodoArco.getValor());
+                                    ListaSimpleparada.insertarSinDuplicado(nodoArco.getValor());
 
                                 nodoArco=nodoArco.getSiguiente();
                             }

@@ -122,6 +122,12 @@ public class ListaSimple {
         return false;
     }
     
+    public void insertarSinDuplicado(Object valor) {
+        if (!contiene(valor)) {
+            this.insertarAlPrincipio(valor);
+        }
+    }
+    
        
     
 //public void showParadas(ListaSimple lista_lineas) {
@@ -176,9 +182,9 @@ public class ListaSimple {
                         
                         //revisar con debug
                         try{
-                            Vertice actual= red.getTablAd()[indice-1];
+                            Vertice actual= red.getTablAd()[indice];
                             Vertice revisar=red.getVerticeJ(indice-1);
-                            String anterior=red.getTablAd()[indice-2].getNombre();
+                            String anterior=red.getTablAd()[indice-1].getNombre();
                             if(revisar!=null){
                                 if(red.getVerticeJ(indice-1).getIndiceComplementario()>0){
                                     red.nuevoArco(revisar.getNombre(), actual.getNombre());
