@@ -38,7 +38,7 @@ public class CoberturaSucursales extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        AmplitudBtn = new javax.swing.JButton();
         ComboBox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
@@ -60,13 +60,13 @@ public class CoberturaSucursales extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, -1, -1));
 
-        jButton2.setText("Amplitud");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        AmplitudBtn.setText("Amplitud");
+        AmplitudBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                AmplitudBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 100, -1));
+        getContentPane().add(AmplitudBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 100, -1));
 
         ComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,10 +155,14 @@ public class CoberturaSucursales extends javax.swing.JFrame {
 	
     }
     
-    // Recorrido por profundidad 
-
-    //Parte 1 procedimiento recursivo
-
+    /**
+     * Recorrido en profundidad
+     * Metodo recursivo
+     * @param g Objeto grafo
+     * @param v Indice del vertice
+     * @param visitados lista que contiene cuales vertices han sido o no visitados
+     * @param t Frecuencia de las sucursales del grafo
+     */
     public void recorrerProfundidad (Grafo g, int v, boolean [ ] visitados, int t) {
         try{
             if (t>0){
@@ -177,15 +181,17 @@ public class CoberturaSucursales extends javax.swing.JFrame {
         catch(Exception e){
             JOptionPane.showMessageDialog(this, "Error, recorrido por profundidad fallido" + e.getMessage()); 
         }
-        
-	
     }
 
-    // Parte 2 no recursivo
+    /**
+     * Recorrido en profundidad parte 1
+     * Metodo no Recursivo
+     * @param g Objeto grafo
+     */
     public void profundidad (Grafo g) {
         String nombreVertice = this.ComboBox.getSelectedItem().toString();
         int indiceVertice = g.getNumVertice(nombreVertice);
-        int t = 2;
+        int t = g.getT();
 	boolean visitados [ ] = new boolean [g.getnVert()];
 	for (int i = 0; i < g.getnVert(); i++) //inicializar vector con campos false
             visitados [i] = false;
@@ -197,6 +203,11 @@ public class CoberturaSucursales extends javax.swing.JFrame {
         
     }
     
+    /**
+     * Funcion que le envía al TextArea la infomración del vertice
+     * @param g El objeto grafo 
+     * @param v Indice del vertice a imprimir
+     */
     public void imprimirParadas(Grafo g, int v){
         try{
             String nombreVertice = "";
@@ -205,7 +216,6 @@ public class CoberturaSucursales extends javax.swing.JFrame {
             else
                 nombreVertice = g.getVerticeI(v).getNombre() + "/" + g.getVerticeI(v).getCompuesto() ;
             //el tratamiento del vértice consiste únicamente en imprimirlo en pantalla
-            //System.out.println ("Paradas: " + v + ": " + nombreVertice);
             this.jTextArea1.setText(this.jTextArea1.getText() + "Parada: " + nombreVertice + "\n");
             
             System.out.println ("Parada: " + v + ": " + nombreVertice);
@@ -215,13 +225,17 @@ public class CoberturaSucursales extends javax.swing.JFrame {
         }
     }
     
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    /**
+     * Boton que llama a la funcion amplitud
+     * @param evt 
+     */
+    private void AmplitudBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmplitudBtnActionPerformed
         String nombreVertice = this.ComboBox.getSelectedItem().toString();
         int indiceVertice = grafo.getNumVertice(nombreVertice);
         this.jTextArea1.setText("");
         this.amplitud(this.grafo, indiceVertice);
     
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_AmplitudBtnActionPerformed
 
     private void ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxActionPerformed
         // TODO add your handling code here:
@@ -271,9 +285,9 @@ public class CoberturaSucursales extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AmplitudBtn;
     private javax.swing.JComboBox<String> ComboBox;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
