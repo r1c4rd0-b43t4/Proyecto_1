@@ -16,6 +16,10 @@ public class MenuCobertura extends javax.swing.JFrame {
      */
     static Grafo grafo;
     
+    /**
+     * 
+     * @param grafo 
+     */
     public MenuCobertura(Grafo grafo) {
         this.grafo = grafo;
         initComponents();

@@ -4,7 +4,6 @@ package Proyecto;
  *Clase Cola donce se crea la colección de objetos tipo cola.
  * @param <T>
  */
-
 public class Cola <T> {
 
     private Nodo pFirst;

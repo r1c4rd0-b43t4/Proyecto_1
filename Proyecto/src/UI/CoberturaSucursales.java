@@ -9,8 +9,7 @@ import Proyecto.Nodo;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author HP
+ *Clase CoberturaSucursales como parte de la UI.
  */
 public class CoberturaSucursales extends javax.swing.JFrame {
 
@@ -20,6 +19,10 @@ public class CoberturaSucursales extends javax.swing.JFrame {
     
     static Grafo grafo;
     
+    /**
+     * Iniciio de los componentes
+     * @param grafo 
+     */
     public CoberturaSucursales(Grafo grafo) {
         initComponents();
         //this.ComboBox.removeAllItems();
@@ -99,10 +102,17 @@ public class CoberturaSucursales extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * no se no deja borrarlo
+     * @param evt 
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
     
+    /**
+     * Método para recorrer las sucursales.
+     */
     public void recorrerSucursales(){
         this.ComboBox.removeAllItems();
         for(int i = 0; i<this.grafo.getTablAd().length;i++){
@@ -113,6 +123,11 @@ public class CoberturaSucursales extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Método para hallar la amplitud 
+     * @param g
+     * @param numVertice 
+     */
     public void amplitud (Grafo g, int numVertice) {
         try{
             int t = 1;
@@ -156,8 +171,7 @@ public class CoberturaSucursales extends javax.swing.JFrame {
     }
     
     /**
-     * Recorrido en profundidad
-     * Metodo recursivo
+     * Método para recorrido en profundidad
      * @param g Objeto grafo
      * @param v Indice del vertice
      * @param visitados lista que contiene cuales vertices han sido o no visitados
@@ -184,8 +198,7 @@ public class CoberturaSucursales extends javax.swing.JFrame {
     }
 
     /**
-     * Recorrido en profundidad parte 1
-     * Metodo no Recursivo
+     * Método recorrido en profundidad parte 1
      * @param g Objeto grafo
      */
     public void profundidad (Grafo g) {
@@ -204,7 +217,7 @@ public class CoberturaSucursales extends javax.swing.JFrame {
     }
     
     /**
-     * Funcion que le envía al TextArea la infomración del vertice
+     * Función que le envía al TextArea la información del vértice.
      * @param g El objeto grafo 
      * @param v Indice del vertice a imprimir
      */
@@ -226,7 +239,7 @@ public class CoberturaSucursales extends javax.swing.JFrame {
     }
     
     /**
-     * Boton que llama a la funcion amplitud
+     * Botón que llama a la función amplitud.
      * @param evt 
      */
     private void AmplitudBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmplitudBtnActionPerformed
@@ -236,11 +249,18 @@ public class CoberturaSucursales extends javax.swing.JFrame {
         this.amplitud(this.grafo, indiceVertice);
     
     }//GEN-LAST:event_AmplitudBtnActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboBoxActionPerformed
-
+    
+    /**
+     * 
+     * @param evt 
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.jTextArea1.setText("");
         this.profundidad(this.grafo);

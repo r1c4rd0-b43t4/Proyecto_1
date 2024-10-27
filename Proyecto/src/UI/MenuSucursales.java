@@ -26,6 +26,10 @@ public class MenuSucursales extends javax.swing.JFrame {
     
     static Grafo grafo ;
     
+    /**
+     * 
+     * @param grafo 
+     */
     public MenuSucursales(Grafo grafo) {
         this.grafo = grafo;
         initComponents();

@@ -3,8 +3,6 @@ package Proyecto;
 /**
  *Clase Red donde se crea un objeto que contiene las líneas de la Red de transporte.
  */
-
-
 public class Red {
     private String nombre_red;
     private  ListaSimple lista_lineas;

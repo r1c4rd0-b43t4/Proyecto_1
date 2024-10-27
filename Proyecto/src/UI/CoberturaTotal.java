@@ -17,6 +17,10 @@ public class CoberturaTotal extends javax.swing.JFrame {
      */
     static Grafo grafo;
     
+    /**
+     * 
+     * @param grafo 
+     */
     public CoberturaTotal(Grafo grafo) {
         initComponents();
         this.grafo = grafo;
@@ -80,6 +84,13 @@ public class CoberturaTotal extends javax.swing.JFrame {
         this.profundidadCoberturaTotal(grafo);
     }//GEN-LAST:event_ConsultarBTNActionPerformed
     
+    /**
+     * Método para recorrer la profundidad con la cobertura total.
+     * @param g
+     * @param v
+     * @param cubiertos
+     * @param t 
+     */
     public void recorrerProfundidadCoberturaTotal (Grafo g, int v, boolean [ ] cubiertos, int t) {
         try{
             if (t>0){
@@ -101,7 +112,10 @@ public class CoberturaTotal extends javax.swing.JFrame {
         
     }
 
-    // Parte 2 no recursivo
+    /**
+     * 
+     * @param g 
+     */
     public void profundidadCoberturaTotal (Grafo g) {
         int t = 4;
         boolean existeSucursal = false;
@@ -127,6 +141,11 @@ public class CoberturaTotal extends javax.swing.JFrame {
         
     }
     
+    /**
+     * Método para imprimir las paradas
+     * @param g
+     * @param v 
+     */
     public void imprimirParadas(Grafo g, int v){
         try{
             String nombreVertice = "";
@@ -144,9 +163,9 @@ public class CoberturaTotal extends javax.swing.JFrame {
         }
     }
     
-    public void sugerirSucursales(){
-        
-    }
+//    public void sugerirSucursales(){
+//        
+//    }
     /**
      * @param args the command line arguments
      */

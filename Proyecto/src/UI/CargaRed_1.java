@@ -8,8 +8,7 @@ import Reader.Reader;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author HP
+ *Clase CargaRed_1 como parte de la UI.
  */
 public class CargaRed_1 extends javax.swing.JFrame {
     static Grafo grafo;
@@ -69,10 +68,18 @@ public class CargaRed_1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * no me deja borrarlo
+     * @param evt 
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /**
+     * Botón para cargar la red e ir al siguiente menú.
+     * @param evt 
+     */
     private void Cargar_RedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cargar_RedActionPerformed
         try{
           Reader reader = new Reader();

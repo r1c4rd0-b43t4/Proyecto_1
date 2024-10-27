@@ -1,5 +1,8 @@
 package Proyecto;
 
+/**
+ * Clase Grafo donde se crea el grafo y sus atributos
+ */
 public class Grafo {
     private String nombre;
     private int nVert;
@@ -64,6 +67,10 @@ public class Grafo {
         return this.nVert;
     }
 
+     /**
+     * Establece el número de vértices.
+     * @param nVert 
+     */
     public void setnVert(int nVert) {
         this.nVert = nVert;
     }
@@ -171,9 +178,7 @@ public class Grafo {
 
      /**
      * Método que devuelve el vértice recibiendo el número del vértice.
-     * @param i índice.
-     * @return vértice.
-     * @throws Exception 
+     * @return vértice. 
      */
     public Vertice getVerticeN(String parada) {
     try {
@@ -247,7 +252,7 @@ public class Grafo {
     /**
      * Método que verifíca si dos vértices son adyacentes o no.
      * @param a Vértice 1
-     * @param bVértice 2
+     * @param b Vértice 2
      * @return True si son adyacentes.
      * @throws Exception 
      */
@@ -311,27 +316,7 @@ public class Grafo {
     
 
     
-    public boolean Contiene(Vertice parada){
-        try{
-                int contador =0;
-                while(contador<this.getTablAd().length -1){
-                    Vertice vertCompuesto = this.getVerticeI(contador);
-                    if(parada.getNombre().equals(vertCompuesto.getCompuesto()) && vertCompuesto.getCompuesto() != ""){
-                        return true;
-                    }
-                    else{
-                        contador++;
-                    }
-                }
-                return false;
-            
-            
-        }
-        catch(Exception e){
-            System.out.println("Error");
-            return false; //Lo pongo porque sino sale error
-        }
-    }
+
     
 
     
@@ -385,27 +370,6 @@ public class Grafo {
 
     
 
-    public void Conecta(Vertice parada){
-        try{
-            int contador=0;
-            for(contador=0;contador<this.getnVert()-1;contador++){
-                if(parada.getNombre().equals(this.getVerticeI(contador).getCompuesto())){
-                    Nodo temp= this.getVerticeI(contador).getLad().getpFirst();
-                    for(int i=0;i<this.getVerticeI(contador).getLad().getSize()-1;i++){
-                        parada.getLad().insertarAlPrincipio(temp);
-                        temp=temp.getSiguiente();
-                    }
-                    
-                }
-            }
-            this.getVerticeI(contador).setLad(parada.getLad());
-            
-        }
-        catch(Exception e){
-            System.out.println("Error");
-        }
-        
-    }
 
     
     
@@ -413,7 +377,9 @@ public class Grafo {
        
    
 
-    
+    /**
+     * Clase Vertice que se añade al grafo.
+     */
     public class Vertice{
         private String nombre;
         private String linea1;
@@ -440,10 +406,19 @@ public class Grafo {
         }
 
 
+        /**
+         * Verifica si es una sucursal.
+         * @return sucursal
+         */
         public boolean isSucursal() {
             return sucursal;
         }
 
+        
+        /**
+        * Establece la sucursal.
+        * @param sucursal the sucursal to set
+        */
         public void setSucursal(boolean sucursal) {
             this.sucursal = sucursal;
         }
@@ -528,15 +503,17 @@ public class Grafo {
 
         
         
-        
+        /**
+         *Método que verifica si el nombre de una parada o sucursal existe.
+         * @param d nombre
+         * @return True si es igual
+         */
         public boolean nIgual(String d){
             Vertice temp= new Vertice(d);
             return this.getNombre().equals(temp.getNombre());
         }
         
-        public String aStr(){
-            return this.getNombre() + "("+this.getIndice1()+")";
-        }
+        
 
                
 
@@ -603,6 +580,9 @@ public class Grafo {
         
     }
     
+    /**
+     * Clase Arco que se añade al grafo.
+     */
     public class Arco{
         String destino;
 
@@ -635,6 +615,12 @@ public class Grafo {
     }
 
 
+    /**
+     * Método que verifica si existe un arco en el graffo.
+     * @param v posición vértice 1
+     * @param j posición vértice 2
+     * @return True si existe el arco
+     */
     public boolean existeArco(int v, int j){
         try{
             Vertice verticeBase = this.getVerticeI(v);

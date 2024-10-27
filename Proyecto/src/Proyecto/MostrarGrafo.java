@@ -61,6 +61,12 @@ public class MostrarGrafo {
     }
  
     //recibe el grafo a trabajar y el nombre de la parada a poner sucursal
+    /**
+     * Método que recibe el grafo para trabajar y el nombre de la parada para poner la sucursal.
+     * @param red red a la que pertenece.
+     * @param grafo grafo del que viene.
+     * @param nombre  nombre de la parada.
+     */
     public void ColocarSucursal(Grafo red,Graph grafo, String nombre) {
         Node nodo = grafo.getNode(nombre);
         if (nodo != null) {
