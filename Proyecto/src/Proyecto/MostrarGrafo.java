@@ -88,4 +88,26 @@ public class MostrarGrafo {
         Viewer viewer = graphStream.display();
 
     }
+ 
+    //recibe el grafo a trabajar y el nombre de la parada a poner sucursal
+    public void ColocarSucursal(Graph grafo, String nombre) {
+        Node nodo = grafo.getNode(nombre);
+        if (nodo != null) {
+            String colorActual = nodo.getAttribute("ui.style").toString();
+
+            // Verificar si el nodo no está en rojo
+            if (colorActual.contains("fill-color: red")) {
+                System.out.println("Nodo " + nombre + " ya está en rojo.");
+            }
+            else {
+                // Cambiar el color del nodo a rojo
+                nodo.setAttribute("ui.style", "fill-color: red;");
+                System.out.println("Nodo " + nombre + " cambiado a rojo.");
+            }
+        }
+        else {
+            System.out.println("Nodo " + nombre + " no existe.");
+        }
+    }
+
 }

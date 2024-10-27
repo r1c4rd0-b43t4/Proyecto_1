@@ -228,6 +228,8 @@ public class Grafo {
         }
     }
     
+
+    
     public boolean ContieneConecta(Vertice parada){
         try{
             int contador =0;
@@ -306,6 +308,7 @@ public class Grafo {
         int indice1;
         int indice2;
         ListaSimple lad;
+        boolean sucursal;
         
         //añadir parametro linea1 
         public Vertice(String nombre) {
@@ -316,8 +319,19 @@ public class Grafo {
             this.indice1 = -1;
             this.indice2=-1;
             this.lad= new ListaSimple();
+            this.sucursal=false;
         }
 
+        public boolean isSucursal() {
+            return sucursal;
+        }
+
+        public void setSucursal(boolean sucursal) {
+            this.sucursal = sucursal;
+        }
+
+        
+        
         public String getNombre(){
             return nombre;
         }
