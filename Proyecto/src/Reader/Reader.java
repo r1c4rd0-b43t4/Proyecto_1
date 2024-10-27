@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Reader;
 import Proyecto.Grafo;
 import Proyecto.Linea;
 import Proyecto.ListaSimple;
-import Proyecto.MostrarGrafo;
 import Proyecto.Red;
 import java.io.BufferedReader;
 import java.io.File;
@@ -21,11 +16,15 @@ import com.google.gson.JsonArray;
 
 
 /**
- *
+ * Clase Reader donde se realiza la lectura de los archivos .JSON con el uso de la libreria gson.
  * @author rdbae
  */
 public class Reader {  
     
+    /**
+     * Método que guia al usuario a la selección de los archivos .JSON que serán usados para el funcionamiento del programa, verificando que se cumpla todo lo necesario para crear el grafo con la Red de transporte.
+     * @return Grafo
+     */
     public Grafo Read(){
         
         String Texto = "";
@@ -89,7 +88,12 @@ public class Reader {
 
     }
     
-    
+    /**
+     * Método que procesa los objetos dentro del archivo .JSON, para que sea llevado a un objeto de tipo Red, permitiendo así la facilidad de crear el grafo a partir de este objeto.
+     * @param keyStr key
+     * @param gsonObjt value
+     * @return Objeto Red con sus respectivas líneas y paradas.
+     */
     public Red proccessObject(String keyStr, JsonObject gsonObjt)
     {
         Red red = new Red();
