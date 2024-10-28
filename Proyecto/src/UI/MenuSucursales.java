@@ -26,10 +26,7 @@ public class MenuSucursales extends javax.swing.JFrame {
     
     static Grafo grafo ;
     
-    /**
-     * 
-     * @param grafo 
-     */
+
     public MenuSucursales(Grafo grafo) {
         this.grafo = grafo;
         initComponents();
@@ -82,6 +79,11 @@ public class MenuSucursales extends javax.swing.JFrame {
         Establecer_t.setForeground(new java.awt.Color(255, 255, 255));
         Establecer_t.setText("Establecer t");
         Establecer_t.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Establecer_t.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Establecer_tActionPerformed(evt);
+            }
+        });
         getContentPane().add(Establecer_t, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 170, 40));
 
         Colocar_Sucursal.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
@@ -89,6 +91,11 @@ public class MenuSucursales extends javax.swing.JFrame {
         Colocar_Sucursal.setForeground(new java.awt.Color(255, 255, 255));
         Colocar_Sucursal.setText("Colocar Sucursal");
         Colocar_Sucursal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Colocar_Sucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Colocar_SucursalActionPerformed(evt);
+            }
+        });
         getContentPane().add(Colocar_Sucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 170, 40));
 
         Ver_Cobertura.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
@@ -136,7 +143,7 @@ public class MenuSucursales extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+      
     private void Mostrar_GrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Mostrar_GrafoActionPerformed
     MostrarGrafo mg = new MostrarGrafo();
     System.out.println(grafo.toString());
@@ -163,6 +170,16 @@ public class MenuSucursales extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error, Dato inválido" + e.getMessage());
         }
     }//GEN-LAST:event_establecerBtnActionPerformed
+
+    private void Establecer_tActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Establecer_tActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Establecer_tActionPerformed
+
+    private void Colocar_SucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Colocar_SucursalActionPerformed
+        MostrarGrafo mg = new MostrarGrafo();
+        ColocarSucursal pantalla= new ColocarSucursal(MenuSucursales.grafo,mg);
+        pantalla.setVisible(true);
+    }//GEN-LAST:event_Colocar_SucursalActionPerformed
 
     /**
      * @param args the command line arguments
