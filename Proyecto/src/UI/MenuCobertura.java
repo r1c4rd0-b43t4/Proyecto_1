@@ -6,8 +6,7 @@ package UI;
 import Proyecto.Grafo;
 
 /**
- *
- * @author HP
+ *Clase MenuCobertura como parte de la ui.
  */
 public class MenuCobertura extends javax.swing.JFrame {
 
