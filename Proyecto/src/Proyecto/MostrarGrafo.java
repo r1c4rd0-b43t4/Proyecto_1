@@ -11,7 +11,7 @@ import org.graphstream.graph.implementations.SingleGraph;
  */
 public class MostrarGrafo {
     
-    Graph red=new SingleGraph("MiGrafo"); 
+ 
     
     /**
      * El método consiste en recibir un objeto de tipo Grafo el cuál sera iterado para que sus parámetros sean llevados a un objeto tipo grafo de Graphstream, con el fín de cumplir el funcionamiento correcto de la librería.
@@ -58,7 +58,6 @@ public class MostrarGrafo {
         graphStream.setAttribute("ui.stylesheet",
                 "node {fill-color: Green; size: 20px; text-size: 10;} edge {fill-color: black;}");
         
-        red=graphStream;
         return graphStream;
         
 
@@ -88,12 +87,5 @@ public class MostrarGrafo {
         }
     }
     
-    /**
-     * retorna la clase Graph
-     * @return 
-     */
-    public Graph getGraph(){
-        return red;
-    }
     
 }
