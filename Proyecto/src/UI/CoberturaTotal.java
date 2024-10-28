@@ -96,12 +96,7 @@ public class CoberturaTotal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ConsultarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarBTNActionPerformed
-        try{
-            this.grafo.getVerticeI(1).setSucursal(true);
-        }
-        catch(Exception e){
         
-        }
         this.profundidadCoberturaTotal(grafo);
         
     }//GEN-LAST:event_ConsultarBTNActionPerformed
@@ -161,7 +156,7 @@ public class CoberturaTotal extends javax.swing.JFrame {
                 
             }
             
-            if (existeSucursal)
+            if (!existeSucursal)
                 JOptionPane.showMessageDialog(this, "Todas las paradas están cubiertas");
         }
         catch (Exception e)
