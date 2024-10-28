@@ -18,7 +18,7 @@ public class MostrarGrafo {
      * @param grafo Recibe un objeto Grafo.
      * @throws Exception Al fallar la creación de un nodo o arista del grafo Graphstream.
      */
-    public void mostrar(Grafo grafo) throws Exception {
+    public Graph mostrar(Grafo grafo) throws Exception {
        System.setProperty("org.graphstream.ui", "swing");
         Graph graphStream = new SingleGraph("MiGrafo");
 
@@ -59,7 +59,8 @@ public class MostrarGrafo {
                 "node {fill-color: Green; size: 20px; text-size: 10;} edge {fill-color: black;}");
         
         red=graphStream;
-        graphStream.display();
+        return graphStream;
+        
 
     }
  
