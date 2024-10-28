@@ -111,6 +111,7 @@ public class CoberturaSucursales extends javax.swing.JFrame {
                 this.ComboBox.addItem(nombrevertice);
             }
         }
+        
     }
     
     public void amplitud (Grafo g, int numVertice) {
@@ -230,10 +231,20 @@ public class CoberturaSucursales extends javax.swing.JFrame {
      * @param evt 
      */
     private void AmplitudBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmplitudBtnActionPerformed
+        
+        if (this.ComboBox.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(this, "Error, No hay ninguna sucursal creada");
+            return;
+        }
+        
         String nombreVertice = this.ComboBox.getSelectedItem().toString();
         int indiceVertice = grafo.getNumVertice(nombreVertice);
         this.jTextArea1.setText("");
-        this.amplitud(this.grafo, indiceVertice);
+        if(this.ComboBox.getItemCount() < 1)
+            JOptionPane.showMessageDialog(this, "Error, No hay ninguna sucursal creada");
+        else
+            this.amplitud(this.grafo, indiceVertice);
+        
     
     }//GEN-LAST:event_AmplitudBtnActionPerformed
 
@@ -242,8 +253,16 @@ public class CoberturaSucursales extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboBoxActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if (this.ComboBox.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(this, "Error, No hay ninguna sucursal creada");
+            return;
+        }
+        
         this.jTextArea1.setText("");
-        this.profundidad(this.grafo);
+        if(this.ComboBox.getItemCount() < 1)
+            JOptionPane.showMessageDialog(this, "Error, No hay ninguna sucursal creada");
+        else
+            this.profundidad(this.grafo);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
