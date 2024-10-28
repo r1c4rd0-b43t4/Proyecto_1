@@ -76,17 +76,17 @@ public class MostrarGrafo {
 
             // Verificar si el nodo no está en rojo
             if (colorActual.contains("fill-color: red")) {
-                System.out.println("Nodo " + nombre + " ya está en rojo.");
+
             }
             else {
 
                 nodo.setAttribute("ui.style", "fill-color: red;");
                 red.getVerticeN(nombre).setSucursal(true);
-                System.out.println("Nodo " + nombre + " cambiado a rojo.");
+
             }
         }
         else {
-            System.out.println("Nodo " + nombre + " no existe.");
+
         }
     }
 
