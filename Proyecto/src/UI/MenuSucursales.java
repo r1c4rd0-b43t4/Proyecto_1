@@ -176,8 +176,7 @@ public class MenuSucursales extends javax.swing.JFrame {
     }//GEN-LAST:event_Establecer_tActionPerformed
 
     private void Colocar_SucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Colocar_SucursalActionPerformed
-        MostrarGrafo mg = new MostrarGrafo();
-        ColocarSucursal pantalla= new ColocarSucursal(MenuSucursales.grafo,mg);
+        ColocarSucursal pantalla = new ColocarSucursal(grafo);
         pantalla.setVisible(true);
     }//GEN-LAST:event_Colocar_SucursalActionPerformed
 
