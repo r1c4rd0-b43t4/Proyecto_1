@@ -4,7 +4,9 @@
  */
 package UI;
 
+
 import Proyecto.*;
+import Reader.Reader;
 import static UI.CargaRed_1.grafo;
 import java.math.MathContext;
 import java.util.logging.Level;
@@ -26,9 +28,11 @@ public class MenuSucursales extends javax.swing.JFrame {
     
     static Grafo grafo ;
     
+    
 
     public MenuSucursales(Grafo grafo) {
         this.grafo = grafo;
+        
         initComponents();
     }
 
@@ -110,6 +114,11 @@ public class MenuSucursales extends javax.swing.JFrame {
         Cargar_Red.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         Cargar_Red.setText("Cargar nueva Red");
         Cargar_Red.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Cargar_Red.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cargar_RedActionPerformed(evt);
+            }
+        });
         getContentPane().add(Cargar_Red, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 170, 40));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -151,6 +160,7 @@ public class MenuSucursales extends javax.swing.JFrame {
 
     private void Ver_CoberturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ver_CoberturaActionPerformed
         MenuCobertura pantalla = new MenuCobertura(this.grafo);
+        pantalla.setLocationRelativeTo(null);
         pantalla.setVisible(true);
     }//GEN-LAST:event_Ver_CoberturaActionPerformed
 
@@ -172,8 +182,31 @@ public class MenuSucursales extends javax.swing.JFrame {
     private void Colocar_SucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Colocar_SucursalActionPerformed
         MostrarGrafo mg = new MostrarGrafo();
         ColocarSucursal pantalla= new ColocarSucursal(MenuSucursales.grafo,mg);
+        pantalla.setLocationRelativeTo(null);
         pantalla.setVisible(true);
+        
     }//GEN-LAST:event_Colocar_SucursalActionPerformed
+
+    private void Cargar_RedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cargar_RedActionPerformed
+          try{
+          Grafo grafo_nuevo = new Grafo(0, "");
+          Reader reader = new Reader();
+          grafo_nuevo = reader.Read();
+          
+          if(grafo_nuevo ==  null){
+              throw new Exception("Error durante la carga");  
+          }
+          grafo = grafo_nuevo;
+          
+          JOptionPane.showMessageDialog(this, "La carga fue un exito");  
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error durante la carga");  
+        }
+   
+        
+    }//GEN-LAST:event_Cargar_RedActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,6 +238,7 @@ public class MenuSucursales extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new MenuSucursales(grafo).setVisible(true);
             }

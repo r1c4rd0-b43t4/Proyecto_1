@@ -106,11 +106,15 @@ public class ColocarSucursal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(379, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(235, Short.MAX_VALUE))
         );
 
         pack();
@@ -131,14 +135,14 @@ public class ColocarSucursal extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboBoxActionPerformed
 
     private void BotonColocarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonColocarActionPerformed
-        String nombreVertice = this.ComboBox.getSelectedItem().toString();
-        if(mostrar.getGraph()==null){
-            JOptionPane.showMessageDialog(this, "Red no mostrada");
-        }
-        else{
-        mostrar.ColocarSucursal(grafo, mostrar.getGraph(), nombreVertice);
-        }
-        
+//        String nombreVertice = this.ComboBox.getSelectedItem().toString();
+//        if(mostrar.getGraph()==null){
+//            JOptionPane.showMessageDialog(this, "Red no mostrada");
+//        }
+//        else{
+//        mostrar.ColocarSucursal(grafo, mostrar.getGraph(), nombreVertice);
+//        }
+//        
     }//GEN-LAST:event_BotonColocarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

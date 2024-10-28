@@ -34,7 +34,7 @@ public class MenuCobertura extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        atras = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         amplitudBtn = new javax.swing.JButton();
         profundidadBtn = new javax.swing.JButton();
@@ -43,15 +43,15 @@ public class MenuCobertura extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jButton1.setText("Atrás");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        atras.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        atras.setText("Atrás");
+        atras.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                atrasActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 130, 50));
+        getContentPane().add(atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 130, 50));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -84,17 +84,19 @@ public class MenuCobertura extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_atrasActionPerformed
 
     private void amplitudBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amplitudBtnActionPerformed
         CoberturaSucursales pantalla = new CoberturaSucursales(this.grafo);
+        pantalla.setLocationRelativeTo(null);
         pantalla.setVisible(true);
     }//GEN-LAST:event_amplitudBtnActionPerformed
 
     private void profundidadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profundidadBtnActionPerformed
         CoberturaTotal pantalla = new CoberturaTotal(this.grafo);
+        pantalla.setLocationRelativeTo(null);
         pantalla.setVisible(true);
         
     }//GEN-LAST:event_profundidadBtnActionPerformed
@@ -136,7 +138,7 @@ public class MenuCobertura extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton amplitudBtn;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton atras;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton profundidadBtn;
