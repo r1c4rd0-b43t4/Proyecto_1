@@ -9,7 +9,8 @@ import Proyecto.Nodo;
 import javax.swing.JOptionPane;
 
 /**
- *Clase CoberturaSucursales como parte de la UI.
+ *
+ * @author HP
  */
 public class CoberturaSucursales extends javax.swing.JFrame {
 
@@ -19,10 +20,6 @@ public class CoberturaSucursales extends javax.swing.JFrame {
     
     static Grafo grafo;
     
-    /**
-     * Iniciio de los componentes
-     * @param grafo 
-     */
     public CoberturaSucursales(Grafo grafo) {
         initComponents();
         //this.ComboBox.removeAllItems();
@@ -48,88 +45,64 @@ public class CoberturaSucursales extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Búsqueda por Amplitud");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton1.setText("Atrás");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, 80, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, -1, -1));
 
-        AmplitudBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         AmplitudBtn.setText("Amplitud");
-        AmplitudBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         AmplitudBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AmplitudBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(AmplitudBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 130, 30));
+        getContentPane().add(AmplitudBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 100, -1));
 
         ComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxActionPerformed(evt);
             }
         });
-        getContentPane().add(ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 240, 50));
+        getContentPane().add(ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 190, 30));
 
-        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Selecciona una sucursal:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 240, 30));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 160, -1));
 
-        jButton3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton3.setText("Profundidad");
-        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, 130, 30));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 100, -1));
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, -1, 120));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, 120));
 
-        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Alcance de la sucursal:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, -1));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fondo.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 500));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * no se no deja borrarlo
-     * @param evt 
-     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
     
-    /**
-     * Método para recorrer las sucursales.
-     */
     public void recorrerSucursales(){
         this.ComboBox.removeAllItems();
         for(int i = 0; i<this.grafo.getTablAd().length;i++){
@@ -138,13 +111,9 @@ public class CoberturaSucursales extends javax.swing.JFrame {
                 this.ComboBox.addItem(nombrevertice);
             }
         }
+        
     }
     
-    /**
-     * Método para hallar la amplitud 
-     * @param g
-     * @param numVertice 
-     */
     public void amplitud (Grafo g, int numVertice) {
         try{
             int t = 1;
@@ -188,7 +157,8 @@ public class CoberturaSucursales extends javax.swing.JFrame {
     }
     
     /**
-     * Método para recorrido en profundidad
+     * Recorrido en profundidad
+     * Metodo recursivo
      * @param g Objeto grafo
      * @param v Indice del vertice
      * @param visitados lista que contiene cuales vertices han sido o no visitados
@@ -215,7 +185,8 @@ public class CoberturaSucursales extends javax.swing.JFrame {
     }
 
     /**
-     * Método recorrido en profundidad parte 1
+     * Recorrido en profundidad parte 1
+     * Metodo no Recursivo
      * @param g Objeto grafo
      */
     public void profundidad (Grafo g) {
@@ -234,7 +205,7 @@ public class CoberturaSucursales extends javax.swing.JFrame {
     }
     
     /**
-     * Función que le envía al TextArea la información del vértice.
+     * Funcion que le envía al TextArea la infomración del vertice
      * @param g El objeto grafo 
      * @param v Indice del vertice a imprimir
      */
@@ -256,31 +227,42 @@ public class CoberturaSucursales extends javax.swing.JFrame {
     }
     
     /**
-     * Botón que llama a la función amplitud.
+     * Boton que llama a la funcion amplitud
      * @param evt 
      */
     private void AmplitudBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmplitudBtnActionPerformed
+        
+        if (this.ComboBox.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(this, "Error, No hay ninguna sucursal creada");
+            return;
+        }
+        
         String nombreVertice = this.ComboBox.getSelectedItem().toString();
         int indiceVertice = grafo.getNumVertice(nombreVertice);
         this.jTextArea1.setText("");
-        this.amplitud(this.grafo, indiceVertice);
+        if(this.ComboBox.getItemCount() < 1)
+            JOptionPane.showMessageDialog(this, "Error, No hay ninguna sucursal creada");
+        else
+            this.amplitud(this.grafo, indiceVertice);
+        
     
     }//GEN-LAST:event_AmplitudBtnActionPerformed
-    /**
-     * 
-     * @param evt 
-     */
+
     private void ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboBoxActionPerformed
-    
-    /**
-     * 
-     * @param evt 
-     */
+
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if (this.ComboBox.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(this, "Error, No hay ninguna sucursal creada");
+            return;
+        }
+        
         this.jTextArea1.setText("");
-        this.profundidad(this.grafo);
+        if(this.ComboBox.getItemCount() < 1)
+            JOptionPane.showMessageDialog(this, "Error, No hay ninguna sucursal creada");
+        else
+            this.profundidad(this.grafo);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -329,7 +311,6 @@ public class CoberturaSucursales extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
