@@ -9,8 +9,7 @@ import Proyecto.MostrarGrafo;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author reneb
+ *Clase ColocarSucursal como parte de la ui.
  */
 public class ColocarSucursal extends javax.swing.JFrame {
 
