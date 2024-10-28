@@ -7,7 +7,8 @@ import Proyecto.Grafo;
 import javax.swing.JOptionPane;
 
 /**
- *Clase CoberturaTotal  como parte de la ui.
+ *
+ * @author HP
  */
 public class CoberturaTotal extends javax.swing.JFrame {
 

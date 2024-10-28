@@ -15,7 +15,8 @@ import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.view.Viewer;
 
 /**
- *Clase MenuSucursales como parte de la ui.
+ *
+ * @author HP
  */
 public class MenuSucursales extends javax.swing.JFrame {
 

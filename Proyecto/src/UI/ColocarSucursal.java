@@ -12,7 +12,8 @@ import javax.swing.JOptionPane;
 import org.graphstream.graph.Graph;
 
 /**
- *Clase ColocarSucursal como parte de la ui.
+ *
+ * @author reneb
  */
 public class ColocarSucursal extends javax.swing.JFrame {
 
