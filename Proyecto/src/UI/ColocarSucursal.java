@@ -6,7 +6,10 @@ package UI;
 
 import Proyecto.Grafo;
 import Proyecto.MostrarGrafo;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.graphstream.graph.Graph;
 
 /**
  *Clase ColocarSucursal como parte de la ui.
@@ -15,16 +18,10 @@ public class ColocarSucursal extends javax.swing.JFrame {
 
     
     static Grafo grafo;
-    static MostrarGrafo mostrar;
-    /**
-     * Creates new form ColocarSucursal
-     * @param grafo
-     * @param mostrar
-     */
-    public ColocarSucursal(Grafo grafo, MostrarGrafo mostrar) {
+
+    public ColocarSucursal(Grafo grafo) {
         initComponents();
         ColocarSucursal.grafo=grafo;
-        ColocarSucursal.mostrar=mostrar;
         this.recorrerSucursales();
 
     }
@@ -41,8 +38,8 @@ public class ColocarSucursal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         ComboBox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        BotonColocar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        BotonColocar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,17 +52,17 @@ public class ColocarSucursal extends javax.swing.JFrame {
 
         jLabel1.setText("Seleccione parada en la que colocar sucursal");
 
-        BotonColocar.setText("jButton1");
-        BotonColocar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonColocarActionPerformed(evt);
-            }
-        });
-
         jButton1.setText("Atrás");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        BotonColocar.setText("jButton2");
+        BotonColocar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonColocarActionPerformed(evt);
             }
         });
 
@@ -96,7 +93,7 @@ public class ColocarSucursal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotonColocar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -107,13 +104,11 @@ public class ColocarSucursal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(379, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(235, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -122,10 +117,9 @@ public class ColocarSucursal extends javax.swing.JFrame {
     public final void recorrerSucursales(){
         this.ComboBox.removeAllItems();
         for(int i = 0; i<this.grafo.getTablAd().length;i++){
-            if (CoberturaSucursales.grafo.getTablAd()[i].isSucursal()){
-                String nombrevertice = CoberturaSucursales.grafo.getTablAd()[i].getNombre();
-                this.ComboBox.addItem(nombrevertice);
-            }
+            String nombrevertice = grafo.getTablAd()[i].getNombre();
+            this.ComboBox.addItem(nombrevertice);
+            
         }
     }
     
@@ -133,20 +127,19 @@ public class ColocarSucursal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboBoxActionPerformed
 
-    private void BotonColocarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonColocarActionPerformed
-//        String nombreVertice = this.ComboBox.getSelectedItem().toString();
-//        if(mostrar.getGraph()==null){
-//            JOptionPane.showMessageDialog(this, "Red no mostrada");
-//        }
-//        else{
-//        mostrar.ColocarSucursal(grafo, mostrar.getGraph(), nombreVertice);
-//        }
-//        
-    }//GEN-LAST:event_BotonColocarActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void BotonColocarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonColocarActionPerformed
+        String nombreVertice = this.ComboBox.getSelectedItem().toString();
+        MostrarGrafo mostrar = new MostrarGrafo();
+        try {
+            mostrar.ColocarSucursal(grafo,mostrar.mostrar(grafo) , nombreVertice);
+        } catch (Exception ex) {
+            Logger.getLogger(ColocarSucursal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_BotonColocarActionPerformed
 
     
     
@@ -180,7 +173,7 @@ public class ColocarSucursal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ColocarSucursal(grafo,mostrar).setVisible(true);
+                new ColocarSucursal(grafo).setVisible(true);
             }
         });
     }
