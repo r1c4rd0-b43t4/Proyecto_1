@@ -11,10 +11,11 @@ import org.graphstream.graph.implementations.SingleGraph;
  */
 public class MostrarGrafo {
     
+ 
+    
     /**
      * El método consiste en recibir un objeto de tipo Grafo el cuál sera iterado para que sus parámetros sean llevados a un objeto tipo grafo de Graphstream, con el fín de cumplir el funcionamiento correcto de la librería.
      * @param grafo Recibe un objeto Grafo.
-     * @return 
      * @throws Exception Al fallar la creación de un nodo o arista del grafo Graphstream.
      */
     public Graph mostrar(Grafo grafo) throws Exception {
@@ -58,16 +59,12 @@ public class MostrarGrafo {
                 "node {fill-color: Green; size: 20px; text-size: 10;} edge {fill-color: black;}");
         
         return graphStream;
+        
 
     }
  
+    
     //recibe el grafo a trabajar y el nombre de la parada a poner sucursal
-    /**
-     * Método que recibe el grafo para trabajar y el nombre de la parada para poner la sucursal.
-     * @param red red a la que pertenece.
-     * @param grafo grafo del que viene.
-     * @param nombre  nombre de la parada.
-     */
     public void ColocarSucursal(Grafo red,Graph grafo, String nombre) {
         Node nodo = grafo.getNode(nombre);
         if (nodo != null) {
@@ -76,18 +73,19 @@ public class MostrarGrafo {
 
             // Verificar si el nodo no está en rojo
             if (colorActual.contains("fill-color: red")) {
-                System.out.println("Nodo " + nombre + " ya está en rojo.");
+                
             }
             else {
-
+                // Cambiar el color del nodo a rojo
                 nodo.setAttribute("ui.style", "fill-color: red;");
                 red.getVerticeN(nombre).setSucursal(true);
-                System.out.println("Nodo " + nombre + " cambiado a rojo.");
+                
             }
         }
         else {
-            System.out.println("Nodo " + nombre + " no existe.");
+            
         }
     }
-
+    
+    
 }
