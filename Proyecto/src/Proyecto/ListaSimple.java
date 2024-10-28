@@ -222,7 +222,7 @@ public class ListaSimple {
                                 }
                             }
                             catch(Exception e){ 
-                                JOptionPane.showMessageDialog(null, "Error");
+                                
                             }
                         }
                     }
@@ -238,7 +238,7 @@ public class ListaSimple {
                                 }
                             }
                             catch(Exception e){
-                                JOptionPane.showMessageDialog(null, "Error");
+                                
                             }
                         }
                     } 
@@ -275,7 +275,7 @@ public class ListaSimple {
             }  
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error");
+            
         }
         try
         {
@@ -284,7 +284,7 @@ public class ListaSimple {
             }
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error");
+            
         }
         return red;
     }

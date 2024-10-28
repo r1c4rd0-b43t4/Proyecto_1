@@ -1,5 +1,7 @@
+
 package Proyecto;
 import UI.CargaRed_1;
+
 
 /**
  *Clase Main que permite el inicio del proyecto.

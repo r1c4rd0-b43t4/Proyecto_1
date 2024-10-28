@@ -65,9 +65,7 @@ public class MenuSucursales extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Mostrar_Grafo.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
         Mostrar_Grafo.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        Mostrar_Grafo.setForeground(new java.awt.Color(255, 255, 255));
         Mostrar_Grafo.setText("Mostrar Grafo");
         Mostrar_Grafo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Mostrar_Grafo.addActionListener(new java.awt.event.ActionListener() {
@@ -77,23 +75,17 @@ public class MenuSucursales extends javax.swing.JFrame {
         });
         getContentPane().add(Mostrar_Grafo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 170, 40));
 
-        Establecer_t.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
         Establecer_t.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        Establecer_t.setForeground(new java.awt.Color(255, 255, 255));
         Establecer_t.setText("Establecer t");
         Establecer_t.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(Establecer_t, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 170, 40));
 
-        Colocar_Sucursal.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
         Colocar_Sucursal.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        Colocar_Sucursal.setForeground(new java.awt.Color(255, 255, 255));
         Colocar_Sucursal.setText("Colocar Sucursal");
         Colocar_Sucursal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(Colocar_Sucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 170, 40));
 
-        Ver_Cobertura.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
         Ver_Cobertura.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        Ver_Cobertura.setForeground(new java.awt.Color(255, 255, 255));
         Ver_Cobertura.setText("Ver  Cobertura");
         Ver_Cobertura.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Ver_Cobertura.addActionListener(new java.awt.event.ActionListener() {
@@ -103,31 +95,31 @@ public class MenuSucursales extends javax.swing.JFrame {
         });
         getContentPane().add(Ver_Cobertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 170, 40));
 
-        Agregar_Linea.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
         Agregar_Linea.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        Agregar_Linea.setForeground(new java.awt.Color(255, 255, 255));
         Agregar_Linea.setText("Agregar Línea");
         Agregar_Linea.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(Agregar_Linea, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, 170, 40));
 
-        Cargar_Red.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.GreyInline"));
         Cargar_Red.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        Cargar_Red.setForeground(new java.awt.Color(255, 255, 255));
         Cargar_Red.setText("Cargar nueva Red");
         Cargar_Red.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(Cargar_Red, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 170, 40));
 
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Establezca la frecuencia de sus sucursales ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, -1));
-        getContentPane().add(establecerTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 130, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
+        getContentPane().add(establecerTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 130, -1));
 
+        establecerBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         establecerBtn.setText("Establecer");
+        establecerBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         establecerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 establecerBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(establecerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, -1, -1));
+        getContentPane().add(establecerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 90, 30));
 
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fondo-logo.png"))); // NOI18N
@@ -141,7 +133,9 @@ public class MenuSucursales extends javax.swing.JFrame {
     MostrarGrafo mg = new MostrarGrafo();
     System.out.println(grafo.toString());
         try {
-            mg.mostrar(grafo);
+            Graph graph = mg.mostrar(grafo);
+            graph.display();
+                    
         } catch (Exception ex) {
             Logger.getLogger(MenuSucursales.class.getName()).log(Level.SEVERE, null, ex);
         }

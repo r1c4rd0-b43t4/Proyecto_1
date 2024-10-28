@@ -38,36 +38,48 @@ public class MenuCobertura extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         amplitudBtn = new javax.swing.JButton();
         profundidadBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton1.setText("Atrás");
+        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(327, 255, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 130, 50));
 
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Menú Sucursales");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 200, 60));
 
+        amplitudBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         amplitudBtn.setText("Cobertura Sucursales");
+        amplitudBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         amplitudBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 amplitudBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(amplitudBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        getContentPane().add(amplitudBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 180, 50));
 
+        profundidadBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         profundidadBtn.setText("Cobertura Total");
+        profundidadBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         profundidadBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 profundidadBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(profundidadBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, -1, -1));
+        getContentPane().add(profundidadBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 170, 50));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fondo.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -126,6 +138,7 @@ public class MenuCobertura extends javax.swing.JFrame {
     private javax.swing.JButton amplitudBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton profundidadBtn;
     // End of variables declaration//GEN-END:variables
 }

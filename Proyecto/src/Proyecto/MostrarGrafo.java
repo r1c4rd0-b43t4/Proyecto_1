@@ -14,9 +14,10 @@ public class MostrarGrafo {
     /**
      * El método consiste en recibir un objeto de tipo Grafo el cuál sera iterado para que sus parámetros sean llevados a un objeto tipo grafo de Graphstream, con el fín de cumplir el funcionamiento correcto de la librería.
      * @param grafo Recibe un objeto Grafo.
+     * @return 
      * @throws Exception Al fallar la creación de un nodo o arista del grafo Graphstream.
      */
-    public void mostrar(Grafo grafo) throws Exception {
+    public Graph mostrar(Grafo grafo) throws Exception {
        System.setProperty("org.graphstream.ui", "swing");
         Graph graphStream = new SingleGraph("MiGrafo");
 
@@ -56,7 +57,7 @@ public class MostrarGrafo {
         graphStream.setAttribute("ui.stylesheet",
                 "node {fill-color: Green; size: 20px; text-size: 10;} edge {fill-color: black;}");
         
-        graphStream.display();
+        return graphStream;
 
     }
  
@@ -78,7 +79,7 @@ public class MostrarGrafo {
                 System.out.println("Nodo " + nombre + " ya está en rojo.");
             }
             else {
-                // Cambiar el color del nodo a rojo
+
                 nodo.setAttribute("ui.style", "fill-color: red;");
                 red.getVerticeN(nombre).setSucursal(true);
                 System.out.println("Nodo " + nombre + " cambiado a rojo.");
